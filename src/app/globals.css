@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------------------------------------------
+   The Wealth Bridge — design tokens
+   Ink navy = institutional trust. Marigold = the flower of Indian
+   business openings; new beginnings. Paper = warm document white.
+------------------------------------------------------------------- */
+
+:root {
+  --background: oklch(0.985 0.004 95);          /* warm paper */
+  --foreground: oklch(0.24 0.035 250);          /* ink navy text */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.035 250);
+  --muted: oklch(0.955 0.006 95);
+  --muted-foreground: oklch(0.48 0.02 250);
+  --accent: oklch(0.78 0.145 75);               /* marigold */
+  --accent-strong: oklch(0.62 0.13 65);         /* deep amber (text-safe on paper) */
+  --accent-foreground: oklch(0.2 0.04 250);
+  --border: oklch(0.9 0.008 95);
+  --ring: oklch(0.62 0.13 65);
+
+  /* Ink band — the hero/footer stays navy in both themes */
+  --ink: oklch(0.21 0.04 250);
+  --ink-raised: oklch(0.26 0.042 250);
+  --ink-foreground: oklch(0.96 0.005 95);
+  --ink-muted: oklch(0.72 0.02 250);
+  --ink-border: oklch(0.34 0.04 250);
+}
+
+.dark {
+  --background: oklch(0.17 0.032 250);
+  --foreground: oklch(0.93 0.006 95);
+  --card: oklch(0.215 0.036 250);
+  --card-foreground: oklch(0.93 0.006 95);
+  --muted: oklch(0.24 0.036 250);
+  --muted-foreground: oklch(0.68 0.018 250);
+  --accent: oklch(0.78 0.145 75);
+  --accent-strong: oklch(0.8 0.14 78);
+  --accent-foreground: oklch(0.2 0.04 250);
+  --border: oklch(0.3 0.035 250);
+  --ring: oklch(0.78 0.145 75);
+
+  --ink: oklch(0.15 0.03 250);
+  --ink-raised: oklch(0.2 0.035 250);
+  --ink-foreground: oklch(0.95 0.005 95);
+  --ink-muted: oklch(0.7 0.02 250);
+  --ink-border: oklch(0.3 0.035 250);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-border: var(--ink-border);
+
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --animate-marquee: marquee 36s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* Visible, consistent keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

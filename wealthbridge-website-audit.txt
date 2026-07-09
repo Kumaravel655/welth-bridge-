@@ -1,0 +1,458 @@
+================================================================================
+THE WEALTH BRIDGE — WEBSITE CONTENT & DESIGN AUDIT
+Source: https://www.thewealthbridge.in/
+Captured: 2026-07-09
+Purpose: Reference document for modern redesign with animations
+================================================================================
+
+--------------------------------------------------------------------------------
+1. SITE METADATA (SEO)
+--------------------------------------------------------------------------------
+Title tag:
+"The Wealth Bridge - Startup funding, IEC code, Trademark registration, Patent
+registration, Copyright Government Subsidy, Capital subsidy, EB subsidy,
+Genset Subsidy, Interest subsidy"
+
+Meta description:
+"Our main objective is to help the entrepreneur on the legal and regulatory
+requirements, offering support and legal advice at every stage from launching
+to establishing their business. We work with some of the top respected and
+well-established entities, as well as start-up visionaries."
+
+Meta keywords:
+Private Limited Company | Public Limited Company | NGO & Trust | MSME & StartUp
+INDIA | Government Subsidy | Capital subsidy | EB subsidy | Genset Subsidy |
+Interest subsidy | Startup funding | IEC code | Trademark registration |
+Patent registration | Copyright | dsc | loans | life insurance | general
+insurance | health insurance | Investments | forex
+
+--------------------------------------------------------------------------------
+2. TECH STACK / BUILD OBSERVED (current old site — for reference only)
+--------------------------------------------------------------------------------
+- Static PHP pages (e.g. about.php, contactus.php, gst_registration.php,
+  pvt_ltd_company.php) — one page per service, ~60+ pages total
+- Bootstrap (bootstrap.min.css)
+- Font Awesome + custom icon fonts (etlinefont, line-pro, hs icons)
+- jQuery plugins: dzsparallaxer (parallax), fancybox (lightbox), slick-carousel
+  (sliders), typed.js (typing animation on hero), hs.megamenu (mega dropdown
+  nav), hamburgers (mobile menu icon), malihu custom scrollbar, chosen
+  (select dropdowns), animate.css, particles.js (animated dot background),
+  custombox (modals), prism (code highlighting — likely unused)
+- Google Fonts loaded: Open Sans (400/300/500/600/700), Playfair Display,
+  Roboto, Raleway, Spectral, Rubik, Poppins (300/400/500/600) — Poppins
+  appears to be the actual body/heading font in use
+- Logo files: assets/img/logo/logo.png, logo-mini.png (header + favicon)
+- Hero background: assets/img/slider-bg.jpg with a dark gradient overlay
+- Content images: assets/wealth/img1.jpg – img6.jpg (generic descriptive
+  images, About/services section)
+
+--------------------------------------------------------------------------------
+3. COLOR PALETTE (extracted from CSS)
+--------------------------------------------------------------------------------
+- Deep navy (header bg):        #012a56
+- Medium blue (section bg):     #033f80
+- Near-black navy (gradient):   #020a13
+- Bright blue (gradient mid):   #107ef4
+- Dark navy (gradient end):     #0a2038
+- Particles bg (dark slate):    #2e3537
+- Border/divider (dark):        #252a2c
+- White text on dark:           #ffffff
+
+Overall palette = navy / deep blue / bright blue accent on dark gradient
+hero — a conservative finance/legal-services blue theme. A modern redesign
+should keep blue as the trust anchor but modernize with a cleaner palette
+(e.g. deep navy + a vivid accent blue/teal/gold + off-white neutrals) and
+proper contrast ratios.
+
+--------------------------------------------------------------------------------
+4. HEADER / TOP BAR
+--------------------------------------------------------------------------------
+Top utility bar:
+  Phone: +91 416 2241199, +91 8667 753 901
+  Address: #23, 8th East Main Road, Gandhinagar, Katpadi, Vellore
+  Email: infowealthbridge@gmail.com
+  Website label: www.thewealthbridge.com
+  Social icons: Facebook (facebook.com/thewealthbridge),
+                Twitter (twitter.com/thewealthbridg)
+
+Main nav: Mega-menu style dropdown, logo left, hamburger on mobile.
+
+--------------------------------------------------------------------------------
+5. MAIN NAVIGATION / MEGA MENU STRUCTURE (with real page slugs)
+--------------------------------------------------------------------------------
+5.1 "To Start a Business"
+  Company Registration:
+    - Pvt Ltd Company            -> pvt_ltd_company.php
+    - One Person Company         -> one_person_company.php
+    - Partnership Firm           -> partnership_firm_registration.php
+    - LLP Registration           -> llp_registration.php
+    - Public Limited Company     -> public_ltd_company.php
+    - Producer Company           -> producer_company.php
+    - Nidhi Company              -> nidhi_company.php
+    - Section 8 Company          -> section_8_company.php
+    - Proprietorship Registration-> proprietorship_registration.php
+    - Company Name Search        -> company_name_search.php
+
+  Licensing:
+    - Food License (FSSAI)       -> food_license.php
+    - Trade License              -> trade_license.php
+    - Udyog Aadhaar/MSME/SSI     -> udyog_aadhar.php
+    - IE Code License            -> ie_code_license.php
+    - DOT OSP Registration       -> dot_osp_registration.php
+    - ISO Certification          -> iso_certification.php
+    - APEDA Certification        -> apenda_certification.php
+    - RERA Project Registration  -> rera_project_registration.php
+    - RERA Agent Registration    -> rera_agent_registration.php
+    - Digital Signature Cert.    -> digital_signature_certification.php
+
+  Accounting & Tax:
+    - Accounting & Tax           -> accounting_tax.php
+    - Accounting and Book-keeping-> accounting_book_keeping.php
+    - Payroll Maintenance        -> payroll_maintenance.php
+    - TDS Return Filing          -> tds_return_filing.php
+    - Individual Income Tax Filing -> individual_it_filing.php
+
+5.2 "TAX Filing & Compliance"
+  GST:
+    - GST Registration           -> gst_registration.php
+    - GST Filing                 -> gst_filing.php
+    - GST Advisory                -> gst_advisory.php
+
+  Income Tax Filing:
+    - Income Tax Notice          -> income_tax_notice.php
+    - Income Tax Assessment      -> income_tax_assessment.php
+
+  Annual Compliance:
+    - ROC Return/Annual Filing   -> roc_return_annual_filing.php
+    - Company Name Change        -> company_name_change.php
+    - Change of Registered Office-> change_of_ro.php
+    - Add Directors              -> add_directors.php
+    - Remove Directors           -> remove_directors.php
+    - Increase Authorized Capital-> increase_authorized_capital.php
+
+  Business Conversion:
+    - Private Limited Into LLP   -> pvt_ltd_into_llp.php
+    - Pvt Ltd to OPC             -> pvt_ltd_to_opc.php
+    - Proprietorship Into LLP    -> proprietorship_firm_into_llp.php
+    - Proprietorship to PLC      -> proprietorship_firm_to_plc.php
+
+5.3 "Trademark"
+    - Trademark Search           -> search_trademark.php
+    - Respond to TM Objection    -> respond_to_tm_objection.php
+    - Copyright Registration     -> copyright_registration.php
+    - Patent                     -> patent.php
+    - Patent Search              -> patent_search.php
+    - Provisional Application    -> provisional_application.php
+    - Permanent Patent           -> permanent_patent.php
+
+5.4 "Funding"
+  Fundraising:
+    - Fundraising                -> fundraising.php
+    - Pitch Deck                 -> pitch_deck.php
+    - Financial Report           -> financial_report.php
+    - CMA Report Preparation     -> cma_report_preparation.php
+
+  Loan:
+    - Business Loans             -> business_loans.php
+    - Home Loans                 -> home_loans.php
+    - Term Loans                 -> term_loans.php
+    - Loan Against Property      -> loan_against_property.php
+    - CIBIL Score                -> cibil_score.php
+
+  Legal:
+    - Rental Agreement           -> rental_agreement.php
+    - Partnership Deed           -> partnership_deed.php
+    - Share Purchase Agreement   -> share_purchase_agreement.php
+    - Shareholders' Agreement    -> shareholders_agreement.php
+    - Term Sheet Review          -> term_sheet_review.php
+    - Founders Agreement         -> founders_agreement.php
+
+5.5 "NGO"
+    - Trust Registration         -> trust_registration.php
+    - Society Registration       -> society_registration.php
+    - Section 8                  -> section_8.php
+
+5.6 Standalone pages
+    - About Us                   -> about.php
+    - Contact Us                 -> contactus.php
+    (Footer references "Portfolio" and "Latest Jobs" links but no working
+    page was found for these — likely placeholders/unbuilt on the old site.)
+
+--------------------------------------------------------------------------------
+6. HOMEPAGE — SECTION-BY-SECTION CONTENT
+--------------------------------------------------------------------------------
+
+[HERO]
+Headline: "We Help You To Form Your Company"
+(Likely animated via typed.js — rotating keywords)
+Popular topics shown as quick links/chips:
+  Company Registration, Tax Consultation, GST Registration/Filing, Trademark
+Background: dark navy/blue gradient over slider-bg.jpg, particles.js animated
+dots overlay.
+
+[ABOUT WEALTHBRIDGE]
+Heading: "About WealthBridge"
+Body: "With a group of dedicated, research-oriented and skilled professionals
+uniquely positioned to help individuals and business owners fulfil their
+financial and legal advisory since 2007."
+Mission: "Our main objective is to help the entrepreneur on the legal and
+regulatory requirements, offering support and legal advice at every stage
+from launching to establishing their business."
+
+[CORE VALUES — 3 columns]
+1. Trust: "You trust them. They do what they say, every time."
+2. Consistency: "If there is something that erodes trust quicker than
+   anything, it's a lack of consistency."
+3. Convenience: "Who doesn't want an easy and frictionless experience?"
+
+[FEATURED SERVICES — pricing cards]
+Card 1 — GST Registration
+  Blurb: "GST is the all-in-one tax that covers all businesses"
+  Benefits: Ease of business · Cascading tax effect removed · Promotion of
+  Digital economy
+  Price: ₹1,499 (alt. price shown elsewhere: ₹12,999 — inconsistent on
+  source site, verify actual current price before reuse)
+
+Card 2 — Company Registration
+  Blurb: "Company registration in India is the first and foremost step in
+  order to give your business a legal identity."
+  Benefits: Easy to Raise funding · Recognized under startup scheme ·
+  Foreign National can Invest
+  Price: ₹6,999
+
+Card 3 — Private Limited Company
+  Blurb: "It is perfect choice in terms of quick registration and of course
+  separate identity from its director."
+  Features: Name Reservation · Certificate of Incorporation · DSC for 2
+  Director
+  Price: ₹12,999
+
+[WHY CHOOSE US / TRUST SECTION]
+Heading: "This is what makes us a Reliable consultant to our clients globally"
+Factors (likely tabbed or icon-columns): Price · Customer Service · The Culture
+Customer Service copy: "You love the way they treat you. Employees are
+friendly, knowledgeable, and quick to respond."
+
+[CTA BAND]
+"We offer best in class Business services for all your Business needs"
+Button: "Call Us Now"
+
+[SIX SUPPORTING IMAGES]
+assets/wealth/img1.jpg – img6.jpg used across About/services sections
+(generic stock-style imagery — treat as placeholder, replace in redesign)
+
+--------------------------------------------------------------------------------
+7. ABOUT US PAGE (about.php)
+--------------------------------------------------------------------------------
+Headline: "The Wealth Bridge is one stop business setup and consulting company"
+
+Body: "The Wealth Bridge is one stop business setup and consulting company,
+managed by specialized team of Business Analysts, Company Secretaries,
+Chartered Accountants, Corporate Lawyers and Financial Professionals company
+headquartered in Vellore, India. Having known for our quality of services,
+delivering the projects on time, we have clients spread across the globe."
+
+Commitment: "We are committed to delivering value to our clients and ensuring
+long term success."
+
+Philosophy: "For us, the most important differentiator is not 'what' we do,
+but 'how' we do it."
+
+Advisory areas: "thewealthbridge.in provides all of our Advisory services in
+the areas of Finance, Strategy Planning, Performance Improvement, Risk and
+Governance"
+
+Extended services note: "IT services to organizations, and in addition we
+also have some specialist services has built brilliant offshore services
+across the boundaries to provide low cost software solutions"
+
+Mission (repeated): "Wealth Bridge Will Making More Possibilities which aims
+at providing much-needed funds to businesses across the trading and service
+industry"
+
+No team member bios/photos, no stats counters, no awards/certifications found
+on this page — a modern redesign should consider adding a real team section,
+trust badges, and client-count/years-in-business stats since none currently
+exist.
+
+--------------------------------------------------------------------------------
+8. CONTACT US PAGE (contactus.php)
+--------------------------------------------------------------------------------
+Heading: "How can we assist you?"
+
+Contact form fields: Your name · Your email · Phone number · Your message
+
+Vellore Head Office (two address renderings found on site — reconcile to one):
+  "No.23, 8th East Cross Road, Gandhi Nagar, Katpadi, Vellore, Tamil Nadu,
+  India"
+  "2nd Floor, #23, 8th East Main Road, Gandhinagar, Katpadi, Vellore"
+
+Phones (head office): 8667753907, 9788888294, +91 416 2241199,
+  +91 86677 53901
+
+Emails: mailtowealthbridge@gmail.com, infowealthbridge@gmail.com
+
+Social: Facebook (thewealthbridge), Twitter (@thewealthbridg)
+
+Business hours: not published on the current site (recommend adding).
+Map embed: not confirmed/present (recommend adding an interactive map).
+
+--------------------------------------------------------------------------------
+9. BRANCH OFFICES
+--------------------------------------------------------------------------------
+Arakkonam Office:
+  #10/1, Thiruthani High Road, Upstairs to Central Bank, Jothi Nagar,
+  Arakkonam, Tamil Nadu - 631003
+  Phones: +91 6381184522, +91 8012747723
+
+Ranipet Office:
+  No 126, MBT Road, Mahaveer Complex, First Floor, Muthukadai
+  (Near Darling Bakery), Ranipet - 632401
+  Phones: +91 417 2295006, +91 86675 42148
+
+--------------------------------------------------------------------------------
+10. SAMPLE SERVICE DETAIL PAGE — Private Limited Company Registration
+    (pvt_ltd_company.php) — representative template for all ~60 service pages
+--------------------------------------------------------------------------------
+Headline: "Private Limited Company Registration"
+Sub-line: "The default choice for new businesses and developing organizations
+as only private limited companies can raise funding."
+Timeline: 10 to 15 working days
+
+Description: "A perfect start for anyone who wants to start their business
+to give it a separate legal identity." Described as "a type of privately
+held small business entity" — limits owner liability to shares, restricts
+shareholders to 50 maximum, prevents public share trading.
+
+Key features:
+  - Members: minimum 2, maximum 200
+  - Prospectus not required
+  - Cannot accept public deposits
+  - Can raise funds from VCs/angel investors
+  - Limited liability for shareholders
+  - Minimum 2 directors (no independent directors needed)
+  - Minimum capital: ₹1,00,000 (one lakh rupees)
+
+Process steps (likely shown as a 4-step visual timeline):
+  1. Applying DIN & DSC
+  2. Name Approval
+  3. MOA, AOA & Affidavit
+  4. Company Registered
+
+Package includes:
+  - Verification of documents
+  - Professional fee for incorporation
+  - Applying DSC, DIN, ROC & TAN
+  - Follow-up until registration certificate is allotted
+
+Documents required:
+  - PAN card and residence proof of directors
+  - Rental agreement / EB card copy for registered office
+  - Latest bank statement or utility bills
+  - Passport-size photographs
+  - Specimen signatures
+  - Foreign director's passport copy (if applicable)
+
+--------------------------------------------------------------------------------
+11. SAMPLE SERVICE DETAIL PAGE — GST Registration Online
+    (gst_registration.php)
+--------------------------------------------------------------------------------
+Headline: "GST Registration Online"
+Description: "Goods and Service Tax or GST is the biggest Indirect Tax
+passed on 29th March 2017 in the Parliament under the Goods and Service Tax
+Act." Effective from July 1, 2017. Unified tax with three components: CGST,
+SGST, IGST.
+Timeline: 5 to 7 working days
+Registration threshold: turnover > ₹20 Lakhs (₹10 Lakhs in special category
+states); ₹40 Lakhs for service income.
+
+Documents required:
+  - PAN card of the business (companies)
+  - PAN and residence proof of partners/directors
+  - Business constitution proof
+  - Business address proof (owned or rented)
+  - Bank statement or cancelled cheque
+  - DSC for companies
+
+Package includes:
+  - Document verification
+  - Filing the online/offline GST registration application
+  - Authority liaison until certificate is granted
+
+Process steps:
+  1. GST Application Preparation — expert-guided document collection
+  2. GST Application Filing — online submission, instant ARN number
+  3. GST Registration Certificate — officer verification, GSTIN/certificate
+     issuance
+
+NOTE: All ~60 service pages on the current site follow this same repeating
+template (headline, timeline badge, description, feature list, numbered
+process steps, package inclusions, documents checklist). In the redesign this
+should become ONE reusable dynamic page template/component driven by a
+content array, not 60 hand-built PHP files.
+
+--------------------------------------------------------------------------------
+12. FOOTER
+--------------------------------------------------------------------------------
+About blurb: "We Help You To Form Your Company In A Simple Way. Wealth
+Bridge Will Making More Possibilities which aims at providing much-needed
+funds to businesses across the trading and service industry"
+
+Popular Links: GST Registration · Pvt Ltd Company · Income TAX Filing ·
+Trademark Registration · Business Loans
+
+Useful Links: About Us · Portfolio · Our Services · Latest Jobs · Contact Us
+(Portfolio / Our Services / Latest Jobs appear to be unbuilt/placeholder
+links on the current live site)
+
+Branch office blocks: Arakkonam + Ranipet (see section 9)
+
+Legal links: Privacy Policy · Terms of Use · License · Support
+(all currently point to "#" — not implemented, need real pages)
+
+Copyright: "2026 © All Rights Reserved. @ Rightinfotechs"
+(site was built by/credits an agency called "Rightinfotechs" —
+rightinfotechs.com)
+
+--------------------------------------------------------------------------------
+13. OBSERVED UX/ANIMATION PATTERNS ON CURRENT SITE (for redesign baseline)
+--------------------------------------------------------------------------------
+- Typed.js rotating text in hero headline
+- Particles.js animated dot/line background behind hero
+- Parallax scrolling section(s) via dzsparallaxer
+- Slick carousel for testimonials/services slider
+- Fancybox lightbox for image popups
+- Mega-menu dropdown navigation with categorized columns
+- animate.css scroll-triggered entrance animations
+- Hamburger icon animation for mobile nav toggle
+
+These are dated jQuery-era techniques. A modern rebuild should replace them
+with: CSS scroll-driven animations / Intersection Observer reveals, Framer
+Motion or GSAP for hero + micro-interactions, a lightweight mega-menu built
+in the chosen framework, native smooth-scroll, and skeleton/optimistic
+loading states — while keeping the same functional patterns (rotating hero
+text, animated stats, step timelines, pricing cards, mega nav).
+
+--------------------------------------------------------------------------------
+14. GAPS / RECOMMENDATIONS FOR THE REDESIGN
+--------------------------------------------------------------------------------
+- Reconcile inconsistent data found on live site before reuse:
+    * Head office address has 2 different wordings
+    * GST Registration price shown as both ₹1,499 and ₹12,999
+- No team/leadership section, no client logos, no testimonials, no case
+  studies, no stats counters (years in business, clients served, filings
+  completed) — all good additions for a modern trust-building redesign
+- No blog/insights section despite heavy compliance/tax subject matter —
+  strong SEO opportunity
+- Footer legal pages (Privacy Policy, Terms, License, Support) are placeholder
+  links only — need real content
+- "Portfolio" / "Our Services" / "Latest Jobs" footer links have no working
+  destination — decide whether to build these or remove them
+- 60+ near-duplicate static service pages should collapse into a single
+  data-driven template (service slug -> content object) for maintainability
+- Mobile responsiveness of the old mega-menu should be re-verified/rebuilt
+- Add a real Google Maps embed and published business hours on Contact page
+
+================================================================================
+END OF AUDIT
+================================================================================
