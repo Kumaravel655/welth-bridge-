@@ -63,6 +63,14 @@ function DesktopNav() {
     >
       <NavigationMenu.List className="flex items-center gap-0.5">
         <NavigationMenu.Item>
+          <NavigationMenu.Link asChild>
+            <Link href="/" className={triggerClass}>
+              Home
+            </Link>
+          </NavigationMenu.Link>
+        </NavigationMenu.Item>
+
+        <NavigationMenu.Item>
           <NavigationMenu.Trigger className={triggerClass}>
             Services
             <ChevronDown
@@ -247,6 +255,7 @@ function MobileNav() {
 
             <div className="mt-4 space-y-1">
               {[
+                { href: "/", label: "Home" },
                 { href: "/services", label: "All services" },
                 { href: "/about", label: "About" },
                 { href: "/contact", label: "Contact" },
