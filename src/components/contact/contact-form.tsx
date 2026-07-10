@@ -1,33 +1,51 @@
 "use client";
 
 import * as Label from "@radix-ui/react-label";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { site } from "@/lib/site";
 
-type Status = "idle" | "sent";
+type Status = "idle" | "sending" | "sent" | "error";
 
 export function ContactForm() {
   const [status, setStatus] = React.useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = React.useState("");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const name = String(data.get("name") ?? "");
-    const email = String(data.get("email") ?? "");
-    const phone = String(data.get("phone") ?? "");
-    const message = String(data.get("message") ?? "");
+    setStatus("sending");
+    setErrorMsg("");
 
-    const subject = encodeURIComponent(`Enquiry from ${name} — website`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}`
-    );
-    window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
-    setStatus("sent");
+    const data = new FormData(e.currentTarget);
+    const payload = {
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      phone: String(data.get("phone") ?? ""),
+      message: String(data.get("message") ?? ""),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || "Something went wrong.");
+      }
+
+      setStatus("sent");
+    } catch (err) {
+      setErrorMsg(
+        err instanceof Error ? err.message : "Failed to send. Please try again."
+      );
+      setStatus("error");
+    }
   }
 
   if (status === "sent") {
@@ -38,19 +56,11 @@ export function ContactForm() {
       >
         <CheckCircle2 className="size-10 text-accent-strong" aria-hidden />
         <h3 className="mt-4 font-display text-xl tracking-tight">
-          Almost there
+          Enquiry sent!
         </h3>
         <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">
-          Your email app has opened with the enquiry drafted — press send and
-          we&apos;ll reply within one working day. If it didn&apos;t open,
-          write to us directly at{" "}
-          <a
-            href={`mailto:${site.email}`}
-            className="font-medium text-accent-strong underline-offset-4 hover:underline"
-          >
-            {site.email}
-          </a>
-          .
+          Thanks for reaching out. We&apos;ve received your message and will
+          reply within one working day.
         </p>
         <Button
           variant="outline"
@@ -119,9 +129,30 @@ export function ContactForm() {
           placeholder="e.g. I want to register a private limited company for my software business…"
         />
       </div>
-      <Button type="submit" size="lg" className="mt-6 w-full sm:w-auto">
-        Send enquiry
-        <ArrowRight aria-hidden />
+
+      {status === "error" && (
+        <p className="mt-4 rounded-lg bg-red-50 px-4 py-2 text-sm text-red-600 dark:bg-red-950/30 dark:text-red-400">
+          {errorMsg}
+        </p>
+      )}
+
+      <Button
+        type="submit"
+        size="lg"
+        className="mt-6 w-full sm:w-auto"
+        disabled={status === "sending"}
+      >
+        {status === "sending" ? (
+          <>
+            <Loader2 className="animate-spin" aria-hidden />
+            Sending…
+          </>
+        ) : (
+          <>
+            Send enquiry
+            <ArrowRight aria-hidden />
+          </>
+        )}
       </Button>
       <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
         We reply within one working day. Your details are used only to answer
@@ -130,3 +161,4 @@ export function ContactForm() {
     </form>
   );
 }
+
