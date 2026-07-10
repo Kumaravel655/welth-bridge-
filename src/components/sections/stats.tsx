@@ -12,11 +12,16 @@ export function Stats() {
   return (
     <section
       aria-label="The Wealth Bridge at a glance"
-      className="border-b border-border"
+      className="relative border-b border-border bg-gradient-to-r from-muted/60 via-background to-muted/60"
     >
-      <RevealGroup className="mx-auto grid max-w-7xl grid-cols-2 gap-y-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
-        {stats.map((s) => (
-          <Reveal key={s.label} className="text-center lg:text-left">
+      {/* Subtle dot grid overlay */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 dot-grid opacity-40" />
+
+      <RevealGroup className="relative mx-auto grid max-w-7xl grid-cols-2 gap-y-10 px-4 py-16 sm:px-6 lg:grid-cols-4 lg:px-8">
+        {stats.map((s, i) => (
+          <Reveal key={s.label} variant={i % 2 === 0 ? "fade-up" : "scale-in"} className="group text-center lg:text-left">
+            {/* Animated accent line */}
+            <div className="mx-auto mb-4 h-px w-10 bg-gradient-to-r from-transparent via-accent/60 to-transparent transition-all duration-500 group-hover:w-16 lg:mx-0" aria-hidden />
             <p className="font-display text-4xl tracking-tight text-foreground sm:text-5xl">
               <Counter to={s.value} suffix={s.suffix} />
             </p>

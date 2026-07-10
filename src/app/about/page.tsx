@@ -1,6 +1,7 @@
 import { Briefcase, Landmark, Scale, TrendingUp, Users } from "lucide-react";
 import type { Metadata } from "next";
 
+import { SceneArt } from "@/components/art/scene-art";
 import { Reveal, RevealGroup } from "@/components/motion/reveal";
 import { CTA } from "@/components/sections/cta";
 import { SectionHeading } from "@/components/sections/section-heading";
@@ -53,21 +54,27 @@ export default function AboutPage() {
   return (
     <>
       <section className="bg-ink text-ink-foreground">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
-            About us
-          </p>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.08] tracking-tight sm:text-6xl">
-            One firm on <em className="text-[var(--accent)]">your side</em> of
-            the paperwork.
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg">
-            The Wealth Bridge is a one-stop business setup and consulting
-            company headquartered in Vellore, India. Since 2007, we&apos;ve
-            helped individuals and business owners handle the legal and
-            regulatory work of starting, funding and running a company — with
-            clients across the globe.
-          </p>
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1.3fr_1fr] lg:px-8">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
+              About us
+            </p>
+            <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.08] tracking-tight sm:text-6xl">
+              One firm on <em className="text-[var(--accent)]">your side</em> of
+              the paperwork.
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg">
+              The Wealth Bridge is a one-stop business setup and consulting
+              company headquartered in Vellore, India. Since 2007, we&apos;ve
+              helped individuals and business owners handle the legal and
+              regulatory work of starting, funding and running a company — with
+              clients across the globe.
+            </p>
+          </div>
+          <SceneArt
+            variant="skyline"
+            className="aspect-[4/3] border border-ink-border/40 shadow-2xl shadow-black/30"
+          />
         </div>
       </section>
 
@@ -85,7 +92,14 @@ export default function AboutPage() {
           }
           lede="Most filings touch more than one discipline. Here, the accountant, the lawyer and the company secretary sit in the same office — so nothing gets lost between specialists."
         />
-        <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <Reveal className="mt-10">
+          <SceneArt
+            variant="workspace"
+            decorative
+            className="h-44 border border-border sm:h-56"
+          />
+        </Reveal>
+        <RevealGroup className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {professions.map((p) => (
             <Reveal key={p.title} className="h-full">
               <div className="h-full rounded-2xl border border-border bg-card p-5">

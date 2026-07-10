@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import Image from "next/image";
+
 import { Reveal, RevealGroup } from "@/components/motion/reveal";
 import { CTA } from "@/components/sections/cta";
 import { ServiceCard } from "@/components/service/service-card";
@@ -49,13 +51,26 @@ export default function ServicesPage() {
             className="scroll-mt-24 border-b border-border py-16 last:border-b-0 sm:py-20"
           >
             <Reveal>
-              <h2
-                id={`${cat.slug}-heading`}
-                className="font-display text-3xl tracking-tight sm:text-4xl"
-              >
-                {cat.title}
-              </h2>
-              <p className="mt-2 text-muted-foreground">{cat.tagline}</p>
+              <div className="grid gap-6 md:grid-cols-[1.5fr_1fr] md:items-center">
+                <div>
+                  <h2
+                    id={`${cat.slug}-heading`}
+                    className="font-display text-3xl tracking-tight sm:text-4xl"
+                  >
+                    {cat.title}
+                  </h2>
+                  <p className="mt-2 text-muted-foreground">{cat.tagline}</p>
+                </div>
+                <div className="relative aspect-[16/7] overflow-hidden rounded-2xl border border-ink-border/40">
+                  <Image
+                    src={`/images/categories/${cat.slug}.png`}
+                    alt={cat.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-ink/10" />
+                </div>
+              </div>
             </Reveal>
 
             {groupsInCategory(cat.slug).map(({ group, items }) => (

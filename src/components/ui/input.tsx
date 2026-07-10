@@ -10,6 +10,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
         "flex h-11 w-full rounded-xl border border-border bg-card px-4 text-sm shadow-xs transition-colors placeholder:text-muted-foreground focus-visible:border-ring disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
+      suppressHydrationWarning
       {...props}
     />
   );

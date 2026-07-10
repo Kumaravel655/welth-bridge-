@@ -62,20 +62,18 @@ function DesktopNav() {
       className="relative hidden lg:block"
     >
       <NavigationMenu.List className="flex items-center gap-0.5">
-        {categories.map((cat) => (
-          <NavigationMenu.Item key={cat.slug}>
-            <NavigationMenu.Trigger className={triggerClass}>
-              {cat.navLabel}
-              <ChevronDown
-                className="size-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180"
-                aria-hidden
-              />
-            </NavigationMenu.Trigger>
-            <NavigationMenu.Content className="absolute left-0 top-0 w-max">
-              <CategoryPanel slug={cat.slug} />
-            </NavigationMenu.Content>
-          </NavigationMenu.Item>
-        ))}
+        <NavigationMenu.Item>
+          <NavigationMenu.Trigger className={triggerClass}>
+            Services
+            <ChevronDown
+              className="size-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180"
+              aria-hidden
+            />
+          </NavigationMenu.Trigger>
+          <NavigationMenu.Content className="absolute left-0 top-0 w-max">
+            <AllServicesPanel />
+          </NavigationMenu.Content>
+        </NavigationMenu.Item>
 
         {[
           { href: "/about", label: "About" },
@@ -98,56 +96,67 @@ function DesktopNav() {
   );
 }
 
-function CategoryPanel({ slug }: { slug: (typeof categories)[number]["slug"] }) {
-  const cat = categories.find((c) => c.slug === slug)!;
-  const groups = groupsInCategory(slug);
-  const wide = groups.length > 2;
-
+function AllServicesPanel() {
   return (
-    <div className={cn("p-6", wide ? "w-[720px]" : "w-[560px]")}>
+    <div className="p-6 w-[800px] max-w-[90vw]">
       <div className="mb-5 flex items-end justify-between gap-6 border-b border-ink-border pb-4">
         <div>
-          <p className="font-display text-lg text-ink-foreground">{cat.title}</p>
-          <p className="mt-0.5 text-xs text-ink-muted">{cat.tagline}</p>
+          <p className="font-display text-lg text-ink-foreground">Our Services</p>
+          <p className="mt-0.5 text-xs text-ink-muted">Comprehensive solutions for your business</p>
         </div>
         <NavigationMenu.Link asChild>
           <Link
-            href={`/services#${cat.slug}`}
+            href="/services"
             className="inline-flex shrink-0 items-center gap-1 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-[var(--accent)] hover:underline"
           >
-            View all
+            View all services
             <ArrowRight className="size-3" aria-hidden />
           </Link>
         </NavigationMenu.Link>
       </div>
 
-      <div
-        className={cn(
-          "grid gap-x-8 gap-y-5",
-          wide ? "grid-cols-3" : groups.length === 1 ? "grid-cols-1" : "grid-cols-2"
-        )}
-      >
-        {groups.map(({ group, items }) => (
-          <div key={group}>
-            <p className="mb-2 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-muted">
-              {group}
-            </p>
-            <ul className="space-y-0.5">
-              {items.map((s) => (
-                <li key={s.slug}>
+      <div className="grid grid-cols-2 gap-x-8 gap-y-6 lg:grid-cols-3">
+        {categories.map((cat) => {
+          const groups = groupsInCategory(cat.slug);
+          const topServices = groups.flatMap((g) => g.items).slice(0, 4);
+
+          return (
+            <div key={cat.slug}>
+              <NavigationMenu.Link asChild>
+                <Link
+                  href={`/services#${cat.slug}`}
+                  className="mb-2 block font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-[var(--accent)] hover:underline"
+                >
+                  {cat.title}
+                </Link>
+              </NavigationMenu.Link>
+              <ul className="space-y-0.5">
+                {topServices.map((s) => (
+                  <li key={s.slug}>
+                    <NavigationMenu.Link asChild>
+                      <Link
+                        href={`/services/${s.slug}`}
+                        className="block rounded-md px-2 py-1.5 -mx-2 text-sm text-ink-foreground/90 transition-colors hover:bg-ink hover:text-[var(--accent)]"
+                      >
+                        {s.name}
+                      </Link>
+                    </NavigationMenu.Link>
+                  </li>
+                ))}
+                <li>
                   <NavigationMenu.Link asChild>
                     <Link
-                      href={`/services/${s.slug}`}
-                      className="block rounded-md px-2 py-1.5 -mx-2 text-sm text-ink-foreground/90 transition-colors hover:bg-ink hover:text-[var(--accent)]"
+                      href={`/services#${cat.slug}`}
+                      className="block rounded-md px-2 py-1.5 -mx-2 text-xs italic text-ink-muted transition-colors hover:text-[var(--accent)]"
                     >
-                      {s.name}
+                      + view more
                     </Link>
                   </NavigationMenu.Link>
                 </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -164,6 +173,7 @@ function MobileNav() {
         <button
           type="button"
           aria-label="Open menu"
+          suppressHydrationWarning
           className="inline-flex size-9 items-center justify-center rounded-full border border-ink-border text-ink-foreground transition-colors hover:bg-ink-raised lg:hidden"
         >
           <Menu className="size-4" aria-hidden />
@@ -179,6 +189,7 @@ function MobileNav() {
               <button
                 type="button"
                 aria-label="Close menu"
+                suppressHydrationWarning
                 className="inline-flex size-9 items-center justify-center rounded-full border border-ink-border transition-colors hover:bg-ink-raised"
               >
                 <X className="size-4" aria-hidden />
@@ -188,34 +199,50 @@ function MobileNav() {
 
           <nav className="flex-1 overflow-y-auto px-5 py-4">
             <Accordion type="single" collapsible className="w-full">
-              {categories.map((cat) => (
-                <AccordionItem
-                  key={cat.slug}
-                  value={cat.slug}
-                  className="border-ink-border"
-                >
-                  <AccordionTrigger className="text-ink-foreground hover:text-[var(--accent)]">
-                    {cat.navLabel}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <ul className="space-y-1 pb-2">
-                      {groupsInCategory(cat.slug).flatMap(({ items }) =>
-                        items.map((s) => (
-                          <li key={s.slug}>
-                            <Link
-                              href={`/services/${s.slug}`}
-                              onClick={() => setOpen(false)}
-                              className="block rounded-md px-2 py-1.5 text-sm text-ink-muted transition-colors hover:text-[var(--accent)]"
-                            >
-                              {s.name}
-                            </Link>
-                          </li>
-                        ))
-                      )}
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
+              <AccordionItem value="services" className="border-ink-border">
+                <AccordionTrigger className="text-ink-foreground hover:text-[var(--accent)]">
+                  Services
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="flex flex-col space-y-4 pb-2 pt-1">
+                    {categories.map((cat) => {
+                      const groups = groupsInCategory(cat.slug);
+                      const topServices = groups.flatMap((g) => g.items).slice(0, 3);
+                      return (
+                        <div key={cat.slug} className="space-y-2">
+                          <Link
+                            href={`/services#${cat.slug}`}
+                            onClick={() => setOpen(false)}
+                            className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-[var(--accent)]"
+                          >
+                            {cat.title}
+                          </Link>
+                          <ul className="space-y-1">
+                            {topServices.map((s) => (
+                              <li key={s.slug}>
+                                <Link
+                                  href={`/services/${s.slug}`}
+                                  onClick={() => setOpen(false)}
+                                  className="block py-1 text-sm text-ink-foreground/90"
+                                >
+                                  {s.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
+                    })}
+                    <Link
+                      href="/services"
+                      onClick={() => setOpen(false)}
+                      className="inline-flex items-center gap-1 pt-2 font-mono text-xs uppercase tracking-wider text-[var(--accent)]"
+                    >
+                      View all services <ArrowRight className="size-3" />
+                    </Link>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
             </Accordion>
 
             <div className="mt-4 space-y-1">

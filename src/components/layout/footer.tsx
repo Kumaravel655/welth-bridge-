@@ -1,6 +1,7 @@
 import { Facebook, Mail, MapPin, Phone, Twitter } from "lucide-react";
 import Link from "next/link";
 
+import { Reveal, RevealGroup } from "@/components/motion/reveal";
 import { featuredServices } from "@/lib/services";
 import { site } from "@/lib/site";
 
@@ -8,11 +9,17 @@ import { Wordmark } from "./wordmark";
 
 export function Footer() {
   return (
-    <footer className="bg-ink text-ink-foreground">
+    <footer className="relative bg-ink text-ink-foreground">
+      {/* Gradient divider at top */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"
+      />
+
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+        <RevealGroup className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* Brand */}
-          <div>
+          <Reveal variant="fade-right">
             <Wordmark />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-muted">
               One-stop business setup and compliance partner since 2007 —
@@ -25,7 +32,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="The Wealth Bridge on Facebook"
-                className="inline-flex size-9 items-center justify-center rounded-full border border-ink-border transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                className="group inline-flex size-9 items-center justify-center rounded-full border border-ink-border transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-[0_0_12px_-3px] hover:shadow-accent/30"
               >
                 <Facebook className="size-4" aria-hidden />
               </a>
@@ -34,80 +41,84 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="The Wealth Bridge on Twitter"
-                className="inline-flex size-9 items-center justify-center rounded-full border border-ink-border transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                className="group inline-flex size-9 items-center justify-center rounded-full border border-ink-border transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-[0_0_12px_-3px] hover:shadow-accent/30"
               >
                 <Twitter className="size-4" aria-hidden />
               </a>
             </div>
-          </div>
+          </Reveal>
 
           {/* Popular services */}
-          <nav aria-label="Popular services">
-            <p className="mb-3 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-muted">
-              Popular services
-            </p>
-            <ul className="space-y-2">
-              {featuredServices.map((s) => (
-                <li key={s.slug}>
-                  <Link
-                    href={`/services/${s.slug}`}
-                    className="text-sm text-ink-foreground/85 transition-colors hover:text-[var(--accent)]"
-                  >
-                    {s.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <Reveal variant="fade-up">
+            <nav aria-label="Popular services">
+              <p className="mb-3 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-muted">
+                Popular services
+              </p>
+              <ul className="space-y-2">
+                {featuredServices.map((s) => (
+                  <li key={s.slug}>
+                    <Link
+                      href={`/services/${s.slug}`}
+                      className="text-sm text-ink-foreground/85 transition-colors hover:text-[var(--accent)]"
+                    >
+                      {s.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </Reveal>
 
           {/* Company */}
-          <nav aria-label="Company">
-            <p className="mb-3 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-muted">
-              Company
-            </p>
-            <ul className="space-y-2">
-              {[
-                { href: "/about", label: "About us" },
-                { href: "/services", label: "All services" },
-                { href: "/contact", label: "Contact" },
-              ].map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-ink-foreground/85 transition-colors hover:text-[var(--accent)]"
+          <Reveal variant="fade-up">
+            <nav aria-label="Company">
+              <p className="mb-3 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-muted">
+                Company
+              </p>
+              <ul className="space-y-2">
+                {[
+                  { href: "/about", label: "About us" },
+                  { href: "/services", label: "All services" },
+                  { href: "/contact", label: "Contact" },
+                ].map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="text-sm text-ink-foreground/85 transition-colors hover:text-[var(--accent)]"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <p className="mb-3 mt-8 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-muted">
+                Reach us
+              </p>
+              <ul className="space-y-2 text-sm text-ink-foreground/85">
+                <li>
+                  <a
+                    href={`tel:${site.phone.replace(/\s/g, "")}`}
+                    className="inline-flex items-center gap-2 transition-colors hover:text-[var(--accent)]"
                   >
-                    {item.label}
-                  </Link>
+                    <Phone className="size-3.5 shrink-0" aria-hidden />
+                    {site.phone}
+                  </a>
                 </li>
-              ))}
-            </ul>
-            <p className="mb-3 mt-8 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-muted">
-              Reach us
-            </p>
-            <ul className="space-y-2 text-sm text-ink-foreground/85">
-              <li>
-                <a
-                  href={`tel:${site.phone.replace(/\s/g, "")}`}
-                  className="inline-flex items-center gap-2 transition-colors hover:text-[var(--accent)]"
-                >
-                  <Phone className="size-3.5 shrink-0" aria-hidden />
-                  {site.phone}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="inline-flex items-center gap-2 transition-colors hover:text-[var(--accent)]"
-                >
-                  <Mail className="size-3.5 shrink-0" aria-hidden />
-                  {site.email}
-                </a>
-              </li>
-            </ul>
-          </nav>
+                <li>
+                  <a
+                    href={`mailto:${site.email}`}
+                    className="inline-flex items-center gap-2 transition-colors hover:text-[var(--accent)]"
+                  >
+                    <Mail className="size-3.5 shrink-0" aria-hidden />
+                    {site.email}
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </Reveal>
 
           {/* Offices */}
-          <div>
+          <Reveal variant="fade-left">
             <p className="mb-3 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-muted">
               Offices
             </p>
@@ -127,18 +138,20 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
+          </Reveal>
+        </RevealGroup>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-ink-border pt-6 sm:flex-row">
-          <p className="text-xs text-ink-muted">
-            © {new Date().getFullYear()} The Wealth Bridge. All rights
-            reserved.
-          </p>
-          <p className="font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-ink-muted">
-            Vellore · Arakkonam · Ranipet
-          </p>
-        </div>
+        <Reveal variant="fade-up">
+          <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-ink-border pt-6 sm:flex-row">
+            <p className="text-xs text-ink-muted">
+              © {new Date().getFullYear()} The Wealth Bridge. All rights
+              reserved.
+            </p>
+            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-ink-muted">
+              Vellore · Arakkonam · Ranipet
+            </p>
+          </div>
+        </Reveal>
       </div>
     </footer>
   );

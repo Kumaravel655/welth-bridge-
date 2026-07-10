@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Newsreader } from "next/font/google";
+import { Geist, Geist_Mono, EB_Garamond } from "next/font/google";
 
+import { Chatbot } from "@/components/chat/chatbot";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+import { Preloader } from "@/components/motion/preloader";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { site } from "@/lib/site";
 
@@ -20,10 +22,10 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const newsreader = Newsreader({
+const ebGaramond = EB_Garamond({
   subsets: ["latin"],
   style: ["normal", "italic"],
-  variable: "--font-newsreader",
+  variable: "--font-eb-garamond",
   display: "swap",
 });
 
@@ -84,7 +86,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} ${newsreader.variable} font-sans`}
+        className={`${geist.variable} ${geistMono.variable} ${ebGaramond.variable} font-sans`}
+        suppressHydrationWarning
       >
         <ThemeProvider
           attribute="class"
@@ -92,6 +95,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Preloader />
           <a
             href="#main"
             className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-accent-foreground"
@@ -101,6 +105,7 @@ export default function RootLayout({
           <Header />
           <main id="main">{children}</main>
           <Footer />
+          <Chatbot />
         </ThemeProvider>
         <script
           type="application/ld+json"

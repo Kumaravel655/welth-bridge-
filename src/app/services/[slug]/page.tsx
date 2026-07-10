@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import Image from "next/image";
+
 import { Reveal, RevealGroup } from "@/components/motion/reveal";
 import { CTA } from "@/components/sections/cta";
 import { ServiceCard } from "@/components/service/service-card";
@@ -86,7 +88,7 @@ export default async function ServicePage({ params }: Props) {
             </ol>
           </nav>
 
-          <div className="mt-6 grid items-end gap-10 lg:grid-cols-[1.6fr_1fr]">
+          <div className="mt-6 grid items-start gap-10 lg:grid-cols-[1.6fr_1fr]">
             <div>
               <Badge variant="ink">{service.group}</Badge>
               <h1 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
@@ -111,9 +113,21 @@ export default async function ServicePage({ params }: Props) {
               </div>
             </div>
 
-            {/* Fact panel */}
-            <div className="rounded-2xl border border-ink-border bg-ink-raised p-6">
-              <dl className="space-y-4">
+            <div className="space-y-5">
+              {/* Realistic category image */}
+              <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-ink-border/40">
+                <Image
+                  src={`/images/categories/${service.category}.png`}
+                  alt={category.title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-ink/10" />
+              </div>
+
+              {/* Fact panel */}
+              <div className="rounded-2xl border border-ink-border bg-ink-raised p-6">
+                <dl className="space-y-4">
                 {service.price ? (
                   <div>
                     <dt className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-muted">
@@ -141,7 +155,8 @@ export default async function ServicePage({ params }: Props) {
                     CAs, CSs &amp; corporate lawyers
                   </dd>
                 </div>
-              </dl>
+                </dl>
+              </div>
             </div>
           </div>
         </div>

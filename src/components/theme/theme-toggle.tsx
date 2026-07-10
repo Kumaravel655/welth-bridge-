@@ -15,6 +15,7 @@ export function ThemeToggle({ className }: { className?: string }) {
   return (
     <button
       type="button"
+      suppressHydrationWarning
       aria-label={
         mounted && resolvedTheme === "dark"
           ? "Switch to light theme"

@@ -1,6 +1,7 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import type { Metadata } from "next";
 
+import { SceneArt } from "@/components/art/scene-art";
 import { ContactForm } from "@/components/contact/contact-form";
 import { Reveal, RevealGroup } from "@/components/motion/reveal";
 import { site } from "@/lib/site";
@@ -15,18 +16,24 @@ export default function ContactPage() {
   return (
     <>
       <section className="bg-ink text-ink-foreground">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
-            Contact
-          </p>
-          <h1 className="mt-4 max-w-2xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
-            How can we <em className="text-[var(--accent)]">assist you?</em>
-          </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted">
-            Tell us what you&apos;re building — the first consultation is free,
-            and you&apos;ll leave it knowing exactly what to file, what it
-            costs and how long it takes.
-          </p>
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.2fr_1fr] lg:px-8">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
+              Contact
+            </p>
+            <h1 className="mt-4 max-w-2xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
+              How can we <em className="text-[var(--accent)]">assist you?</em>
+            </h1>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted">
+              Tell us what you&apos;re building — the first consultation is free,
+              and you&apos;ll leave it knowing exactly what to file, what it
+              costs and how long it takes.
+            </p>
+          </div>
+          <SceneArt
+            variant="map"
+            className="aspect-[4/3] border border-ink-border/40 shadow-2xl shadow-black/30"
+          />
         </div>
       </section>
 

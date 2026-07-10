@@ -1,6 +1,10 @@
+"use client";
+
 import { ArrowRight, Check } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 
+import { Counter } from "@/components/motion/counter";
 import { Reveal, RevealGroup } from "@/components/motion/reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -54,6 +58,8 @@ const plans = [
 ];
 
 export function Pricing() {
+  const reduce = useReducedMotion();
+
   return (
     <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
       <SectionHeading
@@ -62,7 +68,7 @@ export function Pricing() {
         title={
           <>
             The price you see is the price{" "}
-            <em className="text-accent-strong">you pay.</em>
+            <em className="text-gradient">you pay.</em>
           </>
         }
         lede="Professional fees stated upfront. Government fees and taxes are billed at actuals — no surprises at the end."
@@ -70,22 +76,35 @@ export function Pricing() {
 
       <RevealGroup className="mt-12 grid gap-5 md:grid-cols-3">
         {plans.map((p) => (
-          <Reveal key={p.name} className="h-full">
-            <div
-              className={
-                p.featured
-                  ? "relative flex h-full flex-col rounded-2xl border-2 border-accent bg-card p-7 shadow-lg shadow-accent/10"
-                  : "relative flex h-full flex-col rounded-2xl border border-border bg-card p-7"
-              }
-            >
-              {p.featured && (
+          <Reveal key={p.name} className="relative h-full" variant="blur-in">
+            {p.featured && (
+              <motion.div
+                className="absolute -top-3 left-6 z-10"
+                initial={reduce ? {} : { scale: 0.5, opacity: 0, y: -10 }}
+                whileInView={reduce ? {} : { scale: 1, opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  delay: 0.3,
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 15,
+                }}
+              >
                 <Badge
                   variant="accent"
-                  className="absolute -top-3 left-6 bg-background"
+                  className="bg-background"
                 >
                   Most popular
                 </Badge>
-              )}
+              </motion.div>
+            )}
+            <div
+              className={
+                p.featured
+                  ? "shimmer-overlay relative flex h-full flex-col rounded-2xl border-2 border-accent bg-card p-7 shadow-lg shadow-accent/10"
+                  : "relative flex h-full flex-col rounded-2xl border border-border bg-card p-7 transition-all duration-300 hover:border-accent/40 hover:shadow-md"
+              }
+            >
               <h3 className="font-display text-xl tracking-tight">{p.name}</h3>
               <p className="mt-4 flex items-baseline gap-1.5">
                 {p.fromPrice && (
@@ -112,7 +131,7 @@ export function Pricing() {
               <Button
                 asChild
                 variant={p.featured ? "default" : "outline"}
-                className="mt-7 w-full"
+                className={`mt-7 w-full ${p.featured ? "glow" : ""}`}
               >
                 <Link href={p.href}>
                   Get started
