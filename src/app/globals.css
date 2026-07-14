@@ -4,8 +4,9 @@
 
 /* ------------------------------------------------------------------
    The Wealth Bridge — design tokens
-   Ink navy = institutional trust. Marigold = the flower of Indian
-   business openings; new beginnings. Paper = warm document white.
+   Brand blue (#033F80, matching thewealthbridge.in) carries both the
+   ink band and the accent — one blue family, used at different depths
+   for hierarchy. Paper = warm document white.
 ------------------------------------------------------------------- */
 
 :root {
@@ -15,22 +16,24 @@
   --card-foreground: oklch(0.24 0.035 250);
   --muted: oklch(0.955 0.006 95);
   --muted-foreground: oklch(0.48 0.02 250);
-  --accent: oklch(0.78 0.145 75);               /* marigold */
-  --accent-strong: oklch(0.62 0.13 65);         /* deep amber (text-safe on paper) */
-  --accent-foreground: oklch(0.2 0.04 250);
+  --accent: oklch(0.37 0.12 256);               /* brand blue, #033F80 */
+  --accent-strong: oklch(0.28 0.11 256);        /* deeper blue, for hover/emphasis */
+  --accent-foreground: oklch(0.98 0.005 95);
   --border: oklch(0.9 0.008 95);
-  --ring: oklch(0.62 0.13 65);
+  --ring: oklch(0.37 0.12 256);
+  --destructive: oklch(0.58 0.21 27);
+  --destructive-foreground: oklch(0.98 0.005 95);
 
-  /* Ink band — the hero/footer stays navy in both themes */
-  --ink: oklch(0.21 0.04 250);
-  --ink-raised: oklch(0.26 0.042 250);
+  /* Ink band — the hero/footer stays a deep brand blue in both themes */
+  --ink: oklch(0.19 0.075 256);
+  --ink-raised: oklch(0.24 0.08 256);
   --ink-foreground: oklch(0.96 0.005 95);
-  --ink-muted: oklch(0.72 0.02 250);
-  --ink-border: oklch(0.34 0.04 250);
+  --ink-muted: oklch(0.7 0.035 256);
+  --ink-border: oklch(0.32 0.075 256);
 
   /* Premium accent gradients */
-  --gradient-gold: linear-gradient(135deg, oklch(0.78 0.145 75), oklch(0.72 0.16 55), oklch(0.82 0.12 85));
-  --gradient-navy: linear-gradient(135deg, oklch(0.21 0.04 250), oklch(0.28 0.06 260), oklch(0.21 0.04 250));
+  --gradient-accent: linear-gradient(135deg, oklch(0.45 0.14 258), oklch(0.3 0.12 250), oklch(0.52 0.11 264));
+  --gradient-navy: linear-gradient(135deg, oklch(0.19 0.075 256), oklch(0.24 0.08 256), oklch(0.19 0.075 256));
 }
 
 .dark {
@@ -40,20 +43,22 @@
   --card-foreground: oklch(0.93 0.006 95);
   --muted: oklch(0.24 0.036 250);
   --muted-foreground: oklch(0.68 0.018 250);
-  --accent: oklch(0.78 0.145 75);
-  --accent-strong: oklch(0.8 0.14 78);
-  --accent-foreground: oklch(0.2 0.04 250);
+  --accent: oklch(0.58 0.14 256);
+  --accent-strong: oklch(0.66 0.13 256);
+  --accent-foreground: oklch(0.98 0.005 95);
   --border: oklch(0.3 0.035 250);
-  --ring: oklch(0.78 0.145 75);
+  --ring: oklch(0.58 0.14 256);
+  --destructive: oklch(0.62 0.19 27);
+  --destructive-foreground: oklch(0.98 0.005 95);
 
-  --ink: oklch(0.15 0.03 250);
-  --ink-raised: oklch(0.2 0.035 250);
+  --ink: oklch(0.14 0.06 256);
+  --ink-raised: oklch(0.19 0.065 256);
   --ink-foreground: oklch(0.95 0.005 95);
-  --ink-muted: oklch(0.7 0.02 250);
-  --ink-border: oklch(0.3 0.035 250);
+  --ink-muted: oklch(0.68 0.035 256);
+  --ink-border: oklch(0.28 0.065 256);
 
-  --gradient-gold: linear-gradient(135deg, oklch(0.78 0.145 75), oklch(0.72 0.16 55), oklch(0.82 0.12 85));
-  --gradient-navy: linear-gradient(135deg, oklch(0.15 0.03 250), oklch(0.22 0.05 260), oklch(0.15 0.03 250));
+  --gradient-accent: linear-gradient(135deg, oklch(0.58 0.14 256), oklch(0.45 0.13 250), oklch(0.66 0.12 264));
+  --gradient-navy: linear-gradient(135deg, oklch(0.14 0.06 256), oklch(0.19 0.065 256), oklch(0.14 0.06 256));
 }
 
 @theme inline {
@@ -68,13 +73,15 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
   --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-ink: var(--ink);
   --color-ink-raised: var(--ink-raised);
   --color-ink-foreground: var(--ink-foreground);
   --color-ink-muted: var(--ink-muted);
   --color-ink-border: var(--ink-border);
 
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-eb-garamond), ui-serif, Georgia, serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
@@ -98,8 +105,8 @@
   }
 
   @keyframes glow-pulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(var(--accent-rgb, 200 160 60), 0.15); }
-    50% { box-shadow: 0 0 40px rgba(var(--accent-rgb, 200 160 60), 0.35); }
+    0%, 100% { box-shadow: 0 0 20px color-mix(in oklch, var(--accent) 15%, transparent); }
+    50% { box-shadow: 0 0 40px color-mix(in oklch, var(--accent) 35%, transparent); }
   }
 
   @keyframes gradient-shift {
@@ -160,6 +167,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
@@ -179,6 +187,41 @@ body {
    Premium Utility Classes
 ---------------------------------------------------------------- */
 
+/* Liquid glass — frosted panel with a hairline gradient edge */
+.liquid-glass {
+  background: rgba(0, 0, 0, 0.4);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.1) 80%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
 /* Glassmorphism */
 .glass {
   background: rgba(255, 255, 255, 0.06);
@@ -194,7 +237,7 @@ body {
 
 /* Gradient text */
 .text-gradient {
-  background: var(--gradient-gold);
+  background: var(--gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -258,11 +301,70 @@ body {
   border-radius: inherit;
 }
 
+/* Custom range slider — brand-accent thumb + track, filled portion set inline per-value */
+.accent-range {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--border);
+  cursor: pointer;
+  outline: none;
+}
+
+.accent-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: var(--accent);
+  border: 3px solid var(--background);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.accent-range::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+
+.accent-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: var(--accent);
+  border: 3px solid var(--background);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.accent-range::-moz-range-thumb:hover {
+  transform: scale(1.12);
+}
+
+.accent-range::-moz-range-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--border);
+}
+
+.accent-range:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.accent-range:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
 /* Glow effect */
 .glow {
   box-shadow:
-    0 0 20px -5px rgba(200, 160, 60, 0.2),
-    0 0 60px -15px rgba(200, 160, 60, 0.15);
+    0 0 20px -5px color-mix(in oklch, var(--accent) 20%, transparent),
+    0 0 60px -15px color-mix(in oklch, var(--accent) 15%, transparent);
 }
 
 /* Premium scrollbar */

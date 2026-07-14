@@ -1,3 +1,5 @@
+import { formatINR } from "@/lib/utils";
+
 export type CategorySlug =
   | "start-a-business"
   | "tax-compliance"
@@ -28,6 +30,8 @@ export type Category = {
   navLabel: string;
   tagline: string;
 };
+
+export type FaqItem = { question: string; answer: string };
 
 export const categories: Category[] = [
   {
@@ -1360,3 +1364,42 @@ export const featuredServices = [
   "business-loans",
   "income-tax-filing",
 ].map((slug) => getService(slug)!);
+
+const joinList = (items: string[]) =>
+  items.length > 1
+    ? `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`
+    : items[0];
+
+/** Derives real, service-specific FAQ content from data already on the service
+ * (price, timeline, documents, includes) instead of hand-authoring near-duplicate
+ * copy across 40+ services. */
+export function getServiceFaqs(service: Service): FaqItem[] {
+  const faqs: FaqItem[] = [
+    {
+      question: `How much does ${service.name} cost?`,
+      answer: service.price
+        ? `Our professional fee for ${service.name} starts at ${formatINR(service.price)}, plus any applicable government fees. The final cost can vary with your specific situation — get in touch for a firm quote.`
+        : `${service.name} is quoted based on your specific requirements. Talk to us for a free, no-obligation estimate.`,
+    },
+    {
+      question: `How long does ${service.name} take?`,
+      answer: `Most ${service.name} engagements are completed in ${service.timeline.toLowerCase()}, assuming your documents are in order. We'll flag anything likely to cause a delay during the first review.`,
+    },
+  ];
+
+  if (service.documents.length > 0) {
+    faqs.push({
+      question: `What documents do I need for ${service.name}?`,
+      answer: `You'll typically need ${joinList(service.documents)}. Missing something? Start anyway — we'll help you arrange whatever's not on hand.`,
+    });
+  }
+
+  if (service.includes.length > 0) {
+    faqs.push({
+      question: `What's included in the ${service.name} service?`,
+      answer: `Our ${service.name} service includes ${joinList(service.includes)}.`,
+    });
+  }
+
+  return faqs;
+}

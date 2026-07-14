@@ -57,18 +57,21 @@ export function RevealGroup({
   children,
   className,
   step = 0.08,
+  as: Tag = "div",
 }: {
   children: React.ReactNode;
   className?: string;
   step?: number;
+  /** Render as a different element (e.g. "ol" when children are <Reveal as="li">) */
+  as?: "div" | "ol" | "ul";
 }) {
   return (
-    <div className={className}>
+    <Tag className={className}>
       {React.Children.map(children, (child, i) =>
         React.isValidElement<RevealProps>(child)
           ? React.cloneElement(child, { delay: i * step })
           : child
       )}
-    </div>
+    </Tag>
   );
 }

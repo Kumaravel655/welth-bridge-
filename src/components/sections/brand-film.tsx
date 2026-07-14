@@ -11,13 +11,13 @@ export function BrandFilm() {
 
   return (
     <section className="relative overflow-hidden bg-ink text-ink-foreground">
-      {/* Soft marigold wash */}
+      {/* Soft blue wash */}
       <div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-0 size-[760px] max-w-[130vw] -translate-x-1/2 -translate-y-1/3 rounded-full"
         style={{
           background:
-            "radial-gradient(circle, oklch(0.78 0.145 75 / 0.10) 0%, transparent 62%)",
+            "radial-gradient(circle, oklch(0.55 0.15 256 / 0.10) 0%, transparent 62%)",
         }}
       />
 
@@ -32,12 +32,12 @@ export function BrandFilm() {
 
         <Reveal variant="scale-in" delay={0.1}>
           <figure className="group relative mx-auto mt-12 max-w-4xl">
-            {/* Gold hairline frame */}
+            {/* Blue hairline frame */}
             <div
-              className="rounded-[1.35rem] p-px shadow-2xl shadow-black/40"
-              style={{ background: "var(--gradient-gold)" }}
+              className="rounded-2xl p-px shadow-2xl shadow-accent/10"
+              style={{ background: "var(--gradient-accent)" }}
             >
-              <div className="relative overflow-hidden rounded-[1.3rem] bg-ink-raised ring-1 ring-inset ring-white/5">
+              <div className="relative overflow-hidden rounded-2xl bg-ink-raised ring-1 ring-inset ring-white/5">
                 <Image
                   src={reduce ? "/brand-reveal-poster.jpg" : "/brand-reveal.gif"}
                   alt="The Wealth Bridge brand film — particles resolving into the Wealth Bridge logo"

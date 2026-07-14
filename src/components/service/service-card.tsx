@@ -58,13 +58,13 @@ export function ServiceCard({
           sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
           className="object-cover object-center saturate-[1.05] contrast-[1.03] transition-transform duration-700 group-hover:scale-[1.08]"
         />
-        {/* Brand wash: soft ink at the top for depth, fade to the card at the bottom */}
+        {/* Subtle top shadow for depth, hard cut at the bottom for clarity */}
         <div
           aria-hidden
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, var(--card) 0%, transparent 34%, transparent 74%, oklch(0.20 0.038 250 / 0.30) 100%)",
+              "linear-gradient(to bottom, oklch(0.20 0.038 250 / 0.20) 0%, transparent 30%)",
           }}
         />
       </div>
@@ -75,16 +75,20 @@ export function ServiceCard({
         className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{
           background:
-            "radial-gradient(400px circle at var(--glow-x, 50%) var(--glow-y, 50%), oklch(0.78 0.145 75 / 0.06), transparent 60%)",
+            "radial-gradient(400px circle at var(--glow-x, 50%) var(--glow-y, 50%), oklch(0.55 0.15 256 / 0.06), transparent 60%)",
         }}
       />
 
       <div className="relative flex flex-1 flex-col p-6">
-        {showGroup && <Badge>{service.group}</Badge>}
-        <h3 className="mt-4 font-display text-xl tracking-tight first:mt-0">
+        {showGroup && (
+          <div className="mb-3">
+            <Badge variant="muted">{service.group}</Badge>
+          </div>
+        )}
+        <h3 className="font-display text-xl tracking-tight">
           {service.name}
         </h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-2.5 flex-1 text-sm leading-relaxed text-muted-foreground">
           {service.short}
         </p>
 

@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Larger generated scenes for narrative pages (About, Contact, Home).
- * Same ink + marigold treatment as CategoryArt so the whole site reads as
+ * Same ink + blue treatment as CategoryArt so the whole site reads as
  * one illustrated system. Vector, theme-safe, and tiny.
  */
 
@@ -156,7 +156,7 @@ export function SceneArt({
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(120% 90% at 75% 0%, oklch(0.78 0.145 75 / 0.14), transparent 55%), linear-gradient(160deg, var(--ink-raised), var(--ink))",
+            "radial-gradient(120% 90% at 75% 0%, oklch(0.55 0.15 256 / 0.14), transparent 55%), linear-gradient(160deg, var(--ink-raised), var(--ink))",
         }}
       />
       <svg aria-hidden className="absolute inset-0 size-full opacity-[0.3]">

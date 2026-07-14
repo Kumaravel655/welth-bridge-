@@ -17,7 +17,7 @@ export function Stats() {
       {/* Subtle dot grid overlay */}
       <div aria-hidden className="pointer-events-none absolute inset-0 dot-grid opacity-40" />
 
-      <RevealGroup className="relative mx-auto grid max-w-7xl grid-cols-2 gap-y-10 px-4 py-16 sm:px-6 lg:grid-cols-4 lg:px-8">
+      <RevealGroup className="relative mx-auto grid max-w-7xl grid-cols-2 gap-y-10 px-4 py-20 sm:px-6 sm:py-24 lg:grid-cols-4 lg:px-8">
         {stats.map((s, i) => (
           <Reveal key={s.label} variant={i % 2 === 0 ? "fade-up" : "scale-in"} className="group text-center lg:text-left">
             {/* Animated accent line */}

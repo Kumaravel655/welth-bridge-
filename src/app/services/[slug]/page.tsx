@@ -5,18 +5,24 @@ import { notFound } from "next/navigation";
 
 import Image from "next/image";
 
+import { PostCard } from "@/components/blog/post-card";
 import { Reveal, RevealGroup } from "@/components/motion/reveal";
 import { CTA } from "@/components/sections/cta";
-import { ServiceCard } from "@/components/service/service-card";
+import { FaqAccordion, faqJsonLd } from "@/components/shared/faq-accordion";
+import { RelatedServices } from "@/components/shared/related-services";
+import { ToolCard } from "@/components/tools/tool-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { posts } from "@/lib/blog";
 import {
   getCategory,
+  getServiceFaqs,
   getService,
   services,
   servicesByCategory,
 } from "@/lib/services";
 import { site } from "@/lib/site";
+import { tools } from "@/lib/tools";
 import { formatINR } from "@/lib/utils";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -45,6 +51,9 @@ export default async function ServicePage({ params }: Props) {
   const related = servicesByCategory(service.category)
     .filter((s) => s.slug !== service.slug)
     .slice(0, 3);
+  const relatedTools = tools.filter((t) => t.relatedServiceSlugs.includes(service.slug));
+  const relatedPosts = posts.filter((p) => p.relatedServiceSlugs.includes(service.slug)).slice(0, 3);
+  const faqs = getServiceFaqs(service);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -67,12 +76,12 @@ export default async function ServicePage({ params }: Props) {
   return (
     <>
       {/* Hero */}
-      <section className="bg-ink text-ink-foreground">
+      <section className="bg-background text-foreground">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <nav aria-label="Breadcrumb" className="font-mono text-xs text-ink-muted">
+          <nav aria-label="Breadcrumb" className="font-mono text-xs text-muted-foreground">
             <ol className="flex flex-wrap items-center gap-2">
               <li>
-                <Link href="/services" className="transition-colors hover:text-[var(--accent)]">
+                <Link href="/services" className="transition-colors hover:text-accent-strong">
                   Services
                 </Link>
               </li>
@@ -80,7 +89,7 @@ export default async function ServicePage({ params }: Props) {
               <li>
                 <Link
                   href={`/services#${category.slug}`}
-                  className="transition-colors hover:text-[var(--accent)]"
+                  className="transition-colors hover:text-accent-strong"
                 >
                   {category.navLabel}
                 </Link>
@@ -90,11 +99,11 @@ export default async function ServicePage({ params }: Props) {
 
           <div className="mt-6 grid items-start gap-10 lg:grid-cols-[1.6fr_1fr]">
             <div>
-              <Badge variant="ink">{service.group}</Badge>
+              <Badge variant="accent">{service.group}</Badge>
               <h1 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
                 {service.name}
               </h1>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg">
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
                 {service.description}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
@@ -104,7 +113,7 @@ export default async function ServicePage({ params }: Props) {
                     <ArrowRight aria-hidden />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline-ink">
+                <Button asChild size="lg" variant="outline">
                   <a href={`tel:${site.phone.replace(/\s/g, "")}`}>
                     <Phone aria-hidden />
                     Talk to an expert
@@ -115,22 +124,21 @@ export default async function ServicePage({ params }: Props) {
 
             <div className="space-y-5">
               {/* Realistic category image */}
-              <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-ink-border/40">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-border">
                 <Image
                   src={`/images/categories/${service.category}.png`}
                   alt={category.title}
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-ink/10" />
               </div>
 
               {/* Fact panel */}
-              <div className="rounded-2xl border border-ink-border bg-ink-raised p-6">
+              <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
                 <dl className="space-y-4">
                 {service.price ? (
                   <div>
-                    <dt className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-muted">
+                    <dt className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-muted-foreground">
                       Professional fee
                     </dt>
                     <dd className="mt-1 font-display text-3xl tracking-tight">
@@ -139,19 +147,19 @@ export default async function ServicePage({ params }: Props) {
                   </div>
                 ) : null}
                 <div>
-                  <dt className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-muted">
+                  <dt className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-muted-foreground">
                     Timeline
                   </dt>
                   <dd className="mt-1 inline-flex items-center gap-2 text-lg">
-                    <Clock className="size-4 text-[var(--accent)]" aria-hidden />
+                    <Clock className="size-4 text-accent-strong" aria-hidden />
                     {service.timeline}
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-muted">
+                  <dt className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-muted-foreground">
                     Handled by
                   </dt>
-                  <dd className="mt-1 text-sm text-ink-foreground/90">
+                  <dd className="mt-1 text-sm text-foreground/90">
                     CAs, CSs &amp; corporate lawyers
                   </dd>
                 </div>
@@ -260,27 +268,71 @@ export default async function ServicePage({ params }: Props) {
       {related.length > 0 && (
         <section className="border-t border-border bg-muted/40">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-            <Reveal>
-              <h2 className="font-display text-2xl tracking-tight sm:text-3xl">
-                More in {category.title}
-              </h2>
-            </Reveal>
-            <RevealGroup className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((s) => (
-                <Reveal key={s.slug} className="h-full">
-                  <ServiceCard service={s} />
-                </Reveal>
-              ))}
-            </RevealGroup>
+            <RelatedServices
+              slugs={related.map((s) => s.slug)}
+              heading={`More in ${category.title}`}
+            />
           </div>
         </section>
       )}
+
+      {/* Related tools & reading */}
+      {(relatedTools.length > 0 || relatedPosts.length > 0) && (
+        <section className="border-t border-border">
+          <div className="mx-auto max-w-7xl space-y-14 px-4 py-16 sm:px-6 lg:px-8">
+            {relatedTools.length > 0 && (
+              <div>
+                <Reveal>
+                  <h2 className="font-display text-2xl tracking-tight sm:text-3xl">
+                    Related tools
+                  </h2>
+                </Reveal>
+                <RevealGroup className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {relatedTools.map((tool) => (
+                    <Reveal key={tool.slug} className="h-full">
+                      <ToolCard tool={tool} />
+                    </Reveal>
+                  ))}
+                </RevealGroup>
+              </div>
+            )}
+
+            {relatedPosts.length > 0 && (
+              <div>
+                <Reveal>
+                  <h2 className="font-display text-2xl tracking-tight sm:text-3xl">
+                    Related reading
+                  </h2>
+                </Reveal>
+                <RevealGroup className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {relatedPosts.map((post) => (
+                    <Reveal key={post.slug} className="h-full">
+                      <PostCard post={post} />
+                    </Reveal>
+                  ))}
+                </RevealGroup>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* FAQ */}
+      <section className="border-t border-border">
+        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+          <FaqAccordion heading="Frequently asked questions" items={faqs} />
+        </div>
+      </section>
 
       <CTA />
 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }}
       />
     </>
   );

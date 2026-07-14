@@ -7,6 +7,24 @@
       "runtimeArgs": ["run", "dev"],
       "port": 3000,
       "autoPort": true
+    },
+    {
+      "name": "wealthbridge-prod",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start", "--", "-p", "3001"],
+      "port": 3001,
+      "autoPort": true
+    },
+    {
+      "name": "wealthbridge-backend",
+      "runtimeExecutable": "C:\\Users\\kumar\\Downloads\\web\\backend\\venv\\Scripts\\python.exe",
+      "runtimeArgs": [
+        "-m", "uvicorn", "main:app",
+        "--host", "127.0.0.1",
+        "--port", "8000",
+        "--app-dir", "C:\\Users\\kumar\\Downloads\\web\\backend"
+      ],
+      "port": 8000
     }
   ]
 }

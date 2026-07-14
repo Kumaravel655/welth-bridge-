@@ -6,9 +6,10 @@ import Link from "next/link";
 
 import { GradientMesh } from "@/components/motion/gradient-mesh";
 import { MagneticButton } from "@/components/motion/magnetic-button";
-import { TextRevealOnScroll } from "@/components/motion/text-reveal";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
+
+import { SectionHeading } from "./section-heading";
 
 export function CTA() {
   const reduce = useReducedMotion();
@@ -24,7 +25,7 @@ export function CTA() {
         className="pointer-events-none absolute left-1/2 top-1/2 size-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full"
         style={{
           background:
-            "radial-gradient(circle, oklch(0.78 0.145 75 / 0.08) 0%, transparent 60%)",
+            "radial-gradient(circle, oklch(0.55 0.15 256 / 0.08) 0%, transparent 60%)",
         }}
         initial={reduce ? {} : { scale: 0.8, opacity: 0 }}
         whileInView={reduce ? {} : { scale: [0.8, 1.2, 1], opacity: [0, 0.6, 0.4] }}
@@ -34,35 +35,13 @@ export function CTA() {
 
       <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <motion.p
-            className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]"
-            initial={reduce ? {} : { opacity: 0, y: 10 }}
-            whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Ready when you are
-          </motion.p>
-
-          <TextRevealOnScroll
-            as="h2"
-            delay={0.1}
-            className="mt-4 font-display text-3xl leading-[1.1] tracking-tight sm:text-5xl"
-          >
-            Your company is one call away.
-          </TextRevealOnScroll>
-
-          <motion.p
-            className="mt-5 text-base leading-relaxed text-ink-muted"
-            initial={reduce ? {} : { opacity: 0, y: 12 }}
-            whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-          >
-            Tell us what you&apos;re building. We&apos;ll tell you exactly which
-            registrations you need, what they cost, and how long they take —
-            free, on the first call.
-          </motion.p>
+          <SectionHeading
+            eyebrow="Ready when you are"
+            title="Your company is one call away."
+            lede="Tell us what you're building. We'll tell you exactly which registrations you need, what they cost, and how long they take — free, on the first call."
+            align="center"
+            onInk
+          />
 
           <motion.div
             className="mt-8 flex flex-wrap justify-center gap-3"

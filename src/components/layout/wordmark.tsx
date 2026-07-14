@@ -6,7 +6,14 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
-export function Wordmark({ className }: { className?: string }) {
+export function Wordmark({
+  className,
+  onDark = false,
+}: {
+  className?: string;
+  /** Use the white reversed logo for placement on a dark (ink) background. */
+  onDark?: boolean;
+}) {
   const reduce = useReducedMotion();
 
   return (
@@ -29,12 +36,12 @@ export function Wordmark({ className }: { className?: string }) {
             })}
       >
         <Image
-          src="/logo.png"
+          src={onDark ? "/logo-white.png" : "/logo.png"}
           alt="The Wealth Bridge — Making More Possibilities"
           width={409}
           height={100}
           priority
-          className="h-9 w-auto invert transition-transform duration-300 group-hover:scale-[1.03] sm:h-10"
+          className="h-9 w-auto transition-transform duration-300 group-hover:scale-[1.03] sm:h-10"
         />
       </motion.span>
 

@@ -53,17 +53,17 @@ const advisoryAreas = [
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-ink text-ink-foreground">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1.3fr_1fr] lg:px-8">
+      <section className="bg-background text-foreground">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.3fr_1fr] lg:px-8">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent-strong">
               About us
             </p>
-            <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.08] tracking-tight sm:text-6xl">
-              One firm on <em className="text-[var(--accent)]">your side</em> of
+            <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
+              One firm on <em className="text-accent-strong">your side</em> of
               the paperwork.
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
               The Wealth Bridge is a one-stop business setup and consulting
               company headquartered in Vellore, India. Since 2007, we&apos;ve
               helped individuals and business owners handle the legal and
@@ -73,7 +73,7 @@ export default function AboutPage() {
           </div>
           <SceneArt
             variant="skyline"
-            className="aspect-[4/3] border border-ink-border/40 shadow-2xl shadow-black/30"
+            className="aspect-[4/3] border border-border shadow-xl shadow-black/10"
           />
         </div>
       </section>
@@ -116,7 +116,7 @@ export default function AboutPage() {
 
       {/* Philosophy */}
       <section className="border-y border-border bg-muted/40">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 sm:py-24 lg:grid-cols-2 lg:px-8">
           <Reveal>
             <blockquote className="font-display text-2xl leading-snug tracking-tight sm:text-3xl">
               &ldquo;The most important differentiator is not{" "}

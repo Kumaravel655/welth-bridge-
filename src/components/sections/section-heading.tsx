@@ -24,7 +24,7 @@ export function SectionHeading({
       <p
         className={cn(
           "font-mono text-xs uppercase tracking-[0.16em]",
-          onInk ? "text-[var(--accent)]" : "text-accent-strong"
+          onInk ? "text-accent" : "text-accent-strong"
         )}
       >
         {eyebrow}

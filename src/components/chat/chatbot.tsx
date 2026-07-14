@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   X,
   Send,
-  ArrowLeft,
   Home,
   MapPin,
   Phone,
@@ -14,6 +13,11 @@ import {
   IndianRupee,
   CheckCircle2,
   ExternalLink,
+  LayoutGrid,
+  Headset,
+  ArrowLeft,
+  Sparkles,
+  type LucideIcon,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { cn, formatINR } from "@/lib/utils";
@@ -39,6 +43,37 @@ type Message = {
 
 let msgId = 0;
 const nextId = () => ++msgId;
+
+/* ------------------------------------------------------------------ */
+/* Canonical menu labels — plain text, icons attached at render time   */
+/* (SVG icons, not emoji, per brand style: Trust & Authority / fintech) */
+/* ------------------------------------------------------------------ */
+
+const MENU = {
+  SERVICES: "Our Services",
+  PRICING: "Pricing Info",
+  OFFICES: "Our Offices",
+  CONTACT: "Talk to a Human",
+  HOME: "Main Menu",
+  BACK: "Back",
+} as const;
+
+const MAIN_MENU_OPTIONS = [MENU.SERVICES, MENU.PRICING, MENU.OFFICES, MENU.CONTACT];
+
+const QUICK_ACTION_ICONS: Record<string, LucideIcon> = {
+  [MENU.SERVICES]: LayoutGrid,
+  [MENU.PRICING]: IndianRupee,
+  [MENU.OFFICES]: MapPin,
+  [MENU.CONTACT]: Headset,
+  [MENU.HOME]: Home,
+  [MENU.BACK]: ArrowLeft,
+};
+
+function iconForOption(label: string): LucideIcon | null {
+  if (QUICK_ACTION_ICONS[label]) return QUICK_ACTION_ICONS[label];
+  if (label.startsWith("Back to ")) return ArrowLeft;
+  return null;
+}
 
 /* ------------------------------------------------------------------ */
 /* Keyword → service slug mapping for smart search                     */
@@ -179,40 +214,36 @@ function generateBotResponse(input: string): {
   const lowerInput = input.toLowerCase().trim();
 
   // ── Main Menu ──
-  if (lowerInput === "🏠 main menu" || lowerInput === "main menu") {
+  if (lowerInput === MENU.HOME.toLowerCase()) {
     return {
-      content: "Sure! What would you like to explore?",
-      options: ["📋 Our Services", "💰 Pricing Info", "📍 Our Offices", "📞 Talk to a Human"],
+      content: "Sure — what would you like to explore?",
+      options: MAIN_MENU_OPTIONS,
     };
   }
 
   // ── Greeting ──
   if (/^(hi|hello|hey|greetings|hola|good\s?(morning|evening|afternoon))\b/.test(lowerInput) && lowerInput.length < 25) {
     return {
-      content: "Hello! 😊 Welcome to WealthBridge. I can help you explore our services, check pricing, find our offices, or connect you with an expert.",
-      options: ["📋 Our Services", "💰 Pricing Info", "📍 Our Offices", "📞 Talk to a Human"],
+      content: "Hello, welcome to WealthBridge. I can help you explore our services, check pricing, find our offices, or connect you with an expert.",
+      options: MAIN_MENU_OPTIONS,
     };
   }
 
   // ── Browse Services ──
   if (
-    lowerInput === "📋 our services" ||
-    lowerInput === "our services" ||
+    lowerInput === MENU.SERVICES.toLowerCase() ||
     lowerInput === "services" ||
     lowerInput === "all services"
   ) {
     return {
       content: "We offer services across 5 categories. Pick one to explore:",
-      options: [
-        ...categories.map((c) => c.title),
-        "🏠 Main Menu",
-      ],
+      options: [...categories.map((c) => c.title), MENU.HOME],
     };
   }
 
   // ── Category Selected ──
   const matchedCategory = categories.find(
-    (c) => lowerInput === c.title.toLowerCase() || lowerInput === `← back to ${c.title.toLowerCase()}`
+    (c) => lowerInput === c.title.toLowerCase() || lowerInput === `back to ${c.title.toLowerCase()}`
   );
   if (matchedCategory) {
     const groups = groupsInCategory(matchedCategory.slug);
@@ -236,18 +267,15 @@ function generateBotResponse(input: string): {
           {contentParts}
         </div>
       ),
-      options: [...serviceOptions, "← Back", "🏠 Main Menu"],
+      options: [...serviceOptions, MENU.BACK, MENU.HOME],
     };
   }
 
   // ── Back (generic) ──
-  if (lowerInput === "← back") {
+  if (lowerInput === MENU.BACK.toLowerCase()) {
     return {
       content: "Which category would you like to explore?",
-      options: [
-        ...categories.map((c) => c.title),
-        "🏠 Main Menu",
-      ],
+      options: [...categories.map((c) => c.title), MENU.HOME],
     };
   }
 
@@ -271,14 +299,13 @@ function generateBotResponse(input: string): {
           </p>
         </div>
       ),
-      options: ["📍 Our Offices", "📋 Our Services", "📞 Talk to a Human", "🏠 Main Menu"],
+      options: [MENU.OFFICES, MENU.SERVICES, MENU.CONTACT, MENU.HOME],
     };
   }
 
   // ── Office Locations ──
   if (
-    lowerInput === "📍 our offices" ||
-    lowerInput === "our offices" ||
+    lowerInput === MENU.OFFICES.toLowerCase() ||
     lowerInput.includes("office") ||
     lowerInput.includes("location") ||
     lowerInput.includes("address") ||
@@ -287,14 +314,13 @@ function generateBotResponse(input: string): {
   ) {
     return {
       content: <OfficeCards />,
-      options: ["📋 Our Services", "📞 Talk to a Human", "🏠 Main Menu"],
+      options: [MENU.SERVICES, MENU.CONTACT, MENU.HOME],
     };
   }
 
   // ── Contact / Talk to Human ──
   if (
-    lowerInput === "📞 talk to a human" ||
-    lowerInput === "talk to a human" ||
+    lowerInput === MENU.CONTACT.toLowerCase() ||
     lowerInput.includes("contact") ||
     lowerInput.includes("human") ||
     lowerInput.includes("phone") ||
@@ -335,7 +361,7 @@ function generateBotResponse(input: string): {
           </p>
         </div>
       ),
-      options: ["📍 Our Offices", "📋 Our Services", "🏠 Main Menu"],
+      options: [MENU.OFFICES, MENU.SERVICES, MENU.HOME],
     };
   }
 
@@ -350,9 +376,9 @@ function generateBotResponse(input: string): {
     return {
       content: <ServiceCard s={matchedService} />,
       options: [
-        ...(cat ? [`← Back to ${cat.title}`] : []),
-        "📞 Talk to a Human",
-        "🏠 Main Menu",
+        ...(cat ? [`Back to ${cat.title}`] : []),
+        MENU.CONTACT,
+        MENU.HOME,
       ],
     };
   }
@@ -366,13 +392,13 @@ function generateBotResponse(input: string): {
       if (matched.length === 1) {
         return {
           content: <ServiceCard s={matched[0]} />,
-          options: ["📋 Our Services", "📞 Talk to a Human", "🏠 Main Menu"],
+          options: [MENU.SERVICES, MENU.CONTACT, MENU.HOME],
         };
       }
       if (matched.length > 1) {
         return {
           content: `I found ${matched.length} services related to "${keyword}". Which one are you looking for?`,
-          options: [...matched.map((s) => s.name), "🏠 Main Menu"],
+          options: [...matched.map((s) => s.name), MENU.HOME],
         };
       }
     }
@@ -390,9 +416,9 @@ function generateBotResponse(input: string): {
     return {
       content: <ServiceCard s={fuzzyMatch} />,
       options: [
-        ...(cat ? [`← Back to ${cat.title}`] : []),
-        "📞 Talk to a Human",
-        "🏠 Main Menu",
+        ...(cat ? [`Back to ${cat.title}`] : []),
+        MENU.CONTACT,
+        MENU.HOME,
       ],
     };
   }
@@ -404,28 +430,28 @@ function generateBotResponse(input: string): {
     lowerInput.includes("fee") ||
     lowerInput.includes("how much") ||
     lowerInput.includes("pricing") ||
-    lowerInput === "💰 pricing info"
+    lowerInput === MENU.PRICING.toLowerCase()
   ) {
     return {
       content:
         "Our pricing varies by service. Pick a category and I'll show you the details:",
-      options: [...categories.map((c) => c.title), "🏠 Main Menu"],
+      options: [...categories.map((c) => c.title), MENU.HOME],
     };
   }
 
   // ── Thank you ──
   if (lowerInput.includes("thank") || lowerInput.includes("thanks")) {
     return {
-      content: "You're welcome! 😊 Is there anything else I can help you with?",
-      options: ["📋 Our Services", "📞 Talk to a Human", "🏠 Main Menu"],
+      content: "You're welcome! Is there anything else I can help you with?",
+      options: [MENU.SERVICES, MENU.CONTACT, MENU.HOME],
     };
   }
 
   // ── Fallback ──
   return {
     content:
-      "I'm not sure I understood that. Let me help you navigate — pick an option below or try asking about a specific service like \"GST\" or \"Company Registration\".",
-    options: ["📋 Our Services", "💰 Pricing Info", "📍 Our Offices", "📞 Talk to a Human"],
+      "I didn't quite catch that. Pick an option below, or try asking about a specific service — for example \"GST\" or \"company registration\".",
+    options: MAIN_MENU_OPTIONS,
   };
 }
 
@@ -441,8 +467,8 @@ export function Chatbot() {
       id: nextId(),
       role: "bot",
       content:
-        "Hi! 👋 I'm your WealthBridge AI assistant. What would you like to explore today?",
-      options: ["📋 Our Services", "💰 Pricing Info", "📍 Our Offices", "📞 Talk to a Human"],
+        "Hi, I'm the WealthBridge AI Assistant. Ask me about company registration, GST, taxes, loans, or anything else — I'm happy to help.",
+      options: MAIN_MENU_OPTIONS,
     },
   ]);
   const [input, setInput] = React.useState("");
@@ -499,38 +525,57 @@ export function Chatbot() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            exit={{ opacity: 0, y: 20, scale: 0.96 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed bottom-24 right-6 z-50 flex h-[520px] w-[390px] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-3xl border border-ink-border bg-ink-raised shadow-2xl"
+            role="dialog"
+            aria-label="WealthBridge AI Assistant chat"
+            className="fixed bottom-24 right-6 z-50 flex h-[560px] w-[400px] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-[28px] border border-ink-border bg-ink-raised shadow-[0_30px_80px_-24px_rgba(3,20,50,0.55)] backdrop-blur-xl"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-ink-border bg-ink px-4 py-3">
-              <div className="flex items-center gap-3">
-                <div className="relative size-10 overflow-hidden rounded-full bg-white">
-                  <img
-                    src="/bot.webp"
-                    alt="AI Assistant"
-                    className="h-full w-full scale-110 object-cover pt-1"
-                  />
+            <div
+              className="relative overflow-hidden px-4 py-4"
+              style={{ background: "var(--gradient-navy)" }}
+            >
+              <div
+                className="pointer-events-none absolute inset-0 opacity-40"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle at 15% 0%, rgba(255,255,255,0.18), transparent 55%)",
+                }}
+              />
+              <div className="relative flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="relative size-11 shrink-0 overflow-hidden rounded-full bg-white ring-2 ring-white/20">
+                    <img
+                      src="/bot.webp"
+                      alt=""
+                      className="h-full w-full scale-110 object-cover pt-1"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="flex items-center gap-1.5 font-display text-sm font-medium text-ink-foreground">
+                      WealthBridge AI
+                      <Sparkles className="size-3.5 text-[var(--accent-strong)] opacity-90" aria-hidden="true" />
+                    </h3>
+                    <p className="flex items-center gap-1.5 text-xs text-ink-muted">
+                      <span className="relative flex size-1.5">
+                        <span className="absolute inline-flex size-full animate-ping rounded-full bg-green-400 opacity-60" />
+                        <span className="relative inline-flex size-1.5 rounded-full bg-green-400" />
+                      </span>
+                      Online · replies instantly
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-display text-sm font-medium">
-                    WealthBridge AI
-                  </h3>
-                  <p className="flex items-center gap-1 text-xs text-green-500">
-                    <span className="size-1.5 rounded-full bg-green-500" />
-                    Online
-                  </p>
-                </div>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Close chat"
+                  className="rounded-full p-2 text-ink-muted transition-colors hover:bg-white/10 hover:text-ink-foreground"
+                >
+                  <X className="size-4" />
+                </button>
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="rounded-full p-2 text-ink-muted transition-colors hover:bg-ink-border hover:text-ink-foreground"
-              >
-                <X className="size-4" />
-              </button>
             </div>
 
             {/* Messages */}
@@ -555,9 +600,14 @@ export function Chatbot() {
                         className={cn(
                           "flex w-max max-w-[85%] flex-col rounded-2xl px-3.5 py-2.5 text-sm shadow-sm",
                           msg.role === "user"
-                            ? "rounded-br-sm bg-[var(--accent)] text-[var(--accent-foreground)]"
+                            ? "rounded-br-sm text-[var(--accent-foreground)]"
                             : "rounded-bl-sm border border-ink-border bg-ink text-ink-foreground"
                         )}
+                        style={
+                          msg.role === "user"
+                            ? { background: "var(--gradient-accent)" }
+                            : undefined
+                        }
                       >
                         {msg.content}
                       </div>
@@ -565,6 +615,7 @@ export function Chatbot() {
                         <div className="flex max-w-[95%] flex-wrap gap-1.5 pt-0.5">
                           {msg.options.map((opt, oi) => {
                             const isStale = !isLastBot;
+                            const Icon = iconForOption(opt);
                             return (
                               <motion.button
                                 key={opt}
@@ -577,12 +628,13 @@ export function Chatbot() {
                                 disabled={isTyping || isStale}
                                 onClick={() => sendMessage(opt)}
                                 className={cn(
-                                  "rounded-full border px-3 py-1.5 text-[0.6875rem] font-medium transition-colors",
+                                  "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[0.6875rem] font-medium transition-colors",
                                   isStale
                                     ? "cursor-default border-ink-border/50 text-ink-muted/50"
-                                    : "border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] disabled:opacity-50"
+                                    : "border-[var(--accent)]/40 text-[var(--accent)] hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] disabled:opacity-50"
                                 )}
                               >
+                                {Icon && <Icon className="size-3" aria-hidden="true" />}
                                 {opt}
                               </motion.button>
                             );
@@ -599,8 +651,11 @@ export function Chatbot() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="flex w-max max-w-[85%] flex-col rounded-2xl rounded-bl-sm border border-ink-border bg-ink px-4 py-3 text-sm text-ink-foreground shadow-sm"
+                  role="status"
+                  aria-live="polite"
                 >
-                  <div className="flex items-center gap-1.5">
+                  <span className="sr-only">WealthBridge AI is typing…</span>
+                  <div className="flex items-center gap-1.5" aria-hidden="true">
                     <span
                       className="size-1.5 animate-bounce rounded-full bg-ink-muted"
                       style={{ animationDelay: "0ms" }}
@@ -629,7 +684,8 @@ export function Chatbot() {
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Type a message..."
+                  placeholder="Ask about GST, registration, pricing…"
+                  aria-label="Type your message"
                   disabled={isTyping}
                   suppressHydrationWarning
                   className="w-full rounded-full border border-ink-border bg-ink-raised py-2.5 pl-4 pr-12 text-sm text-ink-foreground placeholder:text-ink-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent disabled:opacity-50"
@@ -637,11 +693,15 @@ export function Chatbot() {
                 <button
                   type="submit"
                   disabled={!input.trim() || isTyping}
-                  className="absolute right-2 top-1/2 flex size-7 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--accent)] text-[var(--accent-foreground)] transition-opacity disabled:opacity-50"
+                  aria-label="Send message"
+                  className="absolute right-2 top-1/2 flex size-7 -translate-y-1/2 items-center justify-center rounded-full bg-accent text-accent-foreground transition-opacity disabled:opacity-50"
                 >
                   <Send className="size-3" />
                 </button>
               </form>
+              <p className="pt-2 text-center text-[0.625rem] text-ink-muted">
+                AI-assisted answers · For urgent queries, call {site.phone}
+              </p>
             </div>
           </motion.div>
         )}
@@ -656,11 +716,12 @@ export function Chatbot() {
           setIsOpen(!isOpen);
           if (!hasEverOpened) setHasEverOpened(true);
         }}
-        className="fixed bottom-6 right-6 z-50 flex size-[72px] items-center justify-center rounded-full bg-[var(--accent)] text-[var(--accent-foreground)] shadow-xl transition-shadow hover:shadow-2xl hover:shadow-accent/20"
+        aria-label={isOpen ? "Close chat" : "Open chat with WealthBridge AI Assistant"}
+        className="glow fixed bottom-6 right-6 z-50 flex size-[72px] items-center justify-center rounded-full bg-accent text-accent-foreground shadow-xl transition-shadow hover:shadow-2xl hover:shadow-accent/20"
       >
         {/* Pulse ring */}
         {!hasEverOpened && (
-          <span className="absolute inset-0 animate-ping rounded-full bg-[var(--accent)] opacity-30" />
+          <span className="absolute inset-0 animate-ping rounded-full bg-accent opacity-30" />
         )}
         {isOpen ? (
           <X className="size-8" />
@@ -668,7 +729,7 @@ export function Chatbot() {
           <div className="relative size-[64px] overflow-hidden rounded-full bg-white shadow-inner">
             <img
               src="/bot.webp"
-              alt="AI Chat"
+              alt=""
               className="h-full w-full scale-[1.35] object-cover pt-2"
             />
           </div>
@@ -677,4 +738,3 @@ export function Chatbot() {
     </>
   );
 }
-

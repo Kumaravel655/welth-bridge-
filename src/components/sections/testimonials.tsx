@@ -1,10 +1,14 @@
 "use client";
 
-import { Star } from "lucide-react";
+import { ArrowUpRight, Star } from "lucide-react";
 
 import { Reveal } from "@/components/motion/reveal";
+import { Button } from "@/components/ui/button";
 
 import { SectionHeading } from "./section-heading";
+
+const GOOGLE_REVIEWS_URL =
+  "https://www.google.com/maps/search/?api=1&query=The+Wealth+Bridge+Vellore";
 
 const testimonials = [
   {
@@ -96,6 +100,28 @@ export function Testimonials() {
           <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent" />
         </div>
       </div>
+
+      {/* Google reviews link-out */}
+      <Reveal className="mx-auto mt-12 max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center gap-4 rounded-2xl border border-border bg-card p-6 text-center sm:flex-row sm:justify-between sm:text-left">
+          <div>
+            <div className="flex items-center justify-center gap-0.5 sm:justify-start">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="size-4 fill-accent text-accent" aria-hidden />
+              ))}
+            </div>
+            <p className="mt-1.5 text-sm text-muted-foreground">
+              See what more clients are saying on Google Reviews.
+            </p>
+          </div>
+          <Button asChild variant="outline">
+            <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer">
+              Read our Google reviews
+              <ArrowUpRight aria-hidden />
+            </a>
+          </Button>
+        </div>
+      </Reveal>
     </section>
   );
 }

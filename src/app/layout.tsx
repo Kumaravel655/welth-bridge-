@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, EB_Garamond } from "next/font/google";
+import { Inter, Geist_Mono, EB_Garamond } from "next/font/google";
+import Script from "next/script";
 
 import { Chatbot } from "@/components/chat/chatbot";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { Preloader } from "@/components/motion/preloader";
+import { WhatsappButton } from "@/components/shared/whatsapp-button";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { site } from "@/lib/site";
 
 import "./globals.css";
 
-const geist = Geist({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-geist",
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -59,7 +62,13 @@ export const metadata: Metadata = {
     description: site.description,
   },
   robots: { index: true, follow: true },
+  ...(process.env.GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
+    : {}),
 };
+
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
+const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
@@ -86,7 +95,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} ${ebGaramond.variable} font-sans`}
+        className={`${inter.variable} ${geistMono.variable} ${ebGaramond.variable} font-sans`}
         suppressHydrationWarning
       >
         <ThemeProvider
@@ -106,6 +115,7 @@ export default function RootLayout({
           <main id="main">{children}</main>
           <Footer />
           <Chatbot />
+          <WhatsappButton />
         </ThemeProvider>
         <script
           type="application/ld+json"
@@ -113,6 +123,29 @@ export default function RootLayout({
             __html: JSON.stringify(organizationJsonLd),
           }}
         />
+        {gaId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}');`}
+            </Script>
+          </>
+        ) : null}
+        {clarityId ? (
+          <Script id="clarity-init" strategy="afterInteractive">
+            {`(function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "${clarityId}");`}
+          </Script>
+        ) : null}
       </body>
     </html>
   );

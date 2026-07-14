@@ -21,7 +21,7 @@ export function GradientMesh({ className }: { className?: string }) {
           background:
             "radial-gradient(ellipse 80% 60% at 20% 40%, oklch(0.28 0.06 260 / 0.6), transparent 70%), " +
             "radial-gradient(ellipse 60% 80% at 80% 30%, oklch(0.24 0.05 255 / 0.5), transparent 70%), " +
-            "radial-gradient(ellipse 50% 50% at 50% 80%, oklch(0.78 0.145 75 / 0.08), transparent 60%)",
+            "radial-gradient(ellipse 50% 50% at 50% 80%, oklch(0.55 0.15 256 / 0.08), transparent 60%)",
         }}
       />
 
@@ -30,7 +30,7 @@ export function GradientMesh({ className }: { className?: string }) {
         className="absolute -left-[10%] -top-[20%] size-[500px] rounded-full opacity-[0.12]"
         style={{
           background:
-            "radial-gradient(circle, oklch(0.78 0.145 75 / 0.4), transparent 65%)",
+            "radial-gradient(circle, oklch(0.55 0.15 256 / 0.4), transparent 65%)",
           animation: reduce ? "none" : "blob 14s ease-in-out infinite",
         }}
         initial={reduce ? {} : { scale: 0.7, opacity: 0 }}
@@ -56,7 +56,7 @@ export function GradientMesh({ className }: { className?: string }) {
         className="absolute -bottom-[10%] left-[30%] size-[350px] rounded-full opacity-[0.06]"
         style={{
           background:
-            "radial-gradient(circle, oklch(0.78 0.145 75 / 0.3), transparent 65%)",
+            "radial-gradient(circle, oklch(0.55 0.15 256 / 0.3), transparent 65%)",
           animation: reduce ? "none" : "blob 16s ease-in-out 1s infinite",
         }}
         initial={reduce ? {} : { scale: 0.7, opacity: 0 }}

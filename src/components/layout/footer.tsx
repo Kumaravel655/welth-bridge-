@@ -2,6 +2,7 @@ import { Facebook, Mail, MapPin, Phone, Twitter } from "lucide-react";
 import Link from "next/link";
 
 import { Reveal, RevealGroup } from "@/components/motion/reveal";
+import { NewsletterForm } from "@/components/newsletter/newsletter-form";
 import { featuredServices } from "@/lib/services";
 import { site } from "@/lib/site";
 
@@ -20,7 +21,7 @@ export function Footer() {
         <RevealGroup className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* Brand */}
           <Reveal variant="fade-right">
-            <Wordmark />
+            <Wordmark onDark />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-muted">
               One-stop business setup and compliance partner since 2007 —
               helping founders form, fund and run companies from Vellore,
@@ -46,6 +47,7 @@ export function Footer() {
                 <Twitter className="size-4" aria-hidden />
               </a>
             </div>
+            <NewsletterForm variant="footer" source="footer" />
           </Reveal>
 
           {/* Popular services */}
@@ -79,6 +81,10 @@ export function Footer() {
                 {[
                   { href: "/about", label: "About us" },
                   { href: "/services", label: "All services" },
+                  { href: "/tools", label: "Tools" },
+                  { href: "/blog", label: "Blog" },
+                  { href: "/downloads", label: "Download centre" },
+                  { href: "/compliance-calendar", label: "Compliance calendar" },
                   { href: "/contact", label: "Contact" },
                 ].map((item) => (
                   <li key={item.href}>

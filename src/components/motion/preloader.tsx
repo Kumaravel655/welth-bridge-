@@ -64,12 +64,12 @@ export function Preloader() {
       transition={{ duration: FADE_MS / 1000, ease: "easeInOut" }}
       style={{ pointerEvents: leaving ? "none" : "auto" }}
     >
-      {/* Marigold glow behind the film */}
+      {/* Blue glow behind the film */}
       <div
         className="pointer-events-none absolute left-1/2 top-1/2 size-[720px] max-w-[130vw] -translate-x-1/2 -translate-y-1/2 rounded-full"
         style={{
           background:
-            "radial-gradient(circle, oklch(0.78 0.145 75 / 0.10) 0%, transparent 62%)",
+            "radial-gradient(circle, oklch(0.55 0.15 256 / 0.10) 0%, transparent 62%)",
         }}
       />
 
@@ -93,7 +93,7 @@ export function Preloader() {
       {/* Progress line — fills over the intro duration */}
       <motion.div
         className="absolute bottom-0 left-0 h-[2px] w-full origin-left"
-        style={{ background: "var(--gradient-gold)" }}
+        style={{ background: "var(--gradient-accent)" }}
         initial={{ scaleX: 0 }}
         animate={{ scaleX: leaving ? 1 : 1 }}
         transition={{ duration: PLAY_MS / 1000, ease: "linear" }}

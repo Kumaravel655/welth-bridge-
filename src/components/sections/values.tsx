@@ -12,7 +12,7 @@ const values = [
     icon: Handshake,
     title: "Trust",
     body: "We do what we say, every time. Your filings go out when we said they would, and you hear from us before you have to ask.",
-    gradient: "from-amber-500/20 via-orange-500/10 to-yellow-500/20",
+    gradient: "from-accent/20 via-accent-strong/10 to-sky-400/20",
   },
   {
     icon: Repeat,

@@ -15,16 +15,16 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <section className="bg-ink text-ink-foreground">
+      <section className="bg-background text-foreground">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent-strong">
             All services
           </p>
           <h1 className="mt-4 max-w-2xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
             {services.length}+ ways we carry the{" "}
-            <em className="text-[var(--accent)]">paperwork.</em>
+            <em className="text-accent-strong">paperwork.</em>
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted">
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
             Every service below is handled end to end — you send documents
             once, we file, follow up and deliver.
           </p>
@@ -33,7 +33,7 @@ export default function ServicesPage() {
               <a
                 key={c.slug}
                 href={`#${c.slug}`}
-                className="rounded-full border border-ink-border px-4 py-1.5 text-sm text-ink-muted transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                className="rounded-full border border-border px-4 py-1.5 text-sm text-muted-foreground transition-colors hover:border-accent hover:text-accent-strong"
               >
                 {c.navLabel}
               </a>

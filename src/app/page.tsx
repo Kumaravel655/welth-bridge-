@@ -1,5 +1,6 @@
 import { BrandFilm } from "@/components/sections/brand-film";
 import { CTA } from "@/components/sections/cta";
+import { FAQ } from "@/components/sections/faq";
 import { Hero } from "@/components/sections/hero";
 import { Pricing } from "@/components/sections/pricing";
 import { Process } from "@/components/sections/process";
@@ -19,6 +20,7 @@ export default function HomePage() {
       <Testimonials />
       <Process />
       <Pricing />
+      <FAQ />
       <CTA />
     </>
   );
