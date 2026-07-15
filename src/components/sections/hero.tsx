@@ -36,17 +36,18 @@ export function Hero() {
             <FadeIn delay={800} duration={1000}>
               <p className="mb-5 max-w-xl text-base text-ink-muted md:text-lg">
                 We handle every registration, filing and compliance need — so
-                your business can define what comes next.
+                your business can define what comes next. Start by booking a
+                free slot: consultations and fee enquiries cost nothing.
               </p>
             </FadeIn>
 
             <FadeIn delay={1200} duration={1000}>
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/contact"
+                  href="/portal/consultations"
                   className="rounded-full bg-ink-foreground px-8 py-3 font-medium text-ink transition-colors hover:brightness-95"
                 >
-                  Start a Chat
+                  Book a Consultation
                 </Link>
                 <Link
                   href="/services"

@@ -1,0 +1,176 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e6] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e7]:
+    - generic [ref=e8]:
+      - link "The Wealth Bridge — home" [ref=e9] [cursor=pointer]:
+        - /url: /
+        - img "The Wealth Bridge — Making More Possibilities" [ref=e11]
+      - navigation "Main" [ref=e12]:
+        - list [ref=e14]:
+          - listitem [ref=e15]:
+            - link "Home" [ref=e16] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e17]:
+            - button "Services" [ref=e18]
+          - listitem [ref=e21]:
+            - button "Tools" [ref=e22]
+          - listitem [ref=e25]:
+            - button "Resources" [ref=e26]
+          - listitem [ref=e29]:
+            - link "About" [ref=e30] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e31]:
+            - link "Contact" [ref=e32] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e33]:
+        - button "Search the site" [ref=e34]
+        - button "Switch to dark theme" [ref=e38]
+        - link "Sign in" [ref=e40] [cursor=pointer]:
+          - /url: /portal/sign-in
+        - link "Get started" [ref=e41] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=e44]:
+    - generic [ref=e176]:
+      - generic [ref=e177]:
+        - generic [ref=e178]: Admin
+        - navigation [ref=e182]:
+          - link "Dashboard" [ref=e183] [cursor=pointer]:
+            - /url: /admin
+          - link "Appointments" [ref=e184] [cursor=pointer]:
+            - /url: /admin/appointments
+          - link "Requests" [ref=e185] [cursor=pointer]:
+            - /url: /admin/requests
+          - link "Clients" [ref=e186] [cursor=pointer]:
+            - /url: /admin/clients
+          - link "Newsletter" [ref=e187] [cursor=pointer]:
+            - /url: /admin/newsletter
+      - button "Sign out" [ref=e188]
+    - generic [ref=e192]:
+      - heading "Dashboard" [level=1] [ref=e193]
+      - generic [ref=e194]:
+        - link "0 Appointments awaiting action" [ref=e195] [cursor=pointer]:
+          - /url: /admin/appointments
+          - generic [ref=e196]: "0"
+          - paragraph [ref=e203]: Appointments awaiting action
+        - link "1 Confirmed appointments" [ref=e204] [cursor=pointer]:
+          - /url: /admin/appointments
+          - generic [ref=e205]: "1"
+          - paragraph [ref=e211]: Confirmed appointments
+        - link "1 Open service requests" [ref=e212] [cursor=pointer]:
+          - /url: /admin/requests
+          - generic [ref=e213]: "1"
+          - paragraph [ref=e218]: Open service requests
+        - link "3 Registered clients" [ref=e219] [cursor=pointer]:
+          - /url: /admin/clients
+          - generic [ref=e220]: "3"
+          - paragraph [ref=e228]: Registered clients
+        - link "0 Newsletter subscribers" [ref=e229] [cursor=pointer]:
+          - /url: /admin/newsletter
+          - generic [ref=e230]: "0"
+          - paragraph [ref=e236]: Newsletter subscribers
+        - link "1 Newsletters sent" [ref=e237] [cursor=pointer]:
+          - /url: /admin/newsletter
+          - generic [ref=e238]: "1"
+          - paragraph [ref=e244]: Newsletters sent
+      - generic [ref=e245]:
+        - generic [ref=e246]:
+          - heading "Awaiting your response" [level=2] [ref=e247]
+          - link "All appointments" [ref=e248] [cursor=pointer]:
+            - /url: /admin/appointments
+        - paragraph [ref=e249]: No appointment requests waiting — you're all caught up.
+  - contentinfo [ref=e60]:
+    - generic [ref=e62]:
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - link "The Wealth Bridge — home" [ref=e65] [cursor=pointer]:
+            - /url: /
+            - img "The Wealth Bridge — Making More Possibilities" [ref=e67]
+          - paragraph [ref=e68]: One-stop business setup and compliance partner since 2007 — helping founders form, fund and run companies from Vellore, Tamil Nadu.
+          - generic [ref=e69]:
+            - link "The Wealth Bridge on Facebook" [ref=e70] [cursor=pointer]:
+              - /url: https://www.facebook.com/thewealthbridge
+            - link "The Wealth Bridge on Twitter" [ref=e73] [cursor=pointer]:
+              - /url: https://twitter.com/thewealthbridg
+          - generic [ref=e76]:
+            - paragraph [ref=e77]: Get updates
+            - generic [ref=e78]:
+              - textbox "Email address" [ref=e79]:
+                - /placeholder: you@example.com
+              - button "Subscribe" [ref=e80]
+        - navigation "Popular services" [ref=e84]:
+          - paragraph [ref=e85]: Popular services
+          - list [ref=e86]:
+            - listitem [ref=e87]:
+              - link "Private Limited Company" [ref=e88] [cursor=pointer]:
+                - /url: /services/private-limited-company
+            - listitem [ref=e89]:
+              - link "GST Registration" [ref=e90] [cursor=pointer]:
+                - /url: /services/gst-registration
+            - listitem [ref=e91]:
+              - link "Trademark Search" [ref=e92] [cursor=pointer]:
+                - /url: /services/trademark-search
+            - listitem [ref=e93]:
+              - link "Udyam / MSME Registration" [ref=e94] [cursor=pointer]:
+                - /url: /services/msme-udyam-registration
+            - listitem [ref=e95]:
+              - link "Business Loans" [ref=e96] [cursor=pointer]:
+                - /url: /services/business-loans
+            - listitem [ref=e97]:
+              - link "Individual Income Tax Filing" [ref=e98] [cursor=pointer]:
+                - /url: /services/income-tax-filing
+        - navigation "Company" [ref=e100]:
+          - paragraph [ref=e101]: Company
+          - list [ref=e102]:
+            - listitem [ref=e103]:
+              - link "About us" [ref=e104] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e105]:
+              - link "All services" [ref=e106] [cursor=pointer]:
+                - /url: /services
+            - listitem [ref=e107]:
+              - link "Tools" [ref=e108] [cursor=pointer]:
+                - /url: /tools
+            - listitem [ref=e109]:
+              - link "Blog" [ref=e110] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e111]:
+              - link "Download centre" [ref=e112] [cursor=pointer]:
+                - /url: /downloads
+            - listitem [ref=e113]:
+              - link "Compliance calendar" [ref=e114] [cursor=pointer]:
+                - /url: /compliance-calendar
+            - listitem [ref=e115]:
+              - link "Contact" [ref=e116] [cursor=pointer]:
+                - /url: /contact
+          - paragraph [ref=e117]: Reach us
+          - list [ref=e118]:
+            - listitem [ref=e119]:
+              - link "+91 86677 53901" [ref=e120] [cursor=pointer]:
+                - /url: tel:+918667753901
+            - listitem [ref=e123]:
+              - link "infowealthbridge@gmail.com" [ref=e124] [cursor=pointer]:
+                - /url: mailto:infowealthbridge@gmail.com
+        - generic [ref=e128]:
+          - paragraph [ref=e129]: Offices
+          - list [ref=e130]:
+            - listitem [ref=e131]:
+              - generic [ref=e135]:
+                - paragraph [ref=e136]: Vellore
+                - paragraph [ref=e137]: "2nd Floor, #23, 8th East Main Road, Gandhinagar, Katpadi, Vellore, Tamil Nadu"
+            - listitem [ref=e138]:
+              - generic [ref=e142]:
+                - paragraph [ref=e143]: Arakkonam
+                - paragraph [ref=e144]: "#10/1, Thiruthani High Road, Jothi Nagar, Arakkonam, Tamil Nadu 631003"
+            - listitem [ref=e145]:
+              - generic [ref=e149]:
+                - paragraph [ref=e150]: Ranipet
+                - paragraph [ref=e151]: No 126, MBT Road, Mahaveer Complex, First Floor, Muthukadai, Ranipet 632401
+      - generic [ref=e153]:
+        - paragraph [ref=e154]: © 2026 The Wealth Bridge. All rights reserved.
+        - paragraph [ref=e155]: Vellore · Arakkonam · Ranipet
+  - button "Open chat with WealthBridge AI Assistant" [ref=e156]
+  - link "Chat with us on WhatsApp" [ref=e159] [cursor=pointer]:
+    - /url: https://wa.me/918667753901?text=Hi%20Wealth%20Bridge%2C%20I'd%20like%20to%20know%20more%20about%20your%20services.
+  - button "Open Next.js Dev Tools" [ref=e170] [cursor=pointer]
+  - alert [ref=e174]: Dashboard

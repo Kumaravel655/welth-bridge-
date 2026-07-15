@@ -29,6 +29,7 @@ export type ConsultationRecord = {
   preferred_date: string;
   slot: string;
   mode: string;
+  office: string;
   status: string;
   meeting_link: string | null;
   notes: string | null;
@@ -97,14 +98,22 @@ export const portalApi = {
     preferred_date: string;
     slot: string;
     mode: string;
+    office?: string;
     notes?: string;
   }) =>
     portalRequest<ConsultationRecord>("/consultations", {
       method: "POST",
       body: JSON.stringify(data),
     }),
-  getSlots: (date: string) =>
-    portalRequest<ConsultationSlot[]>(`/consultations/slots?date=${encodeURIComponent(date)}`),
+  cancelConsultation: (id: number) =>
+    portalRequest<ConsultationRecord>(`/consultations/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ status: "cancelled" }),
+    }),
+  getSlots: (date: string, office: string) =>
+    portalRequest<ConsultationSlot[]>(
+      `/consultations/slots?date=${encodeURIComponent(date)}&office=${encodeURIComponent(office)}`
+    ),
 };
 
 async function authRequest(path: string, data: unknown) {

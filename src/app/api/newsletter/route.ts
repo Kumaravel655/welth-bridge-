@@ -2,12 +2,39 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const BACKEND_API_URL = process.env.BACKEND_API_URL ?? "http://localhost:8000";
 
-// No database exists for subscriber storage — this notifies the admin by
-// email on every signup so they can curate the list manually. Swap the
-// transporter.sendMail body below for a real ESP call (Brevo, Mailchimp,
-// etc.) if/when subscriber volume justifies it; the request/response
-// contract here (POST {email, source} -> {success}) doesn't need to change.
+// Signups are stored in the backend's subscribers table — that list is what
+// the admin panel's newsletter send goes out to. If the backend is down we
+// fall back to emailing the admin (the pre-database behaviour) so no signup
+// is silently lost.
+async function notifyAdminFallback(email: string, source: string | undefined) {
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT) || 587,
+    secure: false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+
+  await transporter.sendMail({
+    from: `"Wealth Bridge Website" <${process.env.SMTP_USER}>`,
+    to: process.env.NEWSLETTER_TO_EMAIL || process.env.CONTACT_TO_EMAIL,
+    replyTo: email,
+    subject: "New Newsletter Subscriber (backend was offline)",
+    text: [
+      `Email:   ${email}`,
+      `Source:  ${source || "unknown"}`,
+      `When:    ${new Date().toISOString()}`,
+      "",
+      "The portal backend was unreachable, so this subscriber was NOT saved",
+      "to the database. Add them manually from the admin panel.",
+    ].join("\n"),
+  });
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { email, source } = await req.json();
@@ -19,42 +46,28 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
-
-    await transporter.sendMail({
-      from: `"Wealth Bridge Website" <${process.env.SMTP_USER}>`,
-      to: process.env.NEWSLETTER_TO_EMAIL || process.env.CONTACT_TO_EMAIL,
-      replyTo: email,
-      subject: "New Newsletter Subscriber",
-      text: [
-        `Email:   ${email}`,
-        `Source:  ${source || "unknown"}`,
-        `When:    ${new Date().toISOString()}`,
-      ].join("\n"),
-      html: `
-        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;background:#fafafa;border:1px solid #e5e7eb;border-radius:12px;">
-          <h2 style="margin:0 0 16px;color:#111827;">New Newsletter Subscriber</h2>
-          <table style="width:100%;border-collapse:collapse;">
-            <tr><td style="padding:8px 12px;font-weight:600;color:#374151;width:90px;">Email</td><td style="padding:8px 12px;"><a href="mailto:${email}" style="color:#2563eb;">${email}</a></td></tr>
-            <tr><td style="padding:8px 12px;font-weight:600;color:#374151;">Source</td><td style="padding:8px 12px;color:#111827;">${source || "unknown"}</td></tr>
-          </table>
-          <hr style="margin:16px 0;border:none;border-top:1px solid #e5e7eb;" />
-          <p style="margin:0;font-size:12px;color:#9ca3af;">This is a signup notification only — there is no subscriber database. Add this address to your mailing list manually.</p>
-        </div>
-      `,
-    });
-
-    return NextResponse.json({ success: true });
+    try {
+      const res = await fetch(`${BACKEND_API_URL}/api/public/newsletter/subscribe`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source }),
+        cache: "no-store",
+      });
+      if (res.ok) {
+        return NextResponse.json({ success: true });
+      }
+      const body = await res.json().catch(() => ({}));
+      return NextResponse.json(
+        { error: typeof body.detail === "string" ? body.detail : "Failed to subscribe." },
+        { status: res.status }
+      );
+    } catch {
+      // Backend unreachable — fall back to notifying the admin by email.
+      await notifyAdminFallback(email, source);
+      return NextResponse.json({ success: true });
+    }
   } catch (error) {
-    console.error("Newsletter signup email error:", error);
+    console.error("Newsletter signup error:", error);
     return NextResponse.json(
       { error: "Failed to subscribe. Please try again later." },
       { status: 500 }

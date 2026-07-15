@@ -1,0 +1,152 @@
+- generic [active] [ref=f9e1]:
+  - link "Skip to content" [ref=f9e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=f9e3]:
+    - generic [ref=f9e4]:
+      - link "The Wealth Bridge — home" [ref=f9e5] [cursor=pointer]:
+        - /url: /
+        - img "The Wealth Bridge — Making More Possibilities" [ref=f9e7]
+      - navigation "Main" [ref=f9e8]:
+        - list [ref=f9e10]:
+          - listitem [ref=f9e11]:
+            - link "Home" [ref=f9e12] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f9e13]:
+            - button "Services" [ref=f9e14]
+          - listitem [ref=f9e17]:
+            - button "Tools" [ref=f9e18]
+          - listitem [ref=f9e21]:
+            - button "Resources" [ref=f9e22]
+          - listitem [ref=f9e25]:
+            - link "About" [ref=f9e26] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f9e27]:
+            - link "Contact" [ref=f9e28] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=f9e29]:
+        - button "Search the site" [ref=f9e30]
+        - button "Switch to dark theme" [ref=f9e34]
+        - link "Sign in" [ref=f9e37] [cursor=pointer]:
+          - /url: /portal/sign-in
+        - link "Get started" [ref=f9e38] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=f9e41]:
+    - generic [ref=f9e223]:
+      - navigation [ref=f9e224]:
+        - link "Dashboard" [ref=f9e225] [cursor=pointer]:
+          - /url: /portal
+        - link "Requests" [ref=f9e226] [cursor=pointer]:
+          - /url: /portal/requests
+        - link "Consultations" [ref=f9e227] [cursor=pointer]:
+          - /url: /portal/consultations
+      - button "Sign out" [ref=f9e228]
+    - generic [ref=f9e232]:
+      - heading "Welcome back, Test." [level=1] [ref=f9e233]
+      - paragraph [ref=f9e234]: velandevofficial+client@gmail.com
+      - generic [ref=f9e235]:
+        - link [ref=f9e236] [cursor=pointer]:
+          - /url: /portal/requests
+          - generic [ref=f9e242]:
+            - paragraph [ref=f9e243]: "0"
+            - paragraph [ref=f9e244]: Open service requests
+        - link [ref=f9e247] [cursor=pointer]:
+          - /url: /portal/consultations
+          - generic [ref=f9e254]:
+            - paragraph [ref=f9e255]: "1"
+            - paragraph [ref=f9e256]: Upcoming consultations
+      - link "Submit a new request" [ref=f9e259] [cursor=pointer]:
+        - /url: /portal/requests/new
+  - contentinfo [ref=f9e46]:
+    - generic [ref=f9e48]:
+      - generic [ref=f9e49]:
+        - generic [ref=f9e50]:
+          - link "The Wealth Bridge — home" [ref=f9e51] [cursor=pointer]:
+            - /url: /
+            - img "The Wealth Bridge — Making More Possibilities" [ref=f9e53]
+          - paragraph [ref=f9e54]: One-stop business setup and compliance partner since 2007 — helping founders form, fund and run companies from Vellore, Tamil Nadu.
+          - generic [ref=f9e55]:
+            - link "The Wealth Bridge on Facebook" [ref=f9e56] [cursor=pointer]:
+              - /url: https://www.facebook.com/thewealthbridge
+            - link "The Wealth Bridge on Twitter" [ref=f9e59] [cursor=pointer]:
+              - /url: https://twitter.com/thewealthbridg
+          - generic [ref=f9e62]:
+            - paragraph [ref=f9e63]: Get updates
+            - generic [ref=f9e64]:
+              - textbox "Email address" [ref=f9e65]:
+                - /placeholder: you@example.com
+              - button "Subscribe" [ref=f9e66]
+        - navigation "Popular services" [ref=f9e70]:
+          - paragraph [ref=f9e71]: Popular services
+          - list [ref=f9e72]:
+            - listitem [ref=f9e73]:
+              - link "Private Limited Company" [ref=f9e74] [cursor=pointer]:
+                - /url: /services/private-limited-company
+            - listitem [ref=f9e75]:
+              - link "GST Registration" [ref=f9e76] [cursor=pointer]:
+                - /url: /services/gst-registration
+            - listitem [ref=f9e77]:
+              - link "Trademark Search" [ref=f9e78] [cursor=pointer]:
+                - /url: /services/trademark-search
+            - listitem [ref=f9e79]:
+              - link "Udyam / MSME Registration" [ref=f9e80] [cursor=pointer]:
+                - /url: /services/msme-udyam-registration
+            - listitem [ref=f9e81]:
+              - link "Business Loans" [ref=f9e82] [cursor=pointer]:
+                - /url: /services/business-loans
+            - listitem [ref=f9e83]:
+              - link "Individual Income Tax Filing" [ref=f9e84] [cursor=pointer]:
+                - /url: /services/income-tax-filing
+        - navigation "Company" [ref=f9e86]:
+          - paragraph [ref=f9e87]: Company
+          - list [ref=f9e88]:
+            - listitem [ref=f9e89]:
+              - link "About us" [ref=f9e90] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f9e91]:
+              - link "All services" [ref=f9e92] [cursor=pointer]:
+                - /url: /services
+            - listitem [ref=f9e93]:
+              - link "Tools" [ref=f9e94] [cursor=pointer]:
+                - /url: /tools
+            - listitem [ref=f9e95]:
+              - link "Blog" [ref=f9e96] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=f9e97]:
+              - link "Download centre" [ref=f9e98] [cursor=pointer]:
+                - /url: /downloads
+            - listitem [ref=f9e99]:
+              - link "Compliance calendar" [ref=f9e100] [cursor=pointer]:
+                - /url: /compliance-calendar
+            - listitem [ref=f9e101]:
+              - link "Contact" [ref=f9e102] [cursor=pointer]:
+                - /url: /contact
+          - paragraph [ref=f9e103]: Reach us
+          - list [ref=f9e104]:
+            - listitem [ref=f9e105]:
+              - link "+91 86677 53901" [ref=f9e106] [cursor=pointer]:
+                - /url: tel:+918667753901
+            - listitem [ref=f9e109]:
+              - link "infowealthbridge@gmail.com" [ref=f9e110] [cursor=pointer]:
+                - /url: mailto:infowealthbridge@gmail.com
+        - generic [ref=f9e114]:
+          - paragraph [ref=f9e115]: Offices
+          - list [ref=f9e116]:
+            - listitem [ref=f9e117]:
+              - generic [ref=f9e121]:
+                - paragraph [ref=f9e122]: Vellore
+                - paragraph [ref=f9e123]: "2nd Floor, #23, 8th East Main Road, Gandhinagar, Katpadi, Vellore, Tamil Nadu"
+            - listitem [ref=f9e124]:
+              - generic [ref=f9e128]:
+                - paragraph [ref=f9e129]: Arakkonam
+                - paragraph [ref=f9e130]: "#10/1, Thiruthani High Road, Jothi Nagar, Arakkonam, Tamil Nadu 631003"
+            - listitem [ref=f9e131]:
+              - generic [ref=f9e135]:
+                - paragraph [ref=f9e136]: Ranipet
+                - paragraph [ref=f9e137]: No 126, MBT Road, Mahaveer Complex, First Floor, Muthukadai, Ranipet 632401
+      - generic [ref=f9e139]:
+        - paragraph [ref=f9e140]: © 2026 The Wealth Bridge. All rights reserved.
+        - paragraph [ref=f9e141]: Vellore · Arakkonam · Ranipet
+  - button "Open chat with WealthBridge AI Assistant" [ref=f9e142]
+  - link "Chat with us on WhatsApp" [ref=f9e145] [cursor=pointer]:
+    - /url: https://wa.me/918667753901?text=Hi%20Wealth%20Bridge%2C%20I'd%20like%20to%20know%20more%20about%20your%20services.
+  - alert [ref=f9e149]

@@ -42,9 +42,12 @@ export function Header() {
           </a>
           <SiteSearch />
           <ThemeToggle />
+          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+            <Link href="/portal/sign-in">Sign in</Link>
+          </Button>
           <Button asChild size="sm" className="hidden sm:inline-flex">
-            <Link href="/contact">
-              Get started
+            <Link href="/portal/consultations">
+              Book consultation
               <ArrowRight aria-hidden />
             </Link>
           </Button>
@@ -505,6 +508,8 @@ function MobileNav() {
                 { href: "/compliance-calendar", label: "Compliance calendar" },
                 { href: "/about", label: "About" },
                 { href: "/contact", label: "Contact" },
+                { href: "/portal/sign-in", label: "Sign in" },
+                { href: "/portal/sign-up", label: "Create an account" },
               ].map((item) => (
                 <Link
                   key={item.href}
@@ -520,8 +525,8 @@ function MobileNav() {
 
           <div className="border-t border-border p-5">
             <Button asChild className="w-full">
-              <Link href="/contact" onClick={() => setOpen(false)}>
-                Get started
+              <Link href="/portal/consultations" onClick={() => setOpen(false)}>
+                Book consultation
                 <ArrowRight aria-hidden />
               </Link>
             </Button>

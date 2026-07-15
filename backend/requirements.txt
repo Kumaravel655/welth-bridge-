@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+asyncpg
+alembic
+pydantic-settings
+passlib[bcrypt]
+bcrypt==3.2.2  # passlib 1.7.4's version-sniffing/self-test breaks on bcrypt>=4.0 (removed __about__.__version__)
+pyjwt
+python-multipart

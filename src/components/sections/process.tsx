@@ -9,7 +9,7 @@ import { SectionHeading } from "./section-heading";
 const steps = [
   {
     title: "Consult",
-    body: "A free call with an expert who confirms exactly which registrations and filings your business needs — and which it doesn't.",
+    body: "Book a free slot online — phone, video or in-office — and an expert confirms exactly which registrations your business needs, what the fees are, and which you can skip.",
   },
   {
     title: "Documents",

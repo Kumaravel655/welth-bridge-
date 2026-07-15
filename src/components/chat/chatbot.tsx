@@ -123,14 +123,14 @@ function ServiceCard({ s }: { s: Service }) {
       <p className="text-[0.8125rem] font-semibold leading-snug">
         {s.name}
       </p>
-      <p className="text-xs leading-relaxed text-ink-muted">{s.short}</p>
+      <p className="text-xs leading-relaxed text-muted-foreground">{s.short}</p>
 
       <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[0.6875rem]">
         <span className="inline-flex items-center gap-1 font-medium text-[var(--accent)]">
           <IndianRupee className="size-3" />
           {s.price ? formatINR(s.price) : "Custom quote"}
         </span>
-        <span className="inline-flex items-center gap-1 text-ink-muted">
+        <span className="inline-flex items-center gap-1 text-muted-foreground">
           <Clock className="size-3" />
           {s.timeline}
         </span>
@@ -141,7 +141,7 @@ function ServiceCard({ s }: { s: Service }) {
           {s.highlights.slice(0, 3).map((h) => (
             <li
               key={h}
-              className="flex items-start gap-1.5 text-[0.6875rem] leading-snug text-ink-muted"
+              className="flex items-start gap-1.5 text-[0.6875rem] leading-snug text-muted-foreground"
             >
               <CheckCircle2 className="mt-0.5 size-3 shrink-0 text-green-500" />
               {h}
@@ -171,16 +171,16 @@ function OfficeCards() {
       {site.offices.map((o) => (
         <div
           key={o.city}
-          className="rounded-xl border border-ink-border bg-ink-raised/50 p-3"
+          className="rounded-xl border border-border bg-background/50 p-3"
         >
           <div className="flex items-start gap-2">
             <MapPin className="mt-0.5 size-3.5 shrink-0 text-[var(--accent)]" />
             <div className="space-y-1">
               <p className="text-xs font-semibold">
                 {o.city}{" "}
-                <span className="font-normal text-ink-muted">· {o.label}</span>
+                <span className="font-normal text-muted-foreground">· {o.label}</span>
               </p>
-              <p className="text-[0.6875rem] leading-relaxed text-ink-muted">
+              <p className="text-[0.6875rem] leading-relaxed text-muted-foreground">
                 {o.address}
               </p>
               <div className="flex flex-wrap gap-x-3 gap-y-0.5">
@@ -252,7 +252,7 @@ function generateBotResponse(input: string): {
 
     groups.forEach((g, gi) => {
       contentParts.push(
-        <p key={gi} className="mt-2 text-[0.6875rem] font-semibold uppercase tracking-wider text-ink-muted first:mt-0">
+        <p key={gi} className="mt-2 text-[0.6875rem] font-semibold uppercase tracking-wider text-muted-foreground first:mt-0">
           {g.group}
         </p>
       );
@@ -263,7 +263,7 @@ function generateBotResponse(input: string): {
       content: (
         <div className="space-y-1">
           <p className="text-[0.8125rem] font-medium">{matchedCategory.title}</p>
-          <p className="text-xs text-ink-muted">{matchedCategory.tagline}</p>
+          <p className="text-xs text-muted-foreground">{matchedCategory.tagline}</p>
           {contentParts}
         </div>
       ),
@@ -291,10 +291,10 @@ function generateBotResponse(input: string): {
       content: (
         <div className="space-y-2">
           <p className="text-[0.8125rem] font-medium">About The Wealth Bridge</p>
-          <p className="text-xs leading-relaxed text-ink-muted">
+          <p className="text-xs leading-relaxed text-muted-foreground">
             We&apos;re a one-stop business setup and compliance partner based in Vellore, Tamil Nadu — <strong>serving businesses since 2007</strong>.
           </p>
-          <p className="text-xs leading-relaxed text-ink-muted">
+          <p className="text-xs leading-relaxed text-muted-foreground">
             Our team includes Business Analysts, Company Secretaries, Chartered Accountants, Corporate Lawyers, and Financial Professionals — all under one roof.
           </p>
         </div>
@@ -352,12 +352,12 @@ function generateBotResponse(input: string): {
               <Mail className="size-3" /> {site.email}
             </a>
           </div>
-          <p className="text-[0.6875rem] text-ink-muted">
-            Or visit our{" "}
-            <Link href="/contact" className="text-[var(--accent)] hover:underline">
-              contact page
+          <p className="text-[0.6875rem] text-muted-foreground">
+            Or{" "}
+            <Link href="/portal/consultations" className="text-[var(--accent)] hover:underline">
+              book a consultation
             </Link>{" "}
-            to send us a message.
+            and talk to us directly.
           </p>
         </div>
       ),
@@ -531,7 +531,7 @@ export function Chatbot() {
             transition={{ duration: 0.25, ease: "easeOut" }}
             role="dialog"
             aria-label="WealthBridge AI Assistant chat"
-            className="fixed bottom-24 right-6 z-50 flex h-[560px] w-[400px] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-[28px] border border-ink-border bg-ink-raised shadow-[0_30px_80px_-24px_rgba(3,20,50,0.55)] backdrop-blur-xl"
+            className="fixed bottom-24 right-6 z-50 flex h-[600px] w-[420px] max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-[24px] border border-black/10 bg-slate-50 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] ring-1 ring-black/5"
           >
             {/* Header */}
             <div
@@ -579,7 +579,7 @@ export function Chatbot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 space-y-3 overflow-y-auto p-4">
+            <div className="flex-1 space-y-4 overflow-y-auto p-4 bg-slate-50/50">
               <AnimatePresence initial={false}>
                 {messages.map((msg) => {
                   const isLastBot =
@@ -598,10 +598,10 @@ export function Chatbot() {
                     >
                       <div
                         className={cn(
-                          "flex w-max max-w-[85%] flex-col rounded-2xl px-3.5 py-2.5 text-sm shadow-sm",
+                          "flex w-max max-w-[85%] flex-col rounded-2xl px-4 py-3 text-[0.85rem] leading-relaxed shadow-sm",
                           msg.role === "user"
                             ? "rounded-br-sm text-[var(--accent-foreground)]"
-                            : "rounded-bl-sm border border-ink-border bg-ink text-ink-foreground"
+                            : "rounded-bl-sm border border-black/5 bg-white text-slate-800 shadow-sm"
                         )}
                         style={
                           msg.role === "user"
@@ -628,10 +628,10 @@ export function Chatbot() {
                                 disabled={isTyping || isStale}
                                 onClick={() => sendMessage(opt)}
                                 className={cn(
-                                  "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[0.6875rem] font-medium transition-colors",
+                                  "inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[0.7rem] font-medium transition-all duration-200",
                                   isStale
-                                    ? "cursor-default border-ink-border/50 text-ink-muted/50"
-                                    : "border-[var(--accent)]/40 text-[var(--accent)] hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] disabled:opacity-50"
+                                    ? "cursor-default border-border/50 text-muted-foreground/50 bg-transparent"
+                                    : "border-[var(--accent)]/30 text-[var(--accent)] bg-[var(--accent)]/5 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] hover:shadow-md disabled:opacity-50"
                                 )}
                               >
                                 {Icon && <Icon className="size-3" aria-hidden="true" />}
@@ -650,22 +650,22 @@ export function Chatbot() {
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="flex w-max max-w-[85%] flex-col rounded-2xl rounded-bl-sm border border-ink-border bg-ink px-4 py-3 text-sm text-ink-foreground shadow-sm"
+                  className="flex w-max max-w-[85%] flex-col rounded-2xl rounded-bl-sm border border-black/5 bg-white px-4 py-3.5 text-sm text-foreground shadow-sm"
                   role="status"
                   aria-live="polite"
                 >
                   <span className="sr-only">WealthBridge AI is typing…</span>
                   <div className="flex items-center gap-1.5" aria-hidden="true">
                     <span
-                      className="size-1.5 animate-bounce rounded-full bg-ink-muted"
+                      className="size-1.5 animate-bounce rounded-full bg-muted-foreground"
                       style={{ animationDelay: "0ms" }}
                     />
                     <span
-                      className="size-1.5 animate-bounce rounded-full bg-ink-muted"
+                      className="size-1.5 animate-bounce rounded-full bg-muted-foreground"
                       style={{ animationDelay: "150ms" }}
                     />
                     <span
-                      className="size-1.5 animate-bounce rounded-full bg-ink-muted"
+                      className="size-1.5 animate-bounce rounded-full bg-muted-foreground"
                       style={{ animationDelay: "300ms" }}
                     />
                   </div>
@@ -675,7 +675,7 @@ export function Chatbot() {
             </div>
 
             {/* Input */}
-            <div className="border-t border-ink-border bg-ink p-3">
+            <div className="border-t border-border bg-background p-3">
               <form
                 onSubmit={handleSend}
                 className="relative flex items-center"
@@ -688,7 +688,7 @@ export function Chatbot() {
                   aria-label="Type your message"
                   disabled={isTyping}
                   suppressHydrationWarning
-                  className="w-full rounded-full border border-ink-border bg-ink-raised py-2.5 pl-4 pr-12 text-sm text-ink-foreground placeholder:text-ink-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent disabled:opacity-50"
+                  className="w-full rounded-full border border-black/10 bg-white py-3 pl-4 pr-12 text-[0.85rem] text-foreground placeholder:text-slate-400 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 disabled:opacity-50 shadow-sm transition-all"
                 />
                 <button
                   type="submit"
@@ -699,7 +699,7 @@ export function Chatbot() {
                   <Send className="size-3" />
                 </button>
               </form>
-              <p className="pt-2 text-center text-[0.625rem] text-ink-muted">
+              <p className="pt-2 text-center text-[0.625rem] text-muted-foreground">
                 AI-assisted answers · For urgent queries, call {site.phone}
               </p>
             </div>

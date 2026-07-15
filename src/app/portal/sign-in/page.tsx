@@ -25,8 +25,9 @@ export default function PortalSignInPage() {
     const password = String(data.get("password") ?? "");
 
     try {
-      await signIn({ email, password });
-      const next = new URLSearchParams(window.location.search).get("next") || "/portal";
+      const result = (await signIn({ email, password })) as { role?: string };
+      const fallback = result.role === "admin" ? "/admin" : "/portal";
+      const next = new URLSearchParams(window.location.search).get("next") || fallback;
       router.push(next);
       router.refresh();
     } catch (err) {

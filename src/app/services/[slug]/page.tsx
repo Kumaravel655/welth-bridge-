@@ -108,8 +108,8 @@ export default async function ServicePage({ params }: Props) {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg">
-                  <Link href="/contact">
-                    Get started
+                  <Link href="/portal/consultations">
+                    Book a consultation
                     <ArrowRight aria-hidden />
                   </Link>
                 </Button>
@@ -120,6 +120,11 @@ export default async function ServicePage({ params }: Props) {
                   </a>
                 </Button>
               </div>
+              <p className="mt-4 text-sm text-muted-foreground">
+                Not sure yet? Book a free slot for a fee enquiry — we&apos;ll
+                confirm the exact cost, documents and timeline before you
+                commit.
+              </p>
             </div>
 
             <div className="space-y-5">

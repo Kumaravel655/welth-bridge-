@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { decodeJwtRole } from "@/lib/session";
+
 const PUBLIC_PORTAL_PATHS = ["/portal/sign-in", "/portal/sign-up"];
 
 export function middleware(req: NextRequest) {
@@ -16,9 +18,16 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(signInUrl);
   }
 
+  // /admin is admin-only. The role claim is decoded without signature
+  // verification — fine for routing, since the backend re-verifies the JWT
+  // on every API call an admin page makes.
+  if (pathname.startsWith("/admin") && decodeJwtRole(token) !== "admin") {
+    return NextResponse.redirect(new URL("/portal", req.url));
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/portal/:path*"],
+  matcher: ["/portal/:path*", "/admin/:path*"],
 };

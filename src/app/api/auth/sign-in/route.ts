@@ -1,6 +1,8 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
+import { decodeJwtRole } from "@/lib/session";
+
 const BACKEND_API_URL = process.env.BACKEND_API_URL ?? "http://localhost:8000";
 const SESSION_COOKIE = "wb_session";
 const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 30; // matches the backend's 30-day token expiry
@@ -32,5 +34,5 @@ export async function POST(req: NextRequest) {
     maxAge: SESSION_MAX_AGE_SECONDS,
   });
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, role: decodeJwtRole(data.access_token) ?? "client" });
 }

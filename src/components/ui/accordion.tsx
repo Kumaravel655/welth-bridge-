@@ -32,6 +32,7 @@ function AccordionTrigger({
           "flex flex-1 items-center justify-between gap-4 py-4 text-left text-sm font-medium transition-colors hover:text-accent-strong [&[data-state=open]>svg]:rotate-180",
           className
         )}
+        suppressHydrationWarning
         {...props}
       >
         {children}

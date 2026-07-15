@@ -1,13 +1,8 @@
 "use client";
 
-import { useReducedMotion } from "motion/react";
-import Image from "next/image";
-
-import { Reveal } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/sections/section-heading";
 
 export function BrandFilm() {
-  const reduce = useReducedMotion();
 
   return (
     <section className="relative overflow-hidden bg-ink text-ink-foreground">
@@ -30,38 +25,7 @@ export function BrandFilm() {
           onInk
         />
 
-        <Reveal variant="scale-in" delay={0.1}>
-          <figure className="group relative mx-auto mt-12 max-w-4xl">
-            {/* Blue hairline frame */}
-            <div
-              className="rounded-2xl p-px shadow-2xl shadow-accent/10"
-              style={{ background: "var(--gradient-accent)" }}
-            >
-              <div className="relative overflow-hidden rounded-2xl bg-ink-raised ring-1 ring-inset ring-white/5">
-                <Image
-                  src={reduce ? "/brand-reveal-poster.jpg" : "/brand-reveal.gif"}
-                  alt="The Wealth Bridge brand film — particles resolving into the Wealth Bridge logo"
-                  width={480}
-                  height={214}
-                  unoptimized={!reduce}
-                  className="h-auto w-full select-none"
-                />
-                {/* Cinematic vignette */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    background:
-                      "radial-gradient(120% 120% at 50% 50%, transparent 60%, oklch(0.15 0.03 250 / 0.35) 100%)",
-                  }}
-                />
-              </div>
-            </div>
-            <figcaption className="mt-4 text-center font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-ink-muted">
-              The Wealth Bridge · Brand film
-            </figcaption>
-          </figure>
-        </Reveal>
+
       </div>
     </section>
   );

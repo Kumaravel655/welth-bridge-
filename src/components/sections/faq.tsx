@@ -7,12 +7,17 @@ const homeFaqs: FaqItem[] = [
   {
     question: "How much do your services cost?",
     answer:
-      "Every service has a transparent professional fee shown on its page, separate from any government fee. For anything that depends on your specific situation, we give you a firm quote before you commit to anything.",
+      "Every service has a transparent professional fee shown on its page, separate from any government fee. For anything that depends on your specific situation, book a free slot and ask — fee enquiries cost nothing, and we give you a firm quote before you commit to anything.",
   },
   {
-    question: "How do consultations work?",
+    question: "How do I book a consultation slot?",
     answer:
-      "Book a free consultation by phone, video call or in person at one of our Vellore, Arakkonam or Ranipet offices. An expert reviews your requirement and recommends the right service before any fee is discussed.",
+      "Create a free account, then pick a date and time that suits you — Monday to Saturday, 10 am to 6 pm. Choose a phone call, video call, or an in-person visit at our Vellore, Arakkonam or Ranipet office. Our team confirms your slot and you'll get an email with the details.",
+  },
+  {
+    question: "Is the first consultation really free?",
+    answer:
+      "Yes. The first consultation is free whatever you ask — a fee enquiry, which registrations you need, or a review of a notice you've received. An expert recommends the right service before any fee is discussed.",
   },
   {
     question: "How do I share documents with you?",

@@ -49,6 +49,7 @@ export function SiteSearch({ className }: { className?: string }) {
         <button
           type="button"
           aria-label="Search the site"
+          suppressHydrationWarning
           className={cn(
             "inline-flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
             className

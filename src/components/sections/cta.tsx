@@ -37,8 +37,8 @@ export function CTA() {
         <div className="mx-auto max-w-2xl text-center">
           <SectionHeading
             eyebrow="Ready when you are"
-            title="Your company is one call away."
-            lede="Tell us what you're building. We'll tell you exactly which registrations you need, what they cost, and how long they take — free, on the first call."
+            title="Your company is one booking away."
+            lede="Pick a slot that suits you — phone, video, or a visit to our Vellore, Arakkonam or Ranipet office — and ask anything: which registrations you need, what the fees are, how long it takes. The first consultation is free."
             align="center"
             onInk
           />
@@ -52,7 +52,7 @@ export function CTA() {
           >
             <MagneticButton strength={0.2}>
               <Button asChild size="lg" className="glow">
-                <Link href="/contact">
+                <Link href="/portal/consultations">
                   Book a free consultation
                   <ArrowRight aria-hidden />
                 </Link>
