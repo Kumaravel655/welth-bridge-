@@ -6,10 +6,10 @@ from app.public.routes import router as public_router
 
 app = FastAPI(title="WealthBridge Client Portal API")
 
-app.include_router(auth_router, prefix="/api/auth", tags=["auth"])
-app.include_router(portal_router, prefix="/api/portal", tags=["portal"])
-app.include_router(admin_router, prefix="/api/admin", tags=["admin"])
-app.include_router(public_router, prefix="/api/public", tags=["public"])
+app.include_router(auth_router, prefix="/auth", tags=["auth"])
+app.include_router(portal_router, prefix="/portal", tags=["portal"])
+app.include_router(admin_router, prefix="/admin", tags=["admin"])
+app.include_router(public_router, prefix="/public", tags=["public"])
 
 @app.get("/")
 def root():
