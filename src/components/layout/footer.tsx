@@ -153,6 +153,17 @@ export function Footer() {
               © {new Date().getFullYear()} The Wealth Bridge. All rights
               reserved.
             </p>
+            <p className="text-xs text-ink-muted">
+              Developed &amp; maintained by{" "}
+              <a
+                href="https://velandev.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-ink-foreground/85 transition-colors hover:text-[var(--accent)]"
+              >
+                VelanDev
+              </a>
+            </p>
             <p className="font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-ink-muted">
               Vellore · Arakkonam · Ranipet
             </p>

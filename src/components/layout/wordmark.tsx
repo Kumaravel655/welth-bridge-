@@ -38,8 +38,8 @@ export function Wordmark({
         <Image
           src={onDark ? "/logo-white.png" : "/logo.png"}
           alt="The Wealth Bridge — Making More Possibilities"
-          width={409}
-          height={100}
+          width={991}
+          height={120}
           priority
           className="h-9 w-auto transition-transform duration-300 group-hover:scale-[1.03] sm:h-10"
         />
