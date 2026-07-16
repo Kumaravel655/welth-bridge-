@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { decodeJwtRole } from "@/lib/session";
+import { decodeJwtRole, normalizeSessionToken } from "@/lib/session";
 
 const PUBLIC_PORTAL_PATHS = ["/portal/sign-in", "/portal/sign-up"];
 
@@ -11,7 +11,12 @@ export function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  const token = req.cookies.get("wb_session")?.value;
+  // wb_session is our own cookie; access_token is set by FastAPI itself on
+  // sign-in — deployments where nginx sends /api/* straight to the backend
+  // only get the latter, so accept both.
+  const token =
+    normalizeSessionToken(req.cookies.get("wb_session")?.value) ??
+    normalizeSessionToken(req.cookies.get("access_token")?.value);
   if (!token) {
     const signInUrl = new URL("/portal/sign-in", req.url);
     signInUrl.searchParams.set("next", pathname);

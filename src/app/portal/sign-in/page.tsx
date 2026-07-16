@@ -3,7 +3,6 @@
 import * as Label from "@radix-ui/react-label";
 import { ArrowRight, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -11,7 +10,6 @@ import { Input } from "@/components/ui/input";
 import { PortalApiError, signIn } from "@/lib/portal-api";
 
 export default function PortalSignInPage() {
-  const router = useRouter();
   const [status, setStatus] = React.useState<"idle" | "submitting" | "error">("idle");
   const [errorMsg, setErrorMsg] = React.useState("");
 
@@ -28,8 +26,11 @@ export default function PortalSignInPage() {
       const result = (await signIn({ email, password })) as { role?: string };
       const fallback = result.role === "admin" ? "/admin" : "/portal";
       const next = new URLSearchParams(window.location.search).get("next") || fallback;
-      router.push(next);
-      router.refresh();
+      // Full page load, not router.push: the router may have prefetched
+      // /portal before the session cookie existed (a cached redirect back to
+      // sign-in). A document request always hits the middleware with the
+      // fresh cookies.
+      window.location.assign(next);
     } catch (err) {
       setErrorMsg(
         err instanceof PortalApiError ? err.message : "Incorrect email or password."

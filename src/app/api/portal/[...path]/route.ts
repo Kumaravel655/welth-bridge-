@@ -1,11 +1,15 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
+import { normalizeSessionToken } from "@/lib/session";
+
 const BACKEND_API_URL = process.env.BACKEND_API_URL ?? "http://localhost:8000";
 
 async function proxy(req: NextRequest, path: string[]) {
   const cookieStore = await cookies();
-  const token = cookieStore.get("wb_session")?.value;
+  const token =
+    normalizeSessionToken(cookieStore.get("wb_session")?.value) ??
+    normalizeSessionToken(cookieStore.get("access_token")?.value);
   if (!token) {
     return NextResponse.json({ detail: "Not authenticated" }, { status: 401 });
   }
