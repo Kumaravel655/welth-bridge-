@@ -9,7 +9,7 @@ const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 30; // matches the backend's 30-d
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
-  const res = await fetch(`${BACKEND_API_URL}/api/auth/sign-in`, {
+  const res = await fetch(`${BACKEND_API_URL}/auth/sign-in`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body,

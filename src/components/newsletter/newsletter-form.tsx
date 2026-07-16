@@ -30,7 +30,7 @@ export function NewsletterForm({
     const email = String(data.get("email") ?? "");
 
     try {
-      const res = await fetch("/api/newsletter", {
+      const res = await fetch("/api/public/newsletter/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, source }),
@@ -38,7 +38,7 @@ export function NewsletterForm({
 
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        throw new Error(body.error || "Something went wrong.");
+        throw new Error(body.error || body.detail || "Something went wrong.");
       }
 
       setStatus("sent");

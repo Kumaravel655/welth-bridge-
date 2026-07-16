@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
 
   try {
     const res = await fetch(
-      `${BACKEND_API_URL}/api/public/newsletter/unsubscribe?token=${encodeURIComponent(token)}`,
+      `${BACKEND_API_URL}/public/newsletter/unsubscribe?token=${encodeURIComponent(token)}`,
       { cache: "no-store" }
     );
     if (res.ok) {

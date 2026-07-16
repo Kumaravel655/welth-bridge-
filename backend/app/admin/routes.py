@@ -323,7 +323,9 @@ async def _send_newsletter_job(newsletter_id: int) -> None:
         html_body = _render_newsletter_html(nl.body_mdx)
         any_failed = False
         for sub in subs:
-            unsub = f'<br/><a href="{settings.SITE_URL}/api/newsletter/unsubscribe?token={sub.confirm_token}" style="color:#9ca3af;">Unsubscribe</a>'
+            # /unsubscribe is a Next.js page (NOT under /api, which nginx routes
+            # straight to this backend in production).
+            unsub = f'<br/><a href="{settings.SITE_URL}/unsubscribe?token={sub.confirm_token}" style="color:#9ca3af;">Unsubscribe</a>'
             ok = await send_email(
                 sub.email,
                 nl.subject,

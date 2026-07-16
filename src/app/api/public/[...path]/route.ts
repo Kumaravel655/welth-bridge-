@@ -1,27 +1,17 @@
-import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 const BACKEND_API_URL = process.env.BACKEND_API_URL ?? "http://localhost:8000";
 
-// BFF proxy for the admin API — mirrors /api/portal/[...path]. Role
-// enforcement lives in FastAPI's get_admin_user dependency; this just
-// forwards the session JWT.
+// Unauthenticated passthrough to the backend's /public/* endpoints. In
+// production nginx routes /api/* straight to FastAPI (stripping /api), so
+// this handler only runs in local dev — it mirrors what nginx does.
 async function proxy(req: NextRequest, path: string[]) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("wb_session")?.value;
-  if (!token) {
-    return NextResponse.json({ detail: "Not authenticated" }, { status: 401 });
-  }
-
   const hasBody = req.method !== "GET" && req.method !== "HEAD";
-  const url = `${BACKEND_API_URL}/admin/${path.join("/")}${req.nextUrl.search}`;
+  const url = `${BACKEND_API_URL}/public/${path.join("/")}${req.nextUrl.search}`;
 
   const res = await fetch(url, {
     method: req.method,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      ...(hasBody ? { "Content-Type": "application/json" } : {}),
-    },
+    headers: hasBody ? { "Content-Type": "application/json" } : undefined,
     body: hasBody ? await req.text() : undefined,
     cache: "no-store",
   });
@@ -41,16 +31,6 @@ export async function GET(req: NextRequest, { params }: Params) {
 }
 
 export async function POST(req: NextRequest, { params }: Params) {
-  const { path } = await params;
-  return proxy(req, path);
-}
-
-export async function PATCH(req: NextRequest, { params }: Params) {
-  const { path } = await params;
-  return proxy(req, path);
-}
-
-export async function DELETE(req: NextRequest, { params }: Params) {
   const { path } = await params;
   return proxy(req, path);
 }

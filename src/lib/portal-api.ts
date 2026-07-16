@@ -1,3 +1,5 @@
+import { decodeJwtRole } from "@/lib/session";
+
 export type UserProfile = {
   id: number;
   name: string;
@@ -126,12 +128,38 @@ async function authRequest(path: string, data: unknown) {
   return res.json();
 }
 
+// The middleware gates /portal and /admin on this cookie. In local dev the
+// Next proxy route sets it (httpOnly); in production nginx sends /api/*
+// straight to FastAPI, so the proxy never runs and we set it here instead.
+const SESSION_COOKIE = "wb_session";
+const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 30; // matches the backend's token expiry
+
+function setSessionCookie(token: string) {
+  const secure = window.location.protocol === "https:" ? "; secure" : "";
+  document.cookie = `${SESSION_COOKIE}=${token}; path=/; max-age=${SESSION_MAX_AGE_SECONDS}; samesite=lax${secure}`;
+}
+
+function clearSessionCookie() {
+  document.cookie = `${SESSION_COOKIE}=; path=/; max-age=0`;
+}
+
 export const signUp = (data: { name: string; email: string; phone: string; password: string }) =>
   authRequest("/api/auth/sign-up", data);
 
-export const signIn = (data: { email: string; password: string }) =>
-  authRequest("/api/auth/sign-in", data);
+export async function signIn(data: { email: string; password: string }) {
+  const result = await authRequest("/api/auth/sign-in", data);
+  // Direct-to-backend response (production nginx): { access_token, token_type }.
+  // The backend has already set its own httpOnly access_token cookie for API
+  // auth; wb_session only drives the routing middleware.
+  if (typeof result.access_token === "string") {
+    setSessionCookie(result.access_token);
+    return { ok: true, role: decodeJwtRole(result.access_token) ?? "client" };
+  }
+  // Next proxy response (local dev): { ok, role } — cookie already set.
+  return result;
+}
 
 export async function signOut() {
   await fetch("/api/auth/sign-out", { method: "POST" });
+  clearSessionCookie();
 }

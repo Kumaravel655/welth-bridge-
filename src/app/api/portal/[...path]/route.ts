@@ -11,7 +11,7 @@ async function proxy(req: NextRequest, path: string[]) {
   }
 
   const hasBody = req.method !== "GET" && req.method !== "HEAD";
-  const url = `${BACKEND_API_URL}/api/portal/${path.join("/")}${req.nextUrl.search}`;
+  const url = `${BACKEND_API_URL}/portal/${path.join("/")}${req.nextUrl.search}`;
 
   const res = await fetch(url, {
     method: req.method,

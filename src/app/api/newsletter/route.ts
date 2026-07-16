@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     }
 
     try {
-      const res = await fetch(`${BACKEND_API_URL}/api/public/newsletter/subscribe`, {
+      const res = await fetch(`${BACKEND_API_URL}/public/newsletter/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, source }),
