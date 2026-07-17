@@ -27,10 +27,17 @@ export function Hero() {
         <div className="relative flex h-full flex-col justify-end px-6 pb-12 md:px-12 lg:grid lg:grid-cols-2 lg:items-end lg:px-16 lg:pb-16">
           <div>
             <AnimatedHeading
-              text={"Shaping tomorrow\nwith vision and action."}
+              text="The Wealth Bridge"
               initialDelay={200}
-              className="mb-4 text-4xl font-normal md:text-5xl lg:text-6xl xl:text-7xl"
+              className="text-4xl font-normal md:text-5xl lg:text-6xl xl:text-7xl"
               style={{ letterSpacing: "-0.04em" }}
+            />
+            <AnimatedHeading
+              text="Your one-stop compliance partner."
+              initialDelay={700}
+              as="h2"
+              className="mb-4 mt-2 text-2xl font-light text-ink-muted md:text-3xl lg:text-4xl"
+              style={{ letterSpacing: "-0.02em" }}
             />
 
             <FadeIn delay={800} duration={1000}>

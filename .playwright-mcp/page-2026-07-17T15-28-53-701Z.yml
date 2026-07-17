@@ -1,0 +1,525 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2] [cursor=pointer]: Tap to skip
+  - link "Skip to content" [ref=e6] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e7]:
+    - generic [ref=e8]:
+      - link "The Wealth Bridge — home" [ref=e9] [cursor=pointer]:
+        - /url: /
+        - img "The Wealth Bridge — Making More Possibilities" [ref=e11]
+      - navigation "Main" [ref=e12]:
+        - list [ref=e14]:
+          - listitem [ref=e15]:
+            - link "Home" [ref=e16] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e17]:
+            - button "Services" [ref=e18]
+          - listitem [ref=e21]:
+            - button "Tools" [ref=e22]
+          - listitem [ref=e25]:
+            - button "Resources" [ref=e26]
+          - listitem [ref=e29]:
+            - link "About" [ref=e30] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e31]:
+            - link "Contact" [ref=e32] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e33]:
+        - button "Search the site" [ref=e34]
+        - button "Switch to dark theme" [ref=e38]
+        - link "Sign in" [ref=e40] [cursor=pointer]:
+          - /url: /portal/sign-in
+        - link "Book consultation" [ref=e41] [cursor=pointer]:
+          - /url: /portal/consultations
+  - main [ref=e44]:
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - heading "T h e W e a l t h B r i d g e" [level=1] [ref=e50]:
+          - generic [ref=e51]:
+            - generic [ref=e52]: T
+            - generic [ref=e53]: h
+            - generic [ref=e54]: e
+            - generic [ref=e56]: W
+            - generic [ref=e57]: e
+            - generic [ref=e58]: a
+            - generic [ref=e59]: l
+            - generic [ref=e60]: t
+            - generic [ref=e61]: h
+            - generic [ref=e63]: B
+            - generic [ref=e64]: r
+            - generic [ref=e65]: i
+            - generic [ref=e66]: d
+            - generic [ref=e67]: g
+            - generic [ref=e68]: e
+        - heading "Y o u r o n e - s t o p c o m p l i a n c e p a r t n e r ." [level=2] [ref=e69]:
+          - generic [ref=e70]:
+            - generic [ref=e71]: "Y"
+            - generic [ref=e72]: o
+            - generic [ref=e73]: u
+            - generic [ref=e74]: r
+            - generic [ref=e76]: o
+            - generic [ref=e77]: "n"
+            - generic [ref=e78]: e
+            - generic [ref=e79]: "-"
+            - generic [ref=e80]: s
+            - generic [ref=e81]: t
+            - generic [ref=e82]: o
+            - generic [ref=e83]: p
+            - generic [ref=e85]: c
+            - generic [ref=e86]: o
+            - generic [ref=e87]: m
+            - generic [ref=e88]: p
+            - generic [ref=e89]: l
+            - generic [ref=e90]: i
+            - generic [ref=e91]: a
+            - generic [ref=e92]: "n"
+            - generic [ref=e93]: c
+            - generic [ref=e94]: e
+            - generic [ref=e96]: p
+            - generic [ref=e97]: a
+            - generic [ref=e98]: r
+            - generic [ref=e99]: t
+            - generic [ref=e100]: "n"
+            - generic [ref=e101]: e
+            - generic [ref=e102]: r
+            - generic [ref=e103]: .
+        - paragraph [ref=e105]: "We handle every registration, filing and compliance need — so your business can define what comes next. Start by booking a free slot: consultations and fee enquiries cost nothing."
+        - generic [ref=e107]:
+          - link "Book a Consultation" [ref=e108] [cursor=pointer]:
+            - /url: /portal/consultations
+          - link "Explore Now" [ref=e109] [cursor=pointer]:
+            - /url: /services
+      - generic [ref=e110]: Registration. Compliance. Advisory.
+    - generic [ref=e115]:
+      - generic [ref=e116]: 18+ Years in Practice
+      - generic [ref=e118]: 65+ Services Under One Roof
+      - generic [ref=e120]: 3 Offices in Tamil Nadu
+      - generic [ref=e122]: Chartered Accountants
+      - generic [ref=e124]: Company Secretaries
+      - generic [ref=e126]: Corporate Lawyers
+      - generic [ref=e128]: Startup India Recognized
+      - generic [ref=e130]: ISO 9001 Certified
+      - generic [ref=e132]: 18+ Years in Practice
+      - generic [ref=e134]: 65+ Services Under One Roof
+      - generic [ref=e136]: 3 Offices in Tamil Nadu
+      - generic [ref=e138]: Chartered Accountants
+      - generic [ref=e140]: Company Secretaries
+      - generic [ref=e142]: Corporate Lawyers
+      - generic [ref=e144]: Startup India Recognized
+      - generic [ref=e146]: ISO 9001 Certified
+    - region "The Wealth Bridge at a glance" [ref=e148]:
+      - generic [ref=e149]:
+        - generic [ref=e150]:
+          - paragraph [ref=e152]:
+            - generic "18+" [ref=e153]: 0+
+          - paragraph [ref=e154]: Years in practice
+        - generic [ref=e155]:
+          - paragraph [ref=e157]:
+            - generic "65+" [ref=e158]: 0+
+          - paragraph [ref=e159]: Services under one roof
+        - generic [ref=e160]:
+          - paragraph [ref=e162]: "0"
+          - paragraph [ref=e163]: Offices in Tamil Nadu
+        - generic [ref=e164]:
+          - paragraph [ref=e166]: "0"
+          - paragraph [ref=e167]: Professions on your file
+    - generic [ref=e170]:
+      - paragraph [ref=e171]: Making more possibilities
+      - heading "One name behind every filing." [level=2] [ref=e172]
+      - paragraph [ref=e173]: From a single spark of an idea to a fully incorporated business — the same steady hand at every step. This is the bridge your business crosses.
+    - generic [ref=e174]:
+      - generic [ref=e175]:
+        - generic [ref=e176]:
+          - paragraph [ref=e177]: What we do
+          - heading [level=2] [ref=e178]:
+            - text: Every filing between you and
+            - emphasis [ref=e179]: running a company.
+          - paragraph [ref=e180]: 64+ services across registration, tax, IP, funding and legal — each handled start to finish by the right professional.
+        - link "All services" [ref=e182] [cursor=pointer]:
+          - /url: /services
+      - generic [ref=e185]:
+        - link "Private Limited Company Company Registration Private Limited Company The default structure for startups that plan to raise funding. 10–15 working days ₹12,999" [ref=e187] [cursor=pointer]:
+          - /url: /services/private-limited-company
+          - img "Private Limited Company" [ref=e189]
+          - generic [ref=e191]:
+            - generic [ref=e192]: Company Registration
+            - heading "Private Limited Company" [level=3] [ref=e194]
+            - paragraph [ref=e195]: The default structure for startups that plan to raise funding.
+            - generic [ref=e196]:
+              - generic [ref=e197]: 10–15 working days
+              - generic [ref=e201]: ₹12,999
+        - link "GST Registration GST GST Registration Get your GSTIN and start billing compliantly. 5–7 working days ₹1,499" [ref=e205] [cursor=pointer]:
+          - /url: /services/gst-registration
+          - img "GST Registration" [ref=e207]
+          - generic [ref=e209]:
+            - generic [ref=e210]: GST
+            - heading "GST Registration" [level=3] [ref=e212]
+            - paragraph [ref=e213]: Get your GSTIN and start billing compliantly.
+            - generic [ref=e214]:
+              - generic [ref=e215]: 5–7 working days
+              - generic [ref=e219]: ₹1,499
+        - link "Trademark Search Trademark Trademark Search Know if your brand name is safe before you file. 1–2 working days Details" [ref=e223] [cursor=pointer]:
+          - /url: /services/trademark-search
+          - img "Trademark Search" [ref=e225]
+          - generic [ref=e227]:
+            - generic [ref=e228]: Trademark
+            - heading "Trademark Search" [level=3] [ref=e230]
+            - paragraph [ref=e231]: Know if your brand name is safe before you file.
+            - generic [ref=e232]:
+              - generic [ref=e233]: 1–2 working days
+              - generic [ref=e237]: Details
+        - link "Udyam / MSME Registration Licensing Udyam / MSME Registration Unlock subsidies, cheaper credit and government tenders. 1–3 working days Details" [ref=e241] [cursor=pointer]:
+          - /url: /services/msme-udyam-registration
+          - img "Udyam / MSME Registration" [ref=e243]
+          - generic [ref=e245]:
+            - generic [ref=e246]: Licensing
+            - heading "Udyam / MSME Registration" [level=3] [ref=e248]
+            - paragraph [ref=e249]: Unlock subsidies, cheaper credit and government tenders.
+            - generic [ref=e250]:
+              - generic [ref=e251]: 1–3 working days
+              - generic [ref=e255]: Details
+        - link "Business Loans Loans Business Loans Working capital and term finance from the right lender. 7–21 working days Details" [ref=e259] [cursor=pointer]:
+          - /url: /services/business-loans
+          - img "Business Loans" [ref=e261]
+          - generic [ref=e263]:
+            - generic [ref=e264]: Loans
+            - heading "Business Loans" [level=3] [ref=e266]
+            - paragraph [ref=e267]: Working capital and term finance from the right lender.
+            - generic [ref=e268]:
+              - generic [ref=e269]: 7–21 working days
+              - generic [ref=e273]: Details
+        - link "Individual Income Tax Filing Accounting & Tax Individual Income Tax Filing Personal ITR filed by experts — maximum legal savings. 1–3 working days Details" [ref=e277] [cursor=pointer]:
+          - /url: /services/income-tax-filing
+          - img "Individual Income Tax Filing" [ref=e279]
+          - generic [ref=e281]:
+            - generic [ref=e282]: Accounting & Tax
+            - heading "Individual Income Tax Filing" [level=3] [ref=e284]
+            - paragraph [ref=e285]: Personal ITR filed by experts — maximum legal savings.
+            - generic [ref=e286]:
+              - generic [ref=e287]: 1–3 working days
+              - generic [ref=e291]: Details
+    - generic [ref=e295]:
+      - generic [ref=e296]:
+        - paragraph [ref=e297]: How we work
+        - heading [level=2] [ref=e298]:
+          - text: What makes a consultant worth
+          - emphasis [ref=e299]: keeping.
+        - paragraph [ref=e300]: Eighteen years in, most of our work comes from clients who stayed — and the people they sent our way. These are the three reasons why.
+      - generic [ref=e301]:
+        - generic [ref=e303]:
+          - heading "Trust" [level=3] [ref=e311]
+          - paragraph [ref=e312]: We do what we say, every time. Your filings go out when we said they would, and you hear from us before you have to ask.
+        - generic [ref=e314]:
+          - heading "Consistency" [level=3] [ref=e322]
+          - paragraph [ref=e323]: Nothing erodes trust faster than inconsistency. The same standard applies to your first filing and your fiftieth.
+        - generic [ref=e325]:
+          - heading "Convenience" [level=3] [ref=e330]
+          - paragraph [ref=e331]: One checklist, one point of contact, zero government-office queues. Compliance should be the easiest part of your week.
+    - generic [ref=e332]:
+      - generic [ref=e334]:
+        - paragraph [ref=e335]: Client stories
+        - heading [level=2] [ref=e336]:
+          - text: Trusted by founders across
+          - emphasis [ref=e337]: Tamil Nadu.
+        - paragraph [ref=e338]: Every review is from a real business that crossed the bridge with us.
+      - generic [ref=e339]:
+        - generic [ref=e341]:
+          - generic [ref=e342]:
+            - paragraph [ref=e354]: “The Wealth Bridge made our Pvt Ltd incorporation seamless. From name approval to getting our incorporation certificate, everything was handled professionally. Highly recommended for startups.”
+            - generic [ref=e355]:
+              - generic [ref=e356]: RK
+              - generic [ref=e357]:
+                - paragraph [ref=e358]: Rajesh Kumar
+                - paragraph [ref=e359]: Founder, TechNova Solutions
+          - generic [ref=e360]:
+            - paragraph [ref=e372]: “Their IEC and APEDA registration service was outstanding. We were exporting within 3 weeks of our first call. The team's knowledge of trade compliance is exceptional.”
+            - generic [ref=e373]:
+              - generic [ref=e374]: PS
+              - generic [ref=e375]:
+                - paragraph [ref=e376]: Priya Sharma
+                - paragraph [ref=e377]: Director, GreenLeaf Exports
+          - generic [ref=e378]:
+            - paragraph [ref=e390]: “We've trusted The Wealth Bridge with our GST filings and annual compliance for 6 years now. Zero penalties, zero missed deadlines. That says it all.”
+            - generic [ref=e391]:
+              - generic [ref=e392]: SB
+              - generic [ref=e393]:
+                - paragraph [ref=e394]: Suresh Babu
+                - paragraph [ref=e395]: Managing Partner, SB Associates
+          - generic [ref=e396]:
+            - paragraph [ref=e408]: “The Wealth Bridge made our Pvt Ltd incorporation seamless. From name approval to getting our incorporation certificate, everything was handled professionally. Highly recommended for startups.”
+            - generic [ref=e409]:
+              - generic [ref=e410]: RK
+              - generic [ref=e411]:
+                - paragraph [ref=e412]: Rajesh Kumar
+                - paragraph [ref=e413]: Founder, TechNova Solutions
+          - generic [ref=e414]:
+            - paragraph [ref=e426]: “Their IEC and APEDA registration service was outstanding. We were exporting within 3 weeks of our first call. The team's knowledge of trade compliance is exceptional.”
+            - generic [ref=e427]:
+              - generic [ref=e428]: PS
+              - generic [ref=e429]:
+                - paragraph [ref=e430]: Priya Sharma
+                - paragraph [ref=e431]: Director, GreenLeaf Exports
+          - generic [ref=e432]:
+            - paragraph [ref=e444]: “We've trusted The Wealth Bridge with our GST filings and annual compliance for 6 years now. Zero penalties, zero missed deadlines. That says it all.”
+            - generic [ref=e445]:
+              - generic [ref=e446]: SB
+              - generic [ref=e447]:
+                - paragraph [ref=e448]: Suresh Babu
+                - paragraph [ref=e449]: Managing Partner, SB Associates
+        - generic [ref=e451]:
+          - generic [ref=e452]:
+            - paragraph [ref=e464]: “Getting our trademark registered was painless. They handled the objection response so well that we got our TM within the first attempt. True experts.”
+            - generic [ref=e465]:
+              - generic [ref=e466]: AK
+              - generic [ref=e467]:
+                - paragraph [ref=e468]: Anitha Krishnan
+                - paragraph [ref=e469]: CEO, Bloom Healthcare
+          - generic [ref=e470]:
+            - paragraph [ref=e482]: “Converting my proprietorship to a Pvt Ltd was something I'd been putting off for years. The Wealth Bridge did it in under 3 weeks with zero hassle.”
+            - generic [ref=e483]:
+              - generic [ref=e484]: MR
+              - generic [ref=e485]:
+                - paragraph [ref=e486]: Mohan Raj
+                - paragraph [ref=e487]: Proprietor, Raj Textiles
+          - generic [ref=e488]:
+            - paragraph [ref=e500]: “Their startup funding guidance helped us prepare a pitch deck that actually got us seed funding. More than consultants — they're partners in growth.”
+            - generic [ref=e501]:
+              - generic [ref=e502]: DV
+              - generic [ref=e503]:
+                - paragraph [ref=e504]: Deepa Venkatesh
+                - paragraph [ref=e505]: Co-founder, EduSpark
+          - generic [ref=e506]:
+            - paragraph [ref=e518]: “Getting our trademark registered was painless. They handled the objection response so well that we got our TM within the first attempt. True experts.”
+            - generic [ref=e519]:
+              - generic [ref=e520]: AK
+              - generic [ref=e521]:
+                - paragraph [ref=e522]: Anitha Krishnan
+                - paragraph [ref=e523]: CEO, Bloom Healthcare
+          - generic [ref=e524]:
+            - paragraph [ref=e536]: “Converting my proprietorship to a Pvt Ltd was something I'd been putting off for years. The Wealth Bridge did it in under 3 weeks with zero hassle.”
+            - generic [ref=e537]:
+              - generic [ref=e538]: MR
+              - generic [ref=e539]:
+                - paragraph [ref=e540]: Mohan Raj
+                - paragraph [ref=e541]: Proprietor, Raj Textiles
+          - generic [ref=e542]:
+            - paragraph [ref=e554]: “Their startup funding guidance helped us prepare a pitch deck that actually got us seed funding. More than consultants — they're partners in growth.”
+            - generic [ref=e555]:
+              - generic [ref=e556]: DV
+              - generic [ref=e557]:
+                - paragraph [ref=e558]: Deepa Venkatesh
+                - paragraph [ref=e559]: Co-founder, EduSpark
+      - generic [ref=e561]:
+        - paragraph [ref=e574]: See what more clients are saying on Google Reviews.
+        - link "Read our Google reviews" [ref=e575] [cursor=pointer]:
+          - /url: https://www.google.com/maps/search/?api=1&query=The+Wealth+Bridge+Vellore
+    - generic [ref=e580]:
+      - generic [ref=e581]:
+        - paragraph [ref=e582]: Crossing the bridge
+        - heading [level=2] [ref=e583]:
+          - text: Four steps.
+          - emphasis [ref=e584]: One crossing.
+        - paragraph [ref=e585]: The same path, whether it's a GST number or a private limited company — you stay on your business, we handle the paperwork.
+      - generic [ref=e586]:
+        - generic [ref=e587]:
+          - generic [ref=e588]: "1"
+          - heading "Consult" [level=3] [ref=e591]
+          - paragraph [ref=e592]: Book a free slot online — phone, video or in-office — and an expert confirms exactly which registrations your business needs, what the fees are, and which you can skip.
+        - generic [ref=e593]:
+          - generic [ref=e594]: "2"
+          - heading "Documents" [level=3] [ref=e597]
+          - paragraph [ref=e598]: You get one simple checklist. Send everything over WhatsApp or email; we verify each document before anything is filed.
+        - generic [ref=e599]:
+          - generic [ref=e600]: "3"
+          - heading "Filing" [level=3] [ref=e603]
+          - paragraph [ref=e604]: We prepare and submit the application, then chase the department so you never have to visit a government office.
+        - generic [ref=e605]:
+          - generic [ref=e606]: "4"
+          - heading "Registered" [level=3] [ref=e609]
+          - paragraph [ref=e610]: Certificate in hand, with clear guidance on the compliance calendar that starts the day your business does.
+    - generic [ref=e611]:
+      - generic [ref=e612]:
+        - paragraph [ref=e613]: Transparent pricing
+        - heading [level=2] [ref=e614]:
+          - text: The price you see is the price
+          - emphasis [ref=e615]: you pay.
+        - paragraph [ref=e616]: Professional fees stated upfront. Government fees and taxes are billed at actuals — no surprises at the end.
+      - generic [ref=e617]:
+        - generic [ref=e619]:
+          - heading "GST Registration" [level=3] [ref=e620]
+          - paragraph [ref=e621]:
+            - generic [ref=e622]: ₹1,499
+          - paragraph [ref=e623]: 5–7 working days
+          - list [ref=e624]:
+            - listitem [ref=e625]:
+              - generic [ref=e628]: Application filed by GST experts
+            - listitem [ref=e629]:
+              - generic [ref=e632]: Instant ARN on submission
+            - listitem [ref=e633]:
+              - generic [ref=e636]: Follow-up until GSTIN is granted
+            - listitem [ref=e637]:
+              - generic [ref=e640]: Input tax credit guidance
+          - link "Get started" [ref=e641] [cursor=pointer]:
+            - /url: /services/gst-registration
+        - generic [ref=e644]:
+          - generic [ref=e645]: Most popular
+          - generic [ref=e647]:
+            - heading "Company Registration" [level=3] [ref=e648]
+            - paragraph [ref=e649]:
+              - generic [ref=e650]: from
+              - generic [ref=e651]: ₹6,999
+            - paragraph [ref=e652]: OPC, LLP & more
+            - list [ref=e653]:
+              - listitem [ref=e654]:
+                - generic [ref=e657]: Name reservation included
+              - listitem [ref=e658]:
+                - generic [ref=e661]: DSC and DIN for directors
+              - listitem [ref=e662]:
+                - generic [ref=e665]: Certificate of incorporation
+              - listitem [ref=e666]:
+                - generic [ref=e669]: PAN, TAN and bank-account support
+            - link "Get started" [ref=e670] [cursor=pointer]:
+              - /url: /services/private-limited-company
+        - generic [ref=e674]:
+          - heading "Private Limited Company" [level=3] [ref=e675]
+          - paragraph [ref=e676]:
+            - generic [ref=e677]: ₹12,999
+          - paragraph [ref=e678]: 10–15 working days
+          - list [ref=e679]:
+            - listitem [ref=e680]:
+              - generic [ref=e683]: Complete incorporation package
+            - listitem [ref=e684]:
+              - generic [ref=e687]: DSC for 2 directors
+            - listitem [ref=e688]:
+              - generic [ref=e691]: MOA and AOA drafted
+            - listitem [ref=e692]:
+              - generic [ref=e695]: Startup India recognition guidance
+          - link "Get started" [ref=e696] [cursor=pointer]:
+            - /url: /services/private-limited-company
+    - generic [ref=e700]:
+      - generic [ref=e701]:
+        - paragraph [ref=e702]: FAQ
+        - heading "Questions, answered." [level=2] [ref=e703]
+        - paragraph [ref=e704]: The things clients ask us most before getting started.
+      - generic [ref=e707]:
+        - heading [level=3] [ref=e709]:
+          - button "How much do your services cost?" [ref=e710]
+        - heading [level=3] [ref=e714]:
+          - button "How do I book a consultation slot?" [ref=e715]
+        - heading [level=3] [ref=e719]:
+          - button "Is the first consultation really free?" [ref=e720]
+        - heading [level=3] [ref=e724]:
+          - button "How do I share documents with you?" [ref=e725]
+        - heading [level=3] [ref=e729]:
+          - button "Which areas do you serve?" [ref=e730]
+        - heading [level=3] [ref=e734]:
+          - button "How long does registration or filing usually take?" [ref=e735]
+        - heading [level=3] [ref=e739]:
+          - button "What happens after my service is complete?" [ref=e740]
+    - generic [ref=e745]:
+      - generic [ref=e746]:
+        - paragraph [ref=e747]: Ready when you are
+        - heading "Your company is one booking away." [level=2] [ref=e748]
+        - paragraph [ref=e749]: "Pick a slot that suits you — phone, video, or a visit to our Vellore, Arakkonam or Ranipet office — and ask anything: which registrations you need, what the fees are, how long it takes. The first consultation is free."
+      - generic [ref=e750]:
+        - link "Book a free consultation" [ref=e752] [cursor=pointer]:
+          - /url: /portal/consultations
+        - link "Call +91 86677 53901" [ref=e756] [cursor=pointer]:
+          - /url: tel:+918667753901
+  - contentinfo [ref=e759]:
+    - generic [ref=e761]:
+      - generic [ref=e762]:
+        - generic [ref=e763]:
+          - link "The Wealth Bridge — home" [ref=e764] [cursor=pointer]:
+            - /url: /
+            - img "The Wealth Bridge — Making More Possibilities" [ref=e766]
+          - paragraph [ref=e767]: One-stop business setup and compliance partner since 2007 — helping founders form, fund and run companies from Vellore, Tamil Nadu.
+          - generic [ref=e768]:
+            - link "The Wealth Bridge on Facebook" [ref=e769] [cursor=pointer]:
+              - /url: https://www.facebook.com/thewealthbridge
+            - link "The Wealth Bridge on Twitter" [ref=e772] [cursor=pointer]:
+              - /url: https://twitter.com/thewealthbridg
+          - generic [ref=e775]:
+            - paragraph [ref=e776]: Get updates
+            - generic [ref=e777]:
+              - textbox "Email address" [ref=e778]:
+                - /placeholder: you@example.com
+              - button "Subscribe" [ref=e779]
+        - navigation "Popular services" [ref=e783]:
+          - paragraph [ref=e784]: Popular services
+          - list [ref=e785]:
+            - listitem [ref=e786]:
+              - link "Private Limited Company" [ref=e787] [cursor=pointer]:
+                - /url: /services/private-limited-company
+            - listitem [ref=e788]:
+              - link "GST Registration" [ref=e789] [cursor=pointer]:
+                - /url: /services/gst-registration
+            - listitem [ref=e790]:
+              - link "Trademark Search" [ref=e791] [cursor=pointer]:
+                - /url: /services/trademark-search
+            - listitem [ref=e792]:
+              - link "Udyam / MSME Registration" [ref=e793] [cursor=pointer]:
+                - /url: /services/msme-udyam-registration
+            - listitem [ref=e794]:
+              - link "Business Loans" [ref=e795] [cursor=pointer]:
+                - /url: /services/business-loans
+            - listitem [ref=e796]:
+              - link "Individual Income Tax Filing" [ref=e797] [cursor=pointer]:
+                - /url: /services/income-tax-filing
+        - navigation "Company" [ref=e799]:
+          - paragraph [ref=e800]: Company
+          - list [ref=e801]:
+            - listitem [ref=e802]:
+              - link "About us" [ref=e803] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e804]:
+              - link "All services" [ref=e805] [cursor=pointer]:
+                - /url: /services
+            - listitem [ref=e806]:
+              - link "Tools" [ref=e807] [cursor=pointer]:
+                - /url: /tools
+            - listitem [ref=e808]:
+              - link "Blog" [ref=e809] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e810]:
+              - link "Download centre" [ref=e811] [cursor=pointer]:
+                - /url: /downloads
+            - listitem [ref=e812]:
+              - link "Compliance calendar" [ref=e813] [cursor=pointer]:
+                - /url: /compliance-calendar
+            - listitem [ref=e814]:
+              - link "Contact" [ref=e815] [cursor=pointer]:
+                - /url: /contact
+          - paragraph [ref=e816]: Reach us
+          - list [ref=e817]:
+            - listitem [ref=e818]:
+              - link "+91 86677 53901" [ref=e819] [cursor=pointer]:
+                - /url: tel:+918667753901
+            - listitem [ref=e822]:
+              - link "infowealthbridge@gmail.com" [ref=e823] [cursor=pointer]:
+                - /url: mailto:infowealthbridge@gmail.com
+        - generic [ref=e827]:
+          - paragraph [ref=e828]: Offices
+          - list [ref=e829]:
+            - listitem [ref=e830]:
+              - generic [ref=e834]:
+                - paragraph [ref=e835]: Vellore
+                - paragraph [ref=e836]: "2nd Floor, #23, 8th East Main Road, Gandhinagar, Katpadi, Vellore, Tamil Nadu"
+            - listitem [ref=e837]:
+              - generic [ref=e841]:
+                - paragraph [ref=e842]: Arakkonam
+                - paragraph [ref=e843]: "#10/1, Thiruthani High Road, Jothi Nagar, Arakkonam, Tamil Nadu 631003"
+            - listitem [ref=e844]:
+              - generic [ref=e848]:
+                - paragraph [ref=e849]: Ranipet
+                - paragraph [ref=e850]: No 126, MBT Road, Mahaveer Complex, First Floor, Muthukadai, Ranipet 632401
+      - generic [ref=e852]:
+        - paragraph [ref=e853]: © 2026 The Wealth Bridge. All rights reserved.
+        - paragraph [ref=e854]:
+          - text: Developed & maintained by
+          - link "VelanDev" [ref=e855] [cursor=pointer]:
+            - /url: https://velandev.in/
+        - paragraph [ref=e856]: Vellore · Arakkonam · Ranipet
+  - button "Open chat with WealthBridge AI Assistant" [ref=e857]
+  - link "Chat with us on WhatsApp" [ref=e860] [cursor=pointer]:
+    - /url: https://wa.me/918667753901?text=Hi%20Wealth%20Bridge%2C%20I'd%20like%20to%20know%20more%20about%20your%20services.

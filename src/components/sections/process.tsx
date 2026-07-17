@@ -29,12 +29,14 @@ export function Process() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
+    <section className="border-y border-indigo-500/20 bg-gradient-to-br from-indigo-950 via-indigo-900 to-indigo-950 text-indigo-50">
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
       <SectionHeading
+        onInk
         eyebrow="Crossing the bridge"
         title={
           <>
-            Four steps. <em className="text-gradient">One crossing.</em>
+            Four steps. <em className="text-white font-semibold not-italic drop-shadow-sm">One crossing.</em>
           </>
         }
         lede="The same path, whether it's a GST number or a private limited company — you stay on your business, we handle the paperwork."
@@ -47,7 +49,7 @@ export function Process() {
             {i < steps.length - 1 && (
               <motion.span
                 aria-hidden
-                className="absolute left-14 top-5 hidden h-px w-[calc(100%-2rem)] origin-left bg-gradient-to-r from-accent/50 via-accent/20 to-transparent lg:block"
+                className="absolute left-14 top-5 hidden h-px w-[calc(100%-2rem)] origin-left bg-gradient-to-r from-white/50 via-white/20 to-transparent lg:block"
                 initial={reduce ? {} : { scaleX: 0 }}
                 whileInView={reduce ? {} : { scaleX: 1 }}
                 viewport={{ once: true }}
@@ -61,13 +63,13 @@ export function Process() {
 
             {/* Step number with pulse ring */}
             <div className="relative">
-              <span className="relative z-10 inline-flex size-10 items-center justify-center rounded-full border border-accent/50 bg-accent/10 font-mono text-sm font-semibold text-accent-strong">
+              <span className="relative z-10 inline-flex size-10 items-center justify-center rounded-full border border-white/20 bg-white/10 font-mono text-sm font-semibold text-white drop-shadow-md backdrop-blur-sm">
                 {i + 1}
               </span>
               {/* Pulse ring animation on scroll */}
               <motion.span
                 aria-hidden
-                className="absolute inset-0 size-10 rounded-full border border-accent/30"
+                className="absolute inset-0 size-10 rounded-full border border-white/30"
                 initial={reduce ? {} : { scale: 1, opacity: 0 }}
                 whileInView={
                   reduce
@@ -89,12 +91,13 @@ export function Process() {
             <h3 className="mt-4 font-display text-lg tracking-tight">
               {s.title}
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-2 text-sm leading-relaxed text-indigo-200/90">
               {s.body}
             </p>
           </Reveal>
         ))}
       </RevealGroup>
+      </div>
     </section>
   );
 }

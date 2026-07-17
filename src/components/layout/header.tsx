@@ -2,7 +2,27 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { ArrowRight, ChevronDown, Menu, Phone, X } from "lucide-react";
+import {
+  ArrowRight,
+  Building2,
+  Calculator,
+  CalendarClock,
+  ChevronDown,
+  ChevronRight,
+  Copyright,
+  Download,
+  FileCheck2,
+  HandCoins,
+  HeartHandshake,
+  Landmark,
+  Menu,
+  Newspaper,
+  Percent,
+  Phone,
+  Rocket,
+  type LucideIcon,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 
@@ -16,10 +36,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { featuredPosts } from "@/lib/blog";
-import { downloadCategories } from "@/lib/downloads";
 import { categories, groupsInCategory } from "@/lib/services";
 import { site } from "@/lib/site";
-import { toolCategories, toolsByCategory } from "@/lib/tools";
+import { toolCategories, tools, toolsByCategory } from "@/lib/tools";
 import { cn } from "@/lib/utils";
 
 import { Wordmark } from "./wordmark";
@@ -138,10 +157,64 @@ function DesktopNav() {
   );
 }
 
+// Shared position-based icon tints — used wherever a dropdown renders a flat
+// list of icon rows (Services, Tools, Resources), so all three read as one
+// consistent design language rather than each inventing its own palette.
+const ICON_TINTS = [
+  "bg-accent/10 text-accent-strong",
+  "bg-emerald-500/10 text-emerald-600",
+  "bg-amber-500/10 text-amber-600",
+  "bg-violet-500/10 text-violet-600",
+  "bg-rose-500/10 text-rose-600",
+];
+
+function MenuIconRow({
+  href,
+  icon: Icon,
+  tint,
+  title,
+  subtitle,
+}: {
+  href: string;
+  icon: LucideIcon;
+  tint: string;
+  title: string;
+  subtitle: string;
+}) {
+  return (
+    <NavigationMenu.Link asChild>
+      <Link
+        href={href}
+        className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-muted"
+      >
+        <span className={cn("inline-flex size-10 shrink-0 items-center justify-center rounded-lg", tint)}>
+          <Icon className="size-5" aria-hidden />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm font-semibold text-foreground">{title}</span>
+          <span className="block truncate text-xs text-muted-foreground">{subtitle}</span>
+        </span>
+        <ChevronRight
+          className="size-4 shrink-0 -translate-x-1 text-muted-foreground opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+          aria-hidden
+        />
+      </Link>
+    </NavigationMenu.Link>
+  );
+}
+
+const SERVICE_CATEGORY_ICONS: Record<string, LucideIcon> = {
+  "start-a-business": Building2,
+  "tax-compliance": FileCheck2,
+  "trademark-ip": Copyright,
+  funding: HandCoins,
+  ngo: HeartHandshake,
+};
+
 function AllServicesPanel() {
   return (
-    <div className="p-6 w-[800px] max-w-[90vw]">
-      <div className="mb-5 flex items-end justify-between gap-6 border-b border-border pb-4">
+    <div className="w-[360px] max-w-[90vw] p-3">
+      <div className="mb-2 flex items-end justify-between gap-6 px-3 pb-3 pt-2">
         <div>
           <p className="font-display text-lg text-foreground">Our Services</p>
           <p className="mt-0.5 text-xs text-muted-foreground">Comprehensive solutions for your business</p>
@@ -151,63 +224,41 @@ function AllServicesPanel() {
             href="/services"
             className="inline-flex shrink-0 items-center gap-1 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-[var(--accent)] hover:underline"
           >
-            View all services
+            View all
             <ArrowRight className="size-3" aria-hidden />
           </Link>
         </NavigationMenu.Link>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-8 gap-y-6 lg:grid-cols-3">
-        {categories.map((cat) => {
-          const groups = groupsInCategory(cat.slug);
-          const topServices = groups.flatMap((g) => g.items).slice(0, 4);
-
-          return (
-            <div key={cat.slug}>
-              <NavigationMenu.Link asChild>
-                <Link
-                  href={`/services#${cat.slug}`}
-                  className="mb-2 block font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-[var(--accent)] hover:underline"
-                >
-                  {cat.title}
-                </Link>
-              </NavigationMenu.Link>
-              <ul className="space-y-0.5">
-                {topServices.map((s) => (
-                  <li key={s.slug}>
-                    <NavigationMenu.Link asChild>
-                      <Link
-                        href={`/services/${s.slug}`}
-                        className="block rounded-md px-2 py-1.5 -mx-2 text-sm text-foreground/90 transition-colors hover:bg-muted hover:text-[var(--accent)]"
-                      >
-                        {s.name}
-                      </Link>
-                    </NavigationMenu.Link>
-                  </li>
-                ))}
-                <li>
-                  <NavigationMenu.Link asChild>
-                    <Link
-                      href={`/services#${cat.slug}`}
-                      className="block rounded-md px-2 py-1.5 -mx-2 text-xs italic text-muted-foreground transition-colors hover:text-[var(--accent)]"
-                    >
-                      + view more
-                    </Link>
-                  </NavigationMenu.Link>
-                </li>
-              </ul>
-            </div>
-          );
-        })}
-      </div>
+      <ul className="space-y-1">
+        {categories.map((cat, i) => (
+          <li key={cat.slug}>
+            <MenuIconRow
+              href={`/services#${cat.slug}`}
+              icon={SERVICE_CATEGORY_ICONS[cat.slug] ?? Building2}
+              tint={ICON_TINTS[i % ICON_TINTS.length]}
+              title={cat.title}
+              subtitle={cat.tagline}
+            />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
+const TOOL_ICONS: Record<string, LucideIcon> = {
+  "emi-calculator": Calculator,
+  "gst-calculator": Percent,
+  "income-tax-calculator": Landmark,
+  "startup-eligibility-checker": Rocket,
+  "funding-eligibility-checker": HandCoins,
+};
+
 function AllToolsPanel() {
   return (
-    <div className="p-6 w-[420px] max-w-[90vw]">
-      <div className="mb-5 flex items-end justify-between gap-6 border-b border-border pb-4">
+    <div className="w-[360px] max-w-[90vw] p-3">
+      <div className="mb-2 flex items-end justify-between gap-6 px-3 pb-3 pt-2">
         <div>
           <p className="font-display text-lg text-foreground">Free Tools</p>
           <p className="mt-0.5 text-xs text-muted-foreground">Calculators &amp; eligibility checkers</p>
@@ -217,113 +268,66 @@ function AllToolsPanel() {
             href="/tools"
             className="inline-flex shrink-0 items-center gap-1 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-[var(--accent)] hover:underline"
           >
-            View all tools
+            View all
             <ArrowRight className="size-3" aria-hidden />
           </Link>
         </NavigationMenu.Link>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-8 gap-y-6">
-        {toolCategories.map((cat) => (
-          <div key={cat.slug}>
-            <p className="mb-2 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-[var(--accent)]">
-              {cat.title}
-            </p>
-            <ul className="space-y-0.5">
-              {toolsByCategory(cat.slug).map((tool) => (
-                <li key={tool.slug}>
-                  <NavigationMenu.Link asChild>
-                    <Link
-                      href={`/tools/${tool.slug}`}
-                      className="block rounded-md px-2 py-1.5 -mx-2 text-sm text-foreground/90 transition-colors hover:bg-muted hover:text-[var(--accent)]"
-                    >
-                      {tool.name}
-                    </Link>
-                  </NavigationMenu.Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+      <ul className="space-y-1">
+        {tools.map((tool, i) => (
+          <li key={tool.slug}>
+            <MenuIconRow
+              href={`/tools/${tool.slug}`}
+              icon={TOOL_ICONS[tool.slug] ?? Calculator}
+              tint={ICON_TINTS[i % ICON_TINTS.length]}
+              title={tool.name}
+              subtitle={tool.short}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
 
+const RESOURCE_ROWS = [
+  {
+    href: "/blog",
+    icon: Newspaper,
+    title: "Blog",
+    subtitle: "Guides on registration, GST, funding & compliance",
+  },
+  {
+    href: "/downloads",
+    icon: Download,
+    title: "Download Centre",
+    subtitle: "Free checklists & templates — ready to use",
+  },
+  {
+    href: "/compliance-calendar",
+    icon: CalendarClock,
+    title: "Compliance Calendar",
+    subtitle: "Every GST, tax & ROC due date in one place",
+  },
+];
+
 function AllResourcesPanel() {
   return (
-    <div className="p-6 w-[560px] max-w-[90vw]">
-      <div className="grid grid-cols-2 gap-x-8 gap-y-6">
-        <div>
-          <div className="mb-3 flex items-center justify-between gap-4">
-            <p className="font-display text-base text-foreground">From the blog</p>
-            <NavigationMenu.Link asChild>
-              <Link
-                href="/blog"
-                className="inline-flex shrink-0 items-center gap-1 font-mono text-[0.625rem] uppercase tracking-[0.12em] text-[var(--accent)] hover:underline"
-              >
-                View all
-                <ArrowRight className="size-3" aria-hidden />
-              </Link>
-            </NavigationMenu.Link>
-          </div>
-          <ul className="space-y-0.5">
-            {featuredPosts.map((post) => (
-              <li key={post.slug}>
-                <NavigationMenu.Link asChild>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="block rounded-md px-2 py-1.5 -mx-2 text-sm text-foreground/90 transition-colors hover:bg-muted hover:text-[var(--accent)]"
-                  >
-                    {post.title}
-                  </Link>
-                </NavigationMenu.Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <div className="mb-3 flex items-center justify-between gap-4">
-            <p className="font-display text-base text-foreground">Download centre</p>
-            <NavigationMenu.Link asChild>
-              <Link
-                href="/downloads"
-                className="inline-flex shrink-0 items-center gap-1 font-mono text-[0.625rem] uppercase tracking-[0.12em] text-[var(--accent)] hover:underline"
-              >
-                View all
-                <ArrowRight className="size-3" aria-hidden />
-              </Link>
-            </NavigationMenu.Link>
-          </div>
-          <ul className="space-y-0.5">
-            {downloadCategories.map((cat) => (
-              <li key={cat.slug}>
-                <NavigationMenu.Link asChild>
-                  <Link
-                    href={`/downloads?category=${cat.slug}`}
-                    className="block rounded-md px-2 py-1.5 -mx-2 text-sm text-foreground/90 transition-colors hover:bg-muted hover:text-[var(--accent)]"
-                  >
-                    {cat.title}
-                  </Link>
-                </NavigationMenu.Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="mt-5 border-t border-border pt-4">
-        <NavigationMenu.Link asChild>
-          <Link
-            href="/compliance-calendar"
-            className="flex items-center justify-between rounded-md px-2 py-1.5 -mx-2 text-sm text-foreground/90 transition-colors hover:bg-muted hover:text-[var(--accent)]"
-          >
-            Compliance calendar
-            <ArrowRight className="size-3.5" aria-hidden />
-          </Link>
-        </NavigationMenu.Link>
-      </div>
+    <div className="w-[360px] max-w-[90vw] p-3">
+      <ul className="space-y-1">
+        {RESOURCE_ROWS.map((row, i) => (
+          <li key={row.href}>
+            <MenuIconRow
+              href={row.href}
+              icon={row.icon}
+              tint={ICON_TINTS[i % ICON_TINTS.length]}
+              title={row.title}
+              subtitle={row.subtitle}
+            />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
