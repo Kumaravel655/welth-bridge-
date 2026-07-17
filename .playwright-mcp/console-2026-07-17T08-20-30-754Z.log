@@ -1,4 +1,0 @@
-[  130506ms] [LOG] Session not found for accountId null. Returning AppState @ https://bigrock.titan.email/static/js/6512.27af14b6.js:0
-[  130542ms] [ERROR] Refused to apply style from 'https://bigrock.titan.email/dark-light.scss' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. @ https://bigrock.titan.email/mail/:0
-[  130554ms] [LOG] No matching service workers found to unregister. @ https://bigrock.titan.email/static/js/mail.84f3b957.js:1
-[  133613ms] [ERROR] Refused to apply style from 'https://bigrock.titan.email/dark-light.scss' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. @ https://bigrock.titan.email/login/:0
