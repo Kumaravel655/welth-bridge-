@@ -29,8 +29,16 @@ export function Process() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="border-y border-indigo-500/20 bg-gradient-to-br from-indigo-950 via-indigo-900 to-indigo-950 text-indigo-50">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
+    <section className="relative overflow-hidden border-y border-ink-border bg-ink text-ink-foreground">
+      {/* Diagonal navy gradient — inline style, not a Tailwind palette class,
+          so it renders the same regardless of the build environment. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{ background: "var(--gradient-navy)" }}
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
       <SectionHeading
         onInk
         eyebrow="Crossing the bridge"
@@ -91,7 +99,7 @@ export function Process() {
             <h3 className="mt-4 font-display text-lg tracking-tight">
               {s.title}
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-indigo-200/90">
+            <p className="mt-2 text-sm leading-relaxed text-ink-muted">
               {s.body}
             </p>
           </Reveal>

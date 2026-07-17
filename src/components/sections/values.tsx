@@ -12,19 +12,16 @@ const values = [
     icon: Handshake,
     title: "Trust",
     body: "We do what we say, every time. Your filings go out when we said they would, and you hear from us before you have to ask.",
-    gradient: "from-accent/20 via-accent-strong/10 to-sky-400/20",
   },
   {
     icon: Repeat,
     title: "Consistency",
     body: "Nothing erodes trust faster than inconsistency. The same standard applies to your first filing and your fiftieth.",
-    gradient: "from-blue-500/20 via-indigo-500/10 to-cyan-500/20",
   },
   {
     icon: Sparkles,
     title: "Convenience",
     body: "One checklist, one point of contact, zero government-office queues. Compliance should be the easiest part of your week.",
-    gradient: "from-emerald-500/20 via-teal-500/10 to-green-500/20",
   },
 ];
 
@@ -32,8 +29,16 @@ export function Values() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="border-y border-indigo-500/20 bg-gradient-to-br from-indigo-950 via-indigo-900 to-indigo-950 text-indigo-50">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
+    <section className="relative overflow-hidden border-y border-ink-border bg-ink text-ink-foreground">
+      {/* Diagonal navy gradient — inline style, not a Tailwind palette class,
+          so it renders the same regardless of the build environment. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{ background: "var(--gradient-navy)" }}
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
         <SectionHeading
           onInk
           eyebrow="How we work"
@@ -63,7 +68,7 @@ export function Values() {
                   />
                 )}
 
-                {/* Icon with brighter background to stand out on dark indigo */}
+                {/* Icon with brighter background to stand out on dark ink */}
                 <div className="relative flex size-14 items-center justify-center rounded-2xl bg-white/10 shadow-lg backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
                   <div className="absolute inset-0 rounded-2xl border border-white/20" />
                   <v.icon className="size-6 text-white drop-shadow-md" aria-hidden />
@@ -72,7 +77,7 @@ export function Values() {
                 <h3 className="mt-5 font-display text-xl tracking-tight">
                   {v.title}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-indigo-200/90">
+                <p className="mt-2.5 text-sm leading-relaxed text-ink-muted">
                   {v.body}
                 </p>
               </div>
