@@ -33,7 +33,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="The Wealth Bridge on Facebook"
-                className="group inline-flex size-9 items-center justify-center rounded-full border border-ink-border transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-[0_0_12px_-3px] hover:shadow-accent/30"
+                className="group inline-flex size-9 items-center justify-center rounded-full border border-ink-border transition-all duration-300 hover:border-[var(--accent-on-ink)] hover:text-[var(--accent-on-ink)] hover:shadow-[0_0_12px_-3px] hover:shadow-accent/30"
               >
                 <Facebook className="size-4" aria-hidden />
               </a>
@@ -42,7 +42,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="The Wealth Bridge on Twitter"
-                className="group inline-flex size-9 items-center justify-center rounded-full border border-ink-border transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-[0_0_12px_-3px] hover:shadow-accent/30"
+                className="group inline-flex size-9 items-center justify-center rounded-full border border-ink-border transition-all duration-300 hover:border-[var(--accent-on-ink)] hover:text-[var(--accent-on-ink)] hover:shadow-[0_0_12px_-3px] hover:shadow-accent/30"
               >
                 <Twitter className="size-4" aria-hidden />
               </a>
@@ -61,7 +61,7 @@ export function Footer() {
                   <li key={s.slug}>
                     <Link
                       href={`/services/${s.slug}`}
-                      className="text-sm text-ink-foreground/85 transition-colors hover:text-[var(--accent)]"
+                      className="text-sm text-ink-foreground/85 transition-colors hover:text-[var(--accent-on-ink)]"
                     >
                       {s.name}
                     </Link>
@@ -90,7 +90,7 @@ export function Footer() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm text-ink-foreground/85 transition-colors hover:text-[var(--accent)]"
+                      className="text-sm text-ink-foreground/85 transition-colors hover:text-[var(--accent-on-ink)]"
                     >
                       {item.label}
                     </Link>
@@ -104,7 +104,7 @@ export function Footer() {
                 <li>
                   <a
                     href={`tel:${site.phone.replace(/\s/g, "")}`}
-                    className="inline-flex items-center gap-2 transition-colors hover:text-[var(--accent)]"
+                    className="inline-flex items-center gap-2 transition-colors hover:text-[var(--accent-on-ink)]"
                   >
                     <Phone className="size-3.5 shrink-0" aria-hidden />
                     {site.phone}
@@ -113,7 +113,7 @@ export function Footer() {
                 <li>
                   <a
                     href={`mailto:${site.email}`}
-                    className="inline-flex items-center gap-2 transition-colors hover:text-[var(--accent)]"
+                    className="inline-flex items-center gap-2 transition-colors hover:text-[var(--accent-on-ink)]"
                   >
                     <Mail className="size-3.5 shrink-0" aria-hidden />
                     {site.email}
@@ -132,7 +132,7 @@ export function Footer() {
               {site.offices.map((o) => (
                 <li key={o.city} className="flex gap-2.5 text-sm">
                   <MapPin
-                    className="mt-0.5 size-3.5 shrink-0 text-[var(--accent)]"
+                    className="mt-0.5 size-3.5 shrink-0 text-[var(--accent-on-ink)]"
                     aria-hidden
                   />
                   <div>
@@ -159,7 +159,7 @@ export function Footer() {
                 href="https://velandev.in/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-ink-foreground/85 transition-colors hover:text-[var(--accent)]"
+                className="font-medium text-ink-foreground/85 transition-colors hover:text-[var(--accent-on-ink)]"
               >
                 VelanDev
               </a>

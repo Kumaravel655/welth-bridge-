@@ -35,7 +35,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <a
             href={`tel:${site.phone.replace(/\s/g, "")}`}
-            className="mr-1 hidden items-center gap-2 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground xl:inline-flex"
+            className="mr-1 hidden shrink-0 items-center gap-2 whitespace-nowrap font-mono text-xs text-muted-foreground transition-colors hover:text-foreground xl:inline-flex"
           >
             <Phone className="size-3.5" aria-hidden />
             {site.phone}
@@ -532,7 +532,7 @@ function MobileNav() {
             </Button>
             <a
               href={`tel:${site.phone.replace(/\s/g, "")}`}
-              className="mt-3 flex items-center justify-center gap-2 font-mono text-xs text-muted-foreground"
+              className="mt-3 flex items-center justify-center gap-2 whitespace-nowrap font-mono text-xs text-muted-foreground"
             >
               <Phone className="size-3.5" aria-hidden />
               {site.phone}

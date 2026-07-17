@@ -93,6 +93,7 @@ const organizationJsonLd = {
       "@type": ["Organization", "ProfessionalService"],
       "@id": `${site.url}/#organization`,
       name: site.name,
+      alternateName: ["WealthBridge", "Wealth Bridge", "The Wealth Bridge Vellore"],
       url: site.url,
       description: site.description,
       logo: {

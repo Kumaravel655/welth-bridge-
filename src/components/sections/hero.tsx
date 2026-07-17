@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { AnimatedHeading } from "@/components/motion/animated-heading";
 import { FadeIn } from "@/components/motion/fade-in";
-import { HeroSlideshow } from "@/components/motion/hero-slideshow";
+import { HeroVideo } from "@/components/motion/hero-video";
 
 const trustBadges = [
   "18+ Years in Practice",
@@ -21,8 +21,8 @@ export function Hero() {
   return (
     <>
       <section className="relative h-[calc(100vh-4rem)] min-h-[560px] w-full overflow-hidden bg-ink text-ink-foreground">
-        {/* Full-bleed background slideshow */}
-        <HeroSlideshow className="absolute inset-0 size-full" />
+        {/* Full-bleed background video */}
+        <HeroVideo className="absolute inset-0 size-full" />
 
         <div className="relative flex h-full flex-col justify-end px-6 pb-12 md:px-12 lg:grid lg:grid-cols-2 lg:items-end lg:px-16 lg:pb-16">
           <div>
