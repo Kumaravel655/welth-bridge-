@@ -39,6 +39,10 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description: site.description,
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  publisher: site.name,
   keywords: [
     "company registration",
     "GST registration",
@@ -55,11 +59,20 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — Company Registration, Tax & Compliance`,
     description: site.description,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — Making More Possibilities`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — Company Registration, Tax & Compliance`,
     description: site.description,
+    images: ["/og.png"],
   },
   robots: { index: true, follow: true },
   ...(process.env.GOOGLE_SITE_VERIFICATION
@@ -70,23 +83,63 @@ export const metadata: Metadata = {
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
 
+// One entity graph shared by every page: the organization, its three offices
+// as LocalBusiness nodes (NAP data straight from site.ts — keep them in
+// sync), and the WebSite node that links content back to the publisher.
 const organizationJsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: site.name,
-  url: site.url,
-  description: site.description,
-  telephone: site.phone,
-  email: site.email,
-  foundingDate: "2007",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "2nd Floor, #23, 8th East Main Road, Gandhinagar, Katpadi",
-    addressLocality: "Vellore",
-    addressRegion: "Tamil Nadu",
-    addressCountry: "IN",
-  },
-  sameAs: [site.social.facebook, site.social.twitter],
+  "@graph": [
+    {
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": `${site.url}/#organization`,
+      name: site.name,
+      url: site.url,
+      description: site.description,
+      logo: {
+        "@type": "ImageObject",
+        url: `${site.url}/logo.png`,
+      },
+      image: `${site.url}/og.png`,
+      telephone: site.phone,
+      email: site.email,
+      foundingDate: "2007",
+      slogan: "Making More Possibilities",
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        telephone: site.phone,
+        email: site.email,
+        areaServed: "IN",
+        availableLanguage: ["en", "ta"],
+      },
+      sameAs: [site.social.facebook, site.social.twitter],
+    },
+    ...site.offices.map((office, i) => ({
+      "@type": "LocalBusiness",
+      "@id": `${site.url}/#office-${office.city.toLowerCase()}`,
+      name: `${site.name} — ${office.city}`,
+      parentOrganization: { "@id": `${site.url}/#organization` },
+      url: `${site.url}/contact`,
+      telephone: office.phones[0],
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: office.address,
+        addressLocality: office.city,
+        addressRegion: "Tamil Nadu",
+        addressCountry: "IN",
+      },
+      ...(i === 0 ? { description: site.description } : {}),
+    })),
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      description: site.description,
+      publisher: { "@id": `${site.url}/#organization` },
+      inLanguage: "en-IN",
+    },
+  ],
 };
 
 export default function RootLayout({

@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { BrandFilm } from "@/components/sections/brand-film";
 import { CTA } from "@/components/sections/cta";
 import { FAQ } from "@/components/sections/faq";
@@ -8,6 +10,10 @@ import { ServicesShowcase } from "@/components/sections/services-showcase";
 import { Stats } from "@/components/sections/stats";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Values } from "@/components/sections/values";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (

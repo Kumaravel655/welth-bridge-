@@ -9,7 +9,13 @@ const tool = getTool("income-tax-calculator")!;
 export const metadata: Metadata = {
   title: tool.name,
   description: tool.description,
-  openGraph: { title: tool.name, description: tool.description },
+  alternates: { canonical: `/tools/${tool.slug}` },
+  openGraph: {
+    title: tool.name,
+    description: tool.description,
+    url: `/tools/${tool.slug}`,
+    images: ["/og.png"],
+  },
 };
 
 export default function IncomeTaxCalculatorPage() {

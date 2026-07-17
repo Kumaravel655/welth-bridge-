@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Practical guides on company registration, GST and tax, trademarks, funding and compliance — written for Indian founders and businesses.",
+  alternates: { canonical: "/blog" },
 };
 
 type Props = { searchParams: Promise<{ category?: string }> };

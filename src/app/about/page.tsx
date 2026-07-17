@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "About Us",
   description:
     "The Wealth Bridge is a one-stop business setup and consulting company from Vellore, India — business analysts, company secretaries, chartered accountants, corporate lawyers and financial professionals under one roof since 2007.",
+  alternates: { canonical: "/about" },
 };
 
 const professions = [

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   title: "Download Centre",
   description:
     "Free checklists, compliance calendars and templates for company registration, tax filing and fundraising — download and keep.",
+  alternates: { canonical: "/downloads" },
 };
 
 type Props = { searchParams: Promise<{ category?: string }> };

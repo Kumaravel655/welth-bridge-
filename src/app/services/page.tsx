@@ -10,6 +10,7 @@ import { categories, groupsInCategory, services } from "@/lib/services";
 export const metadata: Metadata = {
   title: "All Services",
   description: `Browse all ${services.length}+ services — company registration, GST and tax filing, trademarks, funding, legal drafting and NGO registration.`,
+  alternates: { canonical: "/services" },
 };
 
 export default function ServicesPage() {

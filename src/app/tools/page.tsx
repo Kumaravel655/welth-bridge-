@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Free Business Tools & Calculators",
   description:
     "Free EMI, GST and income tax calculators plus startup and funding eligibility checkers — built for Indian founders and businesses.",
+  alternates: { canonical: "/tools" },
 };
 
 export default function ToolsPage() {

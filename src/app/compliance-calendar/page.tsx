@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   title: "Compliance Calendar",
   description:
     "Every recurring GST, income tax and ROC/MCA due date your business needs to track — in one place, so nothing gets missed.",
+  alternates: { canonical: "/compliance-calendar" },
 };
 
 type Props = { searchParams: Promise<{ category?: string }> };

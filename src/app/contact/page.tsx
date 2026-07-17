@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "Contact Us",
   description:
     "Talk to The Wealth Bridge — offices in Vellore, Arakkonam and Ranipet, Tamil Nadu. Book a free consultation on company registration, tax and compliance.",
+  alternates: { canonical: "/contact" },
 };
 
 const bookingSteps = [
