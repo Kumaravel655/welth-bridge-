@@ -1,8 +1,6 @@
-"use client";
+import { ArrowUpRight, Quote, Star } from "lucide-react";
 
-import { ArrowUpRight, Star } from "lucide-react";
-
-import { Reveal } from "@/components/motion/reveal";
+import { Reveal, RevealGroup } from "@/components/motion/reveal";
 import { Button } from "@/components/ui/button";
 
 import { SectionHeading } from "./section-heading";
@@ -10,48 +8,29 @@ import { SectionHeading } from "./section-heading";
 const GOOGLE_REVIEWS_URL =
   "https://www.google.com/maps/search/?api=1&query=The+Wealth+Bridge+Vellore";
 
+// Three of the strongest, most specific reviews — a still proof wall reads as
+// more trustworthy than a ticker, and each quote earns its space.
 const testimonials = [
   {
     name: "Rajesh Kumar",
     role: "Founder, TechNova Solutions",
-    text: "The Wealth Bridge made our Pvt Ltd incorporation seamless. From name approval to getting our incorporation certificate, everything was handled professionally. Highly recommended for startups.",
-    rating: 5,
-  },
-  {
-    name: "Priya Sharma",
-    role: "Director, GreenLeaf Exports",
-    text: "Their IEC and APEDA registration service was outstanding. We were exporting within 3 weeks of our first call. The team's knowledge of trade compliance is exceptional.",
-    rating: 5,
+    text: "They made our Pvt Ltd incorporation seamless. From name approval to the certificate, everything was handled professionally — I never chased a single form.",
   },
   {
     name: "Suresh Babu",
     role: "Managing Partner, SB Associates",
-    text: "We've trusted The Wealth Bridge with our GST filings and annual compliance for 6 years now. Zero penalties, zero missed deadlines. That says it all.",
-    rating: 5,
-  },
-  {
-    name: "Anitha Krishnan",
-    role: "CEO, Bloom Healthcare",
-    text: "Getting our trademark registered was painless. They handled the objection response so well that we got our TM within the first attempt. True experts.",
-    rating: 5,
-  },
-  {
-    name: "Mohan Raj",
-    role: "Proprietor, Raj Textiles",
-    text: "Converting my proprietorship to a Pvt Ltd was something I'd been putting off for years. The Wealth Bridge did it in under 3 weeks with zero hassle.",
-    rating: 5,
+    text: "We've trusted The Wealth Bridge with our GST filings and annual compliance for six years. Zero penalties, zero missed deadlines. That says it all.",
   },
   {
     name: "Deepa Venkatesh",
     role: "Co-founder, EduSpark",
-    text: "Their startup funding guidance helped us prepare a pitch deck that actually got us seed funding. More than consultants — they're partners in growth.",
-    rating: 5,
+    text: "Their funding guidance helped us prepare a pitch that actually landed our seed round. More than consultants — they're partners in growth.",
   },
 ];
 
 export function Testimonials() {
   return (
-    <section className="overflow-hidden bg-muted py-20 sm:py-24">
+    <section className="bg-muted py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           align="center"
@@ -59,110 +38,70 @@ export function Testimonials() {
           title={
             <>
               Trusted by founders across{" "}
-              <em className="text-gradient">Tamil Nadu.</em>
+              <em className="font-semibold not-italic text-accent-strong">
+                Tamil Nadu.
+              </em>
             </>
           }
           lede="Every review is from a real business that crossed the bridge with us."
         />
-      </div>
 
-      {/* Scrolling testimonial rows */}
-      <div className="mt-12 space-y-5">
-        {/* Row 1 — scrolls left */}
-        <div className="relative">
-          <div className="flex animate-marquee gap-5 whitespace-nowrap">
-            {[...testimonials.slice(0, 3), ...testimonials.slice(0, 3)].map(
-              (t, i) => (
-                <TestimonialCard key={`r1-${i}`} testimonial={t} />
-              )
-            )}
-          </div>
-          {/* Fade edges */}
-          <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-muted to-transparent" />
-          <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-muted to-transparent" />
-        </div>
+        <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3">
+          {testimonials.map((t) => (
+            <Reveal key={t.name} className="h-full" variant="fade-up">
+              <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg hover:shadow-accent/[0.06]">
+                <Quote
+                  className="size-8 shrink-0 text-accent/25"
+                  aria-hidden
+                />
+                <div className="mt-4 flex gap-0.5" aria-label="Rated 5 out of 5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="size-4 fill-accent text-accent" aria-hidden />
+                  ))}
+                </div>
+                <blockquote className="mt-4 flex-1 text-[0.95rem] leading-relaxed text-foreground/90">
+                  {t.text}
+                </blockquote>
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
+                  <span className="flex size-10 items-center justify-center rounded-full bg-accent/10 font-mono text-xs font-semibold text-accent-strong">
+                    {t.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </span>
+                  <span>
+                    <span className="block text-sm font-semibold">{t.name}</span>
+                    <span className="block text-xs text-muted-foreground">
+                      {t.role}
+                    </span>
+                  </span>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </RevealGroup>
 
-        {/* Row 2 — scrolls right (reverse) */}
-        <div className="relative">
-          <div
-            className="flex gap-5 whitespace-nowrap"
-            style={{
-              animation: "marquee 44s linear infinite reverse",
-            }}
-          >
-            {[...testimonials.slice(3), ...testimonials.slice(3)].map(
-              (t, i) => (
-                <TestimonialCard key={`r2-${i}`} testimonial={t} />
-              )
-            )}
-          </div>
-          <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-muted to-transparent" />
-          <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-muted to-transparent" />
-        </div>
-      </div>
-
-      {/* Google reviews link-out */}
-      <Reveal className="mx-auto mt-12 max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center gap-4 rounded-2xl border border-border bg-card p-6 text-center sm:flex-row sm:justify-between sm:text-left">
-          <div>
-            <div className="flex items-center justify-center gap-0.5 sm:justify-start">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="size-4 fill-accent text-accent" aria-hidden />
-              ))}
+        <Reveal className="mt-8">
+          <div className="flex flex-col items-center gap-4 rounded-2xl border border-border bg-card p-6 text-center sm:flex-row sm:justify-between sm:text-left">
+            <div>
+              <div className="flex items-center justify-center gap-0.5 sm:justify-start">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="size-4 fill-accent text-accent" aria-hidden />
+                ))}
+              </div>
+              <p className="mt-1.5 text-sm text-muted-foreground">
+                See what more clients are saying on Google Reviews.
+              </p>
             </div>
-            <p className="mt-1.5 text-sm text-muted-foreground">
-              See what more clients are saying on Google Reviews.
-            </p>
+            <Button asChild variant="outline">
+              <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer">
+                Read our Google reviews
+                <ArrowUpRight aria-hidden />
+              </a>
+            </Button>
           </div>
-          <Button asChild variant="outline">
-            <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer">
-              Read our Google reviews
-              <ArrowUpRight aria-hidden />
-            </a>
-          </Button>
-        </div>
-      </Reveal>
+        </Reveal>
+      </div>
     </section>
-  );
-}
-
-function TestimonialCard({
-  testimonial,
-}: {
-  testimonial: (typeof testimonials)[number];
-}) {
-  return (
-    <div className="inline-flex w-[380px] shrink-0 flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-accent/40 hover:shadow-md">
-      {/* Stars */}
-      <div className="flex gap-0.5">
-        {Array.from({ length: testimonial.rating }).map((_, i) => (
-          <Star
-            key={i}
-            className="size-4 fill-accent text-accent"
-            aria-hidden
-          />
-        ))}
-      </div>
-
-      {/* Quote */}
-      <p className="mt-4 whitespace-normal text-sm leading-relaxed text-muted-foreground">
-        &ldquo;{testimonial.text}&rdquo;
-      </p>
-
-      {/* Author */}
-      <div className="mt-5 flex items-center gap-3 border-t border-border pt-4">
-        {/* Avatar placeholder — initials */}
-        <div className="flex size-9 items-center justify-center rounded-full bg-accent/10 font-mono text-xs font-semibold text-accent-strong">
-          {testimonial.name
-            .split(" ")
-            .map((n) => n[0])
-            .join("")}
-        </div>
-        <div>
-          <p className="text-sm font-medium">{testimonial.name}</p>
-          <p className="text-xs text-muted-foreground">{testimonial.role}</p>
-        </div>
-      </div>
-    </div>
   );
 }

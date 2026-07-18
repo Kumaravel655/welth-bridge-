@@ -55,7 +55,7 @@ export function Hero() {
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[rgba(2,8,30,0.7)] to-transparent" />
         </div>
 
-        <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-16 px-4 sm:px-6 lg:px-8">
           <div>
             <FadeIn delay={0} duration={800}>
               <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-md">
@@ -110,22 +110,6 @@ export function Hero() {
                     <p className="mt-1 text-sm text-white/60">{s.label}</p>
                   </div>
                 ))}
-              </div>
-            </FadeIn>
-          </div>
-
-          {/* Glass-framed office photograph */}
-          <div className="hidden lg:block">
-            <FadeIn delay={600} duration={1200}>
-              <div className="glass rounded-2xl border border-white/15 p-4 shadow-2xl">
-                <Image
-                  src="/images/hero/office-meeting.jpg"
-                  alt="A WealthBridge consultant working with a founder in a modern office"
-                  width={1264}
-                  height={848}
-                  priority
-                  className="w-full rounded-xl object-cover shadow-lg"
-                />
               </div>
             </FadeIn>
           </div>

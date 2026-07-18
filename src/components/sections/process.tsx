@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckCircle2, FileEdit, MessageCircle, UploadCloud } from "lucide-react";
+import Image from "next/image";
 
 import { Reveal, RevealGroup } from "@/components/motion/reveal";
 
@@ -31,7 +32,16 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="relative overflow-hidden bg-muted">
+    <section className="relative overflow-hidden bg-muted text-foreground">
+      <div aria-hidden className="absolute inset-0 pointer-events-none">
+        <Image
+          src="/images/hero/skyline-chart.png"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-30"
+        />
+      </div>
       <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
       <SectionHeading
         align="center"
