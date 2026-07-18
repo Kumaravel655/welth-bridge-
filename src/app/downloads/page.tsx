@@ -30,36 +30,62 @@ export default async function DownloadsPage({ searchParams }: Props) {
 
   return (
     <>
-      <section className="bg-background text-foreground">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent-strong">
-            Download centre
-          </p>
-          <h1 className="mt-4 max-w-2xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
-            Checklists worth <em className="text-accent-strong">keeping.</em>
-          </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
-            Free, practical PDFs for registration, tax filing and fundraising
-            — no email required.
-          </p>
+      <section 
+        className="relative overflow-hidden py-24 sm:py-32 bg-slate-950 text-center"
+        style={{
+          backgroundImage: 'url(/images/backgrounds/services-ngo-bg.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/60 to-slate-950 z-0" />
+        
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-sm font-semibold text-accent-on-ink backdrop-blur-md mb-6">
+              Download centre
+            </span>
+            <h1 className="mx-auto max-w-3xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl text-white">
+              Checklists worth <em className="text-accent-on-ink">keeping.</em>
+            </h1>
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
+              Free, practical PDFs for registration, tax filing and fundraising
+              — no email required.
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <CategoryFilter
-          basePath="/downloads"
-          categories={downloadCategories}
-          active={activeCategory}
-        />
+      <section
+        className="relative overflow-hidden bg-slate-50 dark:bg-slate-950"
+        style={{
+          backgroundImage: 'url(/images/backgrounds/expert-guidance-bg.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'left center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-50 from-30% via-slate-50/80 to-slate-50/10 dark:from-slate-950 dark:via-slate-950/80 dark:to-slate-950/10 z-0" />
+        
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <CategoryFilter
+            basePath="/downloads"
+            categories={downloadCategories}
+            active={activeCategory}
+          />
 
-        <RevealGroup className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((d) => (
-            <Reveal key={d.slug} className="h-full">
-              <DownloadCard download={d} />
-            </Reveal>
-          ))}
-        </RevealGroup>
-      </div>
+          <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {items.map((d) => (
+              <Reveal key={d.slug} className="h-full">
+                <DownloadCard download={d} />
+              </Reveal>
+            ))}
+          </RevealGroup>
+        </div>
+      </section>
 
       <CTA />
     </>

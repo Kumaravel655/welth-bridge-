@@ -157,10 +157,22 @@ export function Pricing() {
   const activeRendered = index + FOCUS_OFFSET;
 
   return (
-    <section className="relative overflow-hidden py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section 
+      className="relative overflow-hidden py-24 sm:py-32 bg-slate-50 dark:bg-slate-950"
+      style={{
+        backgroundImage: 'url(/images/backgrounds/pricing-bg.png)',
+        backgroundSize: 'contain',
+        backgroundPosition: 'left center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Gradient overlay fades from solid to transparent to keep the image bright and crisp without fog */}
+      <div className="absolute inset-0 bg-gradient-to-l from-slate-50 from-30% via-slate-50/60 to-transparent dark:from-slate-950 dark:via-slate-950/60 dark:to-transparent z-0" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          align="center"
+          align="right"
           eyebrow="Transparent pricing"
           title={
             <>
@@ -205,8 +217,8 @@ export function Pricing() {
           </div>
         )}
 
-        <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background to-transparent sm:w-28" />
-        <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent sm:w-28" />
+        {/* Fade mask for the right side (solid color), no mask on left to let cards glide over the image */}
+        <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent sm:w-28" />
       </div>
     </section>
   );
@@ -224,7 +236,7 @@ function PriceCard({ plan, active }: { plan: Plan; active: boolean }) {
       )}
       <div
         className={[
-          "flex h-full flex-col rounded-2xl bg-card p-6 transition-all duration-500 ease-out",
+          "flex h-full flex-col rounded-2xl bg-white/85 dark:bg-slate-900/85 backdrop-blur-md p-6 transition-all duration-500 ease-out",
           active
             ? "z-10 scale-[1.07] border-2 border-accent shadow-2xl shadow-accent/25"
             : "scale-100 border border-border shadow-sm",

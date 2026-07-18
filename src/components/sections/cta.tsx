@@ -15,17 +15,26 @@ export function CTA() {
   return (
     <section className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
       <div
-        className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl text-ink-foreground"
-        style={{ background: "var(--gradient-accent)" }}
+        className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl text-ink-foreground bg-indigo-950"
+        style={{
+          backgroundImage: 'url(/images/backgrounds/cta-bg.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'right center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed'
+        }}
       >
-        {/* Decorative circles */}
+        {/* Gradient overlay fades from solid to transparent to keep the image bright and crisp without fog */}
+        <div className="absolute inset-0 bg-gradient-to-r from-indigo-950 from-40% to-transparent z-0" />
+
+        {/* Decorative circles (z-index adjusted to sit above the overlay) */}
         <div
           aria-hidden
-          className="pointer-events-none absolute right-0 top-0 size-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10"
+          className="pointer-events-none absolute right-0 top-0 size-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 z-10"
         />
         <motion.div
           aria-hidden
-          className="pointer-events-none absolute -left-20 bottom-0 size-72 translate-y-1/2 rounded-full bg-white/[0.07]"
+          className="pointer-events-none absolute -left-20 bottom-0 size-72 translate-y-1/2 rounded-full bg-white/[0.07] z-10"
           initial={reduce ? {} : { scale: 0.6, opacity: 0 }}
           whileInView={reduce ? {} : { scale: 1, opacity: 1 }}
           viewport={{ once: true }}

@@ -10,14 +10,26 @@ import { Wordmark } from "./wordmark";
 
 export function Footer() {
   return (
-    <footer className="relative rounded-t-3xl bg-ink text-ink-foreground">
+    <footer 
+      className="relative rounded-t-3xl text-ink-foreground bg-slate-950"
+      style={{
+        backgroundImage: 'url(/images/backgrounds/footer-bg.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center bottom',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Dark gradient overlay to ensure text contrast, revealing the image towards the bottom right */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 from-40% via-slate-950/80 to-transparent rounded-t-3xl z-0" />
+
       {/* Gradient divider at top */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent z-10"
       />
 
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <RevealGroup className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* Brand */}
           <Reveal variant="fade-right">

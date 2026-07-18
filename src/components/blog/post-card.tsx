@@ -19,7 +19,7 @@ export function PostCard({
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/[0.06]"
+      className="group flex h-full flex-col rounded-3xl border border-border bg-white/85 dark:bg-slate-900/85 backdrop-blur-md p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/[0.08]"
     >
       {category ? <Badge variant="accent">{category.title}</Badge> : null}
       <Heading className="mt-4 font-display text-xl tracking-tight">{post.title}</Heading>

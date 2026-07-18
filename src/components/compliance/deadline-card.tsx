@@ -4,7 +4,7 @@ import type { ComplianceDeadline } from "@/lib/compliance-calendar";
 
 export function DeadlineCard({ deadline }: { deadline: ComplianceDeadline }) {
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
+    <div className="flex h-full flex-col rounded-3xl border border-border bg-white/85 dark:bg-slate-900/85 backdrop-blur-md p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/[0.08]">
       <div className="flex items-start justify-between gap-3">
         <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-accent-strong">
           <CalendarClock className="size-5" aria-hidden />

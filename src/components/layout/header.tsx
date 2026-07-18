@@ -98,29 +98,19 @@ function DesktopNav() {
         </NavigationMenu.Item>
 
         <NavigationMenu.Item>
-          <NavigationMenu.Trigger className={triggerClass} suppressHydrationWarning>
-            Services
-            <ChevronDown
-              className="size-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180"
-              aria-hidden
-            />
-          </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="absolute left-0 top-0 w-max">
-            <AllServicesPanel />
-          </NavigationMenu.Content>
+          <NavigationMenu.Link asChild>
+            <Link href="/services" className={triggerClass}>
+              Services
+            </Link>
+          </NavigationMenu.Link>
         </NavigationMenu.Item>
 
         <NavigationMenu.Item>
-          <NavigationMenu.Trigger className={triggerClass} suppressHydrationWarning>
-            Tools
-            <ChevronDown
-              className="size-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180"
-              aria-hidden
-            />
-          </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="absolute left-0 top-0 w-max">
-            <AllToolsPanel />
-          </NavigationMenu.Content>
+          <NavigationMenu.Link asChild>
+            <Link href="/tools" className={triggerClass}>
+              Tools
+            </Link>
+          </NavigationMenu.Link>
         </NavigationMenu.Item>
 
         <NavigationMenu.Item>
@@ -203,93 +193,9 @@ function MenuIconRow({
   );
 }
 
-const SERVICE_CATEGORY_ICONS: Record<string, LucideIcon> = {
-  "start-a-business": Building2,
-  "tax-compliance": FileCheck2,
-  "trademark-ip": Copyright,
-  funding: HandCoins,
-  ngo: HeartHandshake,
-};
 
-function AllServicesPanel() {
-  return (
-    <div className="w-[360px] max-w-[90vw] p-3">
-      <div className="mb-2 flex items-end justify-between gap-6 px-3 pb-3 pt-2">
-        <div>
-          <p className="font-display text-lg text-foreground">Our Services</p>
-          <p className="mt-0.5 text-xs text-muted-foreground">Comprehensive solutions for your business</p>
-        </div>
-        <NavigationMenu.Link asChild>
-          <Link
-            href="/services"
-            className="inline-flex shrink-0 items-center gap-1 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-[var(--accent)] hover:underline"
-          >
-            View all
-            <ArrowRight className="size-3" aria-hidden />
-          </Link>
-        </NavigationMenu.Link>
-      </div>
 
-      <ul className="space-y-1">
-        {categories.map((cat, i) => (
-          <li key={cat.slug}>
-            <MenuIconRow
-              href={`/services#${cat.slug}`}
-              icon={SERVICE_CATEGORY_ICONS[cat.slug] ?? Building2}
-              tint={ICON_TINTS[i % ICON_TINTS.length]}
-              title={cat.title}
-              subtitle={cat.tagline}
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
 
-const TOOL_ICONS: Record<string, LucideIcon> = {
-  "emi-calculator": Calculator,
-  "gst-calculator": Percent,
-  "income-tax-calculator": Landmark,
-  "startup-eligibility-checker": Rocket,
-  "funding-eligibility-checker": HandCoins,
-};
-
-function AllToolsPanel() {
-  return (
-    <div className="w-[360px] max-w-[90vw] p-3">
-      <div className="mb-2 flex items-end justify-between gap-6 px-3 pb-3 pt-2">
-        <div>
-          <p className="font-display text-lg text-foreground">Free Tools</p>
-          <p className="mt-0.5 text-xs text-muted-foreground">Calculators &amp; eligibility checkers</p>
-        </div>
-        <NavigationMenu.Link asChild>
-          <Link
-            href="/tools"
-            className="inline-flex shrink-0 items-center gap-1 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-[var(--accent)] hover:underline"
-          >
-            View all
-            <ArrowRight className="size-3" aria-hidden />
-          </Link>
-        </NavigationMenu.Link>
-      </div>
-
-      <ul className="space-y-1">
-        {tools.map((tool, i) => (
-          <li key={tool.slug}>
-            <MenuIconRow
-              href={`/tools/${tool.slug}`}
-              icon={TOOL_ICONS[tool.slug] ?? Calculator}
-              tint={ICON_TINTS[i % ICON_TINTS.length]}
-              title={tool.name}
-              subtitle={tool.short}
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
 
 const RESOURCE_ROWS = [
   {
@@ -369,87 +275,9 @@ function MobileNav() {
 
           <nav className="flex-1 overflow-y-auto px-5 py-4">
             <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="services" className="border-border">
-                <AccordionTrigger className="text-foreground hover:text-[var(--accent)]">
-                  Services
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="flex flex-col space-y-4 pb-2 pt-1">
-                    {categories.map((cat) => {
-                      const groups = groupsInCategory(cat.slug);
-                      const topServices = groups.flatMap((g) => g.items).slice(0, 3);
-                      return (
-                        <div key={cat.slug} className="space-y-2">
-                          <Link
-                            href={`/services#${cat.slug}`}
-                            onClick={() => setOpen(false)}
-                            className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-[var(--accent)]"
-                          >
-                            {cat.title}
-                          </Link>
-                          <ul className="space-y-1">
-                            {topServices.map((s) => (
-                              <li key={s.slug}>
-                                <Link
-                                  href={`/services/${s.slug}`}
-                                  onClick={() => setOpen(false)}
-                                  className="block py-1 text-sm text-foreground/90"
-                                >
-                                  {s.name}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      );
-                    })}
-                    <Link
-                      href="/services"
-                      onClick={() => setOpen(false)}
-                      className="inline-flex items-center gap-1 pt-2 font-mono text-xs uppercase tracking-wider text-[var(--accent)]"
-                    >
-                      View all services <ArrowRight className="size-3" />
-                    </Link>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
 
-              <AccordionItem value="tools" className="border-border">
-                <AccordionTrigger className="text-foreground hover:text-[var(--accent)]">
-                  Tools
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="flex flex-col space-y-4 pb-2 pt-1">
-                    {toolCategories.map((cat) => (
-                      <div key={cat.slug} className="space-y-2">
-                        <p className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-[var(--accent)]">
-                          {cat.title}
-                        </p>
-                        <ul className="space-y-1">
-                          {toolsByCategory(cat.slug).map((tool) => (
-                            <li key={tool.slug}>
-                              <Link
-                                href={`/tools/${tool.slug}`}
-                                onClick={() => setOpen(false)}
-                                className="block py-1 text-sm text-foreground/90"
-                              >
-                                {tool.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                    <Link
-                      href="/tools"
-                      onClick={() => setOpen(false)}
-                      className="inline-flex items-center gap-1 pt-2 font-mono text-xs uppercase tracking-wider text-[var(--accent)]"
-                    >
-                      View all tools <ArrowRight className="size-3" />
-                    </Link>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
+
+
 
               <AccordionItem value="resources" className="border-border">
                 <AccordionTrigger className="text-foreground hover:text-[var(--accent)]">
@@ -505,8 +333,8 @@ function MobileNav() {
             <div className="mt-4 space-y-1">
               {[
                 { href: "/", label: "Home" },
-                { href: "/services", label: "All services" },
-                { href: "/tools", label: "All tools" },
+                { href: "/services", label: "Services" },
+                { href: "/tools", label: "Tools" },
                 { href: "/blog", label: "Blog" },
                 { href: "/downloads", label: "Downloads" },
                 { href: "/compliance-calendar", label: "Compliance calendar" },

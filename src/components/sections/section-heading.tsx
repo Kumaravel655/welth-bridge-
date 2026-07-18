@@ -11,14 +11,15 @@ export function SectionHeading({
   eyebrow: string;
   title: React.ReactNode;
   lede?: string;
-  align?: "left" | "center";
+  align?: "left" | "center" | "right";
   onInk?: boolean;
 }) {
   return (
     <Reveal
       className={cn(
         "max-w-2xl",
-        align === "center" && "mx-auto text-center"
+        align === "center" && "mx-auto text-center",
+        align === "right" && "ml-auto text-right"
       )}
     >
       <p
