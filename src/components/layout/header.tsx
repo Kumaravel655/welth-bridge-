@@ -45,8 +45,8 @@ import { Wordmark } from "./wordmark";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/85 text-foreground backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 rounded-full border border-border/60 bg-background/80 px-4 shadow-lg shadow-black/[0.04] backdrop-blur-xl sm:px-6 lg:px-8">
         <Wordmark />
 
         <DesktopNav />

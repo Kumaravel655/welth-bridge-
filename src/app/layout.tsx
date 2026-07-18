@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono, EB_Garamond } from "next/font/google";
+import { Inter, Geist_Mono, Manrope } from "next/font/google";
 import Script from "next/script";
 
 import { Chatbot } from "@/components/chat/chatbot";
@@ -25,10 +25,10 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const ebGaramond = EB_Garamond({
+const manrope = Manrope({
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-eb-garamond",
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-manrope",
   display: "swap",
 });
 
@@ -149,7 +149,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${geistMono.variable} ${ebGaramond.variable} font-sans`}
+        className={`${inter.variable} ${geistMono.variable} ${manrope.variable} font-sans`}
         suppressHydrationWarning
       >
         <ThemeProvider

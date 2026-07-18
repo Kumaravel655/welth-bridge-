@@ -8,7 +8,6 @@ import Image from "next/image";
 import { PostCard } from "@/components/blog/post-card";
 import { Reveal, RevealGroup } from "@/components/motion/reveal";
 import { CTA } from "@/components/sections/cta";
-import { FaqAccordion, faqJsonLd } from "@/components/shared/faq-accordion";
 import { RelatedServices } from "@/components/shared/related-services";
 import { ToolCard } from "@/components/tools/tool-card";
 import { Badge } from "@/components/ui/badge";
@@ -16,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { posts } from "@/lib/blog";
 import {
   getCategory,
-  getServiceFaqs,
   getService,
   services,
   servicesByCategory,
@@ -59,7 +57,6 @@ export default async function ServicePage({ params }: Props) {
     .slice(0, 3);
   const relatedTools = tools.filter((t) => t.relatedServiceSlugs.includes(service.slug));
   const relatedPosts = posts.filter((p) => p.relatedServiceSlugs.includes(service.slug)).slice(0, 3);
-  const faqs = getServiceFaqs(service);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -344,13 +341,6 @@ export default async function ServicePage({ params }: Props) {
         </section>
       )}
 
-      {/* FAQ */}
-      <section className="border-t border-border">
-        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-          <FaqAccordion heading="Frequently asked questions" items={faqs} />
-        </div>
-      </section>
-
       <CTA />
 
       <script
@@ -360,10 +350,6 @@ export default async function ServicePage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }}
       />
     </>
   );

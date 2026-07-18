@@ -51,7 +51,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="overflow-hidden py-20 sm:py-24">
+    <section className="overflow-hidden bg-muted py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           align="center"
@@ -78,8 +78,8 @@ export function Testimonials() {
             )}
           </div>
           {/* Fade edges */}
-          <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background to-transparent" />
-          <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent" />
+          <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-muted to-transparent" />
+          <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-muted to-transparent" />
         </div>
 
         {/* Row 2 — scrolls right (reverse) */}
@@ -96,8 +96,8 @@ export function Testimonials() {
               )
             )}
           </div>
-          <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background to-transparent" />
-          <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent" />
+          <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-muted to-transparent" />
+          <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-muted to-transparent" />
         </div>
       </div>
 

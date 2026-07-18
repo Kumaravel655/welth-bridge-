@@ -10,7 +10,7 @@ import { Wordmark } from "./wordmark";
 
 export function Footer() {
   return (
-    <footer className="relative bg-ink text-ink-foreground">
+    <footer className="relative rounded-t-3xl bg-ink text-ink-foreground">
       {/* Gradient divider at top */}
       <div
         aria-hidden

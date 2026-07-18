@@ -4,39 +4,39 @@
 
 /* ------------------------------------------------------------------
    The Wealth Bridge — design tokens
-   Brand blue (#033F80, matching thewealthbridge.in) carries both the
-   ink band and the accent — one blue family, used at different depths
-   for hierarchy. Paper = warm document white.
+   Bright blue + white system (Xendoo/Bench/1800Accountant-inspired):
+   a vivid, saturated blue accent on a cool blue-white paper, with the
+   deep-ink band reserved for the footer and the closing CTA only.
 ------------------------------------------------------------------- */
 
 :root {
-  --background: oklch(0.985 0.004 95);          /* warm paper */
-  --foreground: oklch(0.24 0.035 250);          /* ink navy text */
+  --background: oklch(0.99 0.004 254);          /* cool blue-white paper */
+  --foreground: oklch(0.22 0.04 256);           /* ink navy text */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.24 0.035 250);
-  --muted: oklch(0.955 0.006 95);
-  --muted-foreground: oklch(0.48 0.02 250);
-  --accent: oklch(0.37 0.12 256);               /* brand blue, #033F80 */
-  --accent-strong: oklch(0.28 0.11 256);        /* deeper blue, for hover/emphasis */
-  --accent-foreground: oklch(0.98 0.005 95);
-  --border: oklch(0.9 0.008 95);
-  --ring: oklch(0.37 0.12 256);
+  --card-foreground: oklch(0.22 0.04 256);
+  --muted: oklch(0.965 0.012 254);              /* light blue-tinted section bg */
+  --muted-foreground: oklch(0.48 0.03 256);
+  --accent: oklch(0.52 0.19 258);               /* vivid blue */
+  --accent-strong: oklch(0.4 0.17 258);         /* deeper blue, for hover/emphasis */
+  --accent-foreground: oklch(0.99 0.004 254);
+  --border: oklch(0.9 0.014 254);
+  --ring: oklch(0.52 0.19 258);
   --destructive: oklch(0.58 0.21 27);
   --destructive-foreground: oklch(0.98 0.005 95);
 
-  /* Ink band — the hero/footer stays a deep brand blue in both themes */
-  --ink: oklch(0.19 0.075 256);
-  --ink-raised: oklch(0.24 0.08 256);
-  --ink-foreground: oklch(0.96 0.005 95);
-  --ink-muted: oklch(0.7 0.035 256);
-  --ink-border: oklch(0.32 0.075 256);
+  /* Ink band — reserved for the footer and the closing CTA card only */
+  --ink: oklch(0.19 0.08 258);
+  --ink-raised: oklch(0.24 0.085 258);
+  --ink-foreground: oklch(0.97 0.006 254);
+  --ink-muted: oklch(0.72 0.04 258);
+  --ink-border: oklch(0.32 0.08 258);
   /* Accent readable ON the ink band — the base --accent (L 0.37) is nearly
      invisible against --ink (L 0.19) in the light theme. */
-  --accent-on-ink: oklch(0.72 0.12 256);
+  --accent-on-ink: oklch(0.75 0.15 258);
 
   /* Premium accent gradients */
-  --gradient-accent: linear-gradient(135deg, oklch(0.45 0.14 258), oklch(0.3 0.12 250), oklch(0.52 0.11 264));
-  --gradient-navy: linear-gradient(135deg, oklch(0.19 0.075 256), oklch(0.24 0.08 256), oklch(0.19 0.075 256));
+  --gradient-accent: linear-gradient(135deg, oklch(0.56 0.19 260), oklch(0.42 0.17 254), oklch(0.6 0.16 266));
+  --gradient-navy: linear-gradient(135deg, oklch(0.19 0.08 258), oklch(0.24 0.085 258), oklch(0.19 0.08 258));
 }
 
 .dark {
@@ -87,7 +87,7 @@
   --color-accent-on-ink: var(--accent-on-ink);
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-eb-garamond), ui-serif, Georgia, serif;
+  --font-display: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
   --animate-marquee: marquee 36s linear infinite;
